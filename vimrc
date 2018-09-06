@@ -1,3 +1,4 @@
+set fileformat=dos
 "
 " Vim8用サンプル vimrc
 "
@@ -12,6 +13,28 @@ scriptencoding utf-8              " This file's encoding
 unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
 
+
+if has('vim_starting')
+  set rtp+=~/.vim/autoload
+  if !isdirectory(expand('~/.vim/autoload'))
+    echo 'install vim-plug...'
+    call system('mkdir -p ~/.vim/autoload/')
+    call system('mkdir -p ~/.vim/plugged')
+    call system('curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+  end
+endif
+
+call plug#begin()
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'nightsense/stellarized'
+  Plug 'Lokaltog/vim-easymotion'
+  Plug 'sjl/badwolf'
+  Plug 'freitass/todo.txt-vim'
+  Plug 'scrooloose/nerdtree'
+  Plug 'edkolev/tmuxline.vim'
+  " Plug 'W0rp/ale'
+call plug#end()
 "===============================================================================
 " 設定の追加はこの行以降でおこなうこと！
 " 分からないオプション名は先頭に ' を付けてhelpしましょう。例:
@@ -104,7 +127,8 @@ endif
  endif
 "-------------------------------------------------------------------------------
 " カラースキームの設定
-colorscheme torte
+colorscheme badwolf
+syntax on
 
 try
   silent hi CursorIM
@@ -150,6 +174,7 @@ set wildmode=list:longest
 nnoremap j gj
 nnoremap k gk
 let mapleader = "\<Space>"
+let maplocalleader = "`"
 
 " Tab系
 " 不可視文字を可視化(タブが「?-」と表示される)
@@ -183,7 +208,7 @@ set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
-let g:airline_theme = 'molokai'
+let g:airline_theme = 'wombat'
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
