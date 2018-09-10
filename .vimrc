@@ -2,26 +2,31 @@ set fileformat=dos
 "
 " Vim8用サンプル vimrc
 "
-if has('win32')                   " Windows 32bit または 64bit ?
-  set encoding=utf-8              " cp932 が嫌なら utf-8 にしてください
-else
-  set encoding=utf-8
-endif
+set encoding=utf-8              " cp932 が嫌なら utf-8 にしてください
 scriptencoding utf-8              " This file's encoding
 
 " 推奨設定の読み込み (:h defaults.vim)
 unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
 
-
 if has('vim_starting')
-  set rtp+=~/.vim/autoload
-  if !isdirectory(expand('~/.vim/autoload'))
-    echo 'install vim-plug...'
-    call system('mkdir -p ~/.vim/autoload/')
-    call system('mkdir -p ~/.vim/plugged')
-    call system('curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
-  end
+  if has ('win32')
+    set rtp+=~/.vim/autoload
+    if !isdirectory(expand('~/vimfiles/autoload'))
+      echo 'install vim-plug...'
+      call system('mkdir -p ~/vimfiles/autoload/')
+      call system('mkdir -p ~/vimfiles/plugged')
+      call system('curl -fLo ~/vimfiles/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+    end
+  else
+    set rtp+=~/.vim/autoload
+    if !isdirectory(expand('~/.vim/autoload'))
+      echo 'install vim-plug...'
+      call system('mkdir -p ~/.vim/autoload/')
+      call system('mkdir -p ~/.vim/plugged')
+      call system('curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+    end
+  endif
 endif
 
 call plug#begin()
@@ -244,15 +249,15 @@ let g:airline_right_alt_sep = '⮃'
 let g:airline_symbols.branch = '⭠'
 let g:airline_symbols.readonly = '⭤'
 let g:airline_symbols.linenr = '⭡'
-"
-" let g:tmuxline_preset = {
-  " \'a'    : '#S',
-  " \'c'    : ['#(whoami)', '#(uptime | cud -d " " -f 1,2,3)'],
-  " \'win'  : ['#I', '#W'],
-  " \'cwin' : ['#I', '#W', '#F'],
-  " \'x'    : '#(date)',
-  " \'y'    : ['%R', '%a', '%Y'],
-  " \'z'    : '#H'}
-" let g:tmuxline_theme = 'papercolor'
+
+let g:tmuxline_preset = {
+ \'a'    : '#S',
+ \'c'    : ['#(whoami)', '#(uptime | cud -d " " -f 1,2,3)'],
+ \'win'  : ['#I', '#W'],
+ \'cwin' : ['#I', '#W', '#F'],
+ \'x'    : '#(date)',
+ \'y'    : ['%R', '%a', '%Y'],
+ \'z'    : '#H'}
+let g:tmuxline_theme = 'papercolor'
 
 " vim:set et ts=2 sw=0:
