@@ -245,14 +245,14 @@ let g:airline_symbols.branch = '⭠'
 let g:airline_symbols.readonly = '⭤'
 let g:airline_symbols.linenr = '⭡'
 "
-let g:tmuxline_preset = {
-  \'a'    : '#S',
-  \'c'    : ['#(whoami)', '#(uptime | cud -d " " -f 1,2,3)'],
-  \'win'  : ['#I', '#W'],
-  \'cwin' : ['#I', '#W', '#F'],
-  \'x'    : '#(date)',
-  \'y'    : ['%R', '%a', '%Y'],
-  \'z'    : '#H'}
-let g:tmuxline_theme = 'papercolor'
+" let g:tmuxline_preset = {
+  " \'a'    : '#S',
+  " \'c'    : ['#(whoami)', '#(uptime | cud -d " " -f 1,2,3)'],
+  " \'win'  : ['#I', '#W'],
+  " \'cwin' : ['#I', '#W', '#F'],
+  " \'x'    : '#(date)',
+  " \'y'    : ['%R', '%a', '%Y'],
+  " \'z'    : '#H'}
+" let g:tmuxline_theme = 'papercolor'
 
 " vim:set et ts=2 sw=0:
