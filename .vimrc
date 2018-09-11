@@ -1,4 +1,4 @@
-set fileformat=dos
+set fileformats=unix,dos,mac
 "
 " Vim8用サンプル vimrc
 "
