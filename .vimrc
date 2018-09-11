@@ -10,6 +10,9 @@ unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
 
 if has('vim_starting')
+  let &t_SI .= "\e[6 q"
+  let &t_EI .= "\e[2 q"
+  let &t_SR .= "\e[4 q"
   if has ('win32')
     set rtp+=~/.vim/autoload
     if !isdirectory(expand('~/vimfiles/autoload'))
@@ -252,5 +255,20 @@ let g:airline_symbols.branch = '⭠'
 let g:airline_symbols.readonly = '⭤'
 let g:airline_symbols.linenr = '⭡'
 
+let g:tmuxline_preset = {
+  \'a'    : '#S',
+  \'c'    : ['#(whoami)', '#(uptime | cud -d " " -f 1,2,3)'],
+  \'win'  : ['#I', '#W'],
+  \'cwin' : ['#I', '#W', '#F'],
+  \'x'    : '#(date)',
+  \'y'    : ['%R', '%a', '%Y'],
+  \'z'    : '#H'}
 
+let g:tmuxline_separators = {
+    \ 'left' : '⮀',
+    \ 'left_alt': '⮁',
+    \ 'right' : '⮂',
+    \ 'right_alt' : '⮃',
+    \ 'space' : ' '}
+let g:tmuxline_theme = 'molokai'
 " vim:set et ts=2 sw=0:
