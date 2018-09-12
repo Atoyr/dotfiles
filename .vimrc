@@ -4,6 +4,7 @@ set fileformats=unix,dos,mac
 "
 set encoding=utf-8              " cp932 が嫌なら utf-8 にしてください
 scriptencoding utf-8              " This file's encoding
+set ambiwidth=single
 
 " 推奨設定の読み込み (:h defaults.vim)
 unlet! skip_defaults_vim
@@ -239,21 +240,21 @@ let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
 " airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 " old vim-powerline symbols
-let g:airline_left_sep = '⮀'
-let g:airline_left_alt_sep = '⮁'
-let g:airline_right_sep = '⮂'
-let g:airline_right_alt_sep = '⮃'
-let g:airline_symbols.branch = '⭠'
-let g:airline_symbols.readonly = '⭤'
-let g:airline_symbols.linenr = '⭡'
+" let g:airline_left_sep = '⮀'
+" let g:airline_left_alt_sep = '⮁'
+" let g:airline_right_sep = '⮂'
+" let g:airline_right_alt_sep = '⮃'
+" let g:airline_symbols.branch = '⭠'
+" let g:airline_symbols.readonly = '⭤'
+" let g:airline_symbols.linenr = '⭡'
 
 let g:tmuxline_preset = {
   \'a'    : '#S',
@@ -272,3 +273,5 @@ let g:tmuxline_separators = {
     \ 'space' : ' '}
 let g:tmuxline_theme = 'molokai'
 " vim:set et ts=2 sw=0:
+
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
