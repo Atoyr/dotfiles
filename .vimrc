@@ -63,7 +63,7 @@ if !has('gui_running')            " gvimではない？ (== 端末)
   endif
 endif
 set nofixendofline                " Windowsのエディタの人達に嫌われない設定
-set ambiwidth=double              " ○, △, □等の文字幅をASCII文字の倍にする
+set ambiwidth=single              " ○, △, □等の文字幅をASCII文字の倍にする
 set directory-=.                  " swapファイルはローカル作成がトラブル少なめ
 set formatoptions+=mM             " 日本語の途中でも折り返す
 let &grepprg="grep -rnIH --exclude=.git --exclude-dir=.hg --exclude-dir=.svn --exclude=tags"
@@ -239,11 +239,11 @@ let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
 " airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 " old vim-powerline symbols
@@ -270,5 +270,7 @@ let g:airline_symbols.linenr = ''
     " \ 'right' : '⮂',
     " \ 'right_alt' : '⮃',
     " \ 'space' : ' '}
-let g:tmuxline_theme = 'molokai'
+" let g:tmuxline_theme = 'molokai'
 " vim:set et ts=2 sw=0:
+
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
