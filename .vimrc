@@ -4,7 +4,6 @@ set fileformats=unix,dos,mac
 "
 set encoding=utf-8              " cp932 が嫌なら utf-8 にしてください
 scriptencoding utf-8              " This file's encoding
-set ambiwidth=single
 
 " 推奨設定の読み込み (:h defaults.vim)
 unlet! skip_defaults_vim
@@ -64,7 +63,7 @@ if !has('gui_running')            " gvimではない？ (== 端末)
   endif
 endif
 set nofixendofline                " Windowsのエディタの人達に嫌われない設定
-set ambiwidth=double              " ○, △, □等の文字幅をASCII文字の倍にする
+set ambiwidth=single              " ○, △, □等の文字幅をASCII文字の倍にする
 set directory-=.                  " swapファイルはローカル作成がトラブル少なめ
 set formatoptions+=mM             " 日本語の途中でも折り返す
 let &grepprg="grep -rnIH --exclude=.git --exclude-dir=.hg --exclude-dir=.svn --exclude=tags"
@@ -256,22 +255,22 @@ let g:airline_symbols.linenr = ''
 " let g:airline_symbols.readonly = '⭤'
 " let g:airline_symbols.linenr = '⭡'
 
-let g:tmuxline_preset = {
-  \'a'    : '#S',
-  \'c'    : ['#(whoami)', '#(uptime | cud -d " " -f 1,2,3)'],
-  \'win'  : ['#I', '#W'],
-  \'cwin' : ['#I', '#W', '#F'],
-  \'x'    : '#(date)',
-  \'y'    : ['%R', '%a', '%Y'],
-  \'z'    : '#H'}
+" let g:tmuxline_preset = {
+  " \'a'    : '#S',
+  " \'c'    : ['#(whoami)', '#(uptime | cud -d " " -f 1,2,3)'],
+  " \'win'  : ['#I', '#W'],
+  " \'cwin' : ['#I', '#W', '#F'],
+  " \'x'    : '#(date)',
+  " \'y'    : ['%R', '%a', '%Y'],
+  " \'z'    : '#H'}
 
-let g:tmuxline_separators = {
-    \ 'left' : '⮀',
-    \ 'left_alt': '⮁',
-    \ 'right' : '⮂',
-    \ 'right_alt' : '⮃',
-    \ 'space' : ' '}
-let g:tmuxline_theme = 'molokai'
+" let g:tmuxline_separators = {
+    " \ 'left' : '⮀',
+    " \ 'left_alt': '⮁',
+    " \ 'right' : '⮂',
+    " \ 'right_alt' : '⮃',
+    " \ 'space' : ' '}
+" let g:tmuxline_theme = 'molokai'
 " vim:set et ts=2 sw=0:
 
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
