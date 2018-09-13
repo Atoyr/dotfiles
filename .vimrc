@@ -63,7 +63,7 @@ if !has('gui_running')            " gvimではない？ (== 端末)
   endif
 endif
 set nofixendofline                " Windowsのエディタの人達に嫌われない設定
-set ambiwidth=single              " ○, △, □等の文字幅をASCII文字の倍にする
+set ambiwidth=double              " ○, △, □等の文字幅をASCII文字の倍にする
 set directory-=.                  " swapファイルはローカル作成がトラブル少なめ
 set formatoptions+=mM             " 日本語の途中でも折り返す
 let &grepprg="grep -rnIH --exclude=.git --exclude-dir=.hg --exclude-dir=.svn --exclude=tags"
