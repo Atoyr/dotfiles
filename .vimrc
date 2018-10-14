@@ -8,13 +8,19 @@ scriptencoding utf-8              " This file's encoding
 " 推奨設定の読み込み (:h defaults.vim)
 unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
+    if !isdirectory(expand('~/vimfiles/autoload'))
+      echo 'install vim-plug...'
+      call system('mkdir -p ~/vimfiles/autoload/')
+      call system('mkdir -p ~/vimfiles/plugged')
+      call system('curl -fLo ~/vimfiles/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+    end
 
 if has('vim_starting')
   let &t_SI .= "\e[6 q"
   let &t_EI .= "\e[2 q"
   let &t_SR .= "\e[4 q"
   if has ('win32')
-    set rtp+=~/.vim/autoload
+    set rtp+=~/vimfiles/autoload
     if !isdirectory(expand('~/vimfiles/autoload'))
       echo 'install vim-plug...'
       call system('mkdir -p ~/vimfiles/autoload/')
@@ -41,6 +47,7 @@ call plug#begin()
   Plug 'sjl/badwolf'
   Plug 'freitass/todo.txt-vim'
   Plug 'scrooloose/nerdtree'
+  Plug 'wakatime/vim-wakatime'
   " Plug 'edkolev/tmuxline.vim'
   " Plug 'W0rp/ale'
 call plug#end()
