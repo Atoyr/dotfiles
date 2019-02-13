@@ -48,6 +48,7 @@ call plug#begin()
   Plug 'freitass/todo.txt-vim'
   Plug 'scrooloose/nerdtree'
   Plug 'wakatime/vim-wakatime'
+  Plug 'simeji/winresizer'
   " Plug 'edkolev/tmuxline.vim'
   " Plug 'W0rp/ale'
 call plug#end()
