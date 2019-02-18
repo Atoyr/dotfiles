@@ -254,31 +254,5 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
-" old vim-powerline symbols
-" let g:airline_left_sep = '⮀'
-" let g:airline_left_alt_sep = '⮁'
-" let g:airline_right_sep = '⮂'
-" let g:airline_right_alt_sep = '⮃'
-" let g:airline_symbols.branch = '⭠'
-" let g:airline_symbols.readonly = '⭤'
-" let g:airline_symbols.linenr = '⭡'
-
-" let g:tmuxline_preset = {
-  " \'a'    : '#S',
-  " \'c'    : ['#(whoami)', '#(uptime | cud -d " " -f 1,2,3)'],
-  " \'win'  : ['#I', '#W'],
-  " \'cwin' : ['#I', '#W', '#F'],
-  " \'x'    : '#(date)',
-  " \'y'    : ['%R', '%a', '%Y'],
-  " \'z'    : '#H'}
-
-" let g:tmuxline_separators = {
-    " \ 'left' : '⮀',
-    " \ 'left_alt': '⮁',
-    " \ 'right' : '⮂',
-    " \ 'right_alt' : '⮃',
-    " \ 'space' : ' '}
-" let g:tmuxline_theme = 'molokai'
-" vim:set et ts=2 sw=0:
 
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
