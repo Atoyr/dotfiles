@@ -1,3 +1,6 @@
+. ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+
+# TMUX
 SESSION_NAME=current
 
 if [[ -z "$TMUX" && -z "$STY" ]] && type tmux >/dev/null 2>&1; then
