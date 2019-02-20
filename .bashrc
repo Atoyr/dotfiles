@@ -1,7 +1,7 @@
 . ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
 
 # TMUX
-SESSION_NAME=current
+SESSION_NAME=default
 
 if [[ -z "$TMUX" && -z "$STY" ]] && type tmux >/dev/null 2>&1; then
   option=""
