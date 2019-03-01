@@ -1,9 +1,14 @@
+"
+"  __   __   __     __    __     ______     ______    
+" /\ \ / /  /\ \   /\ "-./  \   /\  == \   /\  ___\   
+" \ \ \'/   \ \ \  \ \ \-./\ \  \ \  __<   \ \ \____  
+"  \ \__|    \ \_\  \ \_\ \ \_\  \ \_\ \_\  \ \_____\ 
+"   \/_/      \/_/   \/_/  \/_/   \/_/ /_/   \/_____/ 
+"                                                     
+
 set fileformats=unix,dos,mac
-"
-" Vim8用サンプル vimrc
-"
-set encoding=utf-8              " cp932 が嫌なら utf-8 にしてください
-scriptencoding utf-8              " This file's encoding
+set encoding=utf-8
+scriptencoding utf-8
 
 " 推奨設定の読み込み (:h defaults.vim)
 unlet! skip_defaults_vim
@@ -38,16 +43,39 @@ if has('vim_starting')
   endif
 endif
 
+" Plugin package manager
 call plug#begin()
+  " Powerline
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'tpope/vim-fugitive'
-  Plug 'nightsense/stellarized'
+  Plug 'ryanoasis/vim-devicons'
+
+  " file template
+  Plug 'mattn/sonictemplate-vim'
+
+  " easymotion
   Plug 'Lokaltog/vim-easymotion'
+
+  " git
+  Plug 'tpope/vim-fugitive'
+
+  " color scheme
   Plug 'sjl/badwolf'
+
+  " todo.txt Plugin
   Plug 'freitass/todo.txt-vim'
+
+  " fileManager
   Plug 'scrooloose/nerdtree'
+
+  " SNS
   Plug 'wakatime/vim-wakatime'
+
+  " golang plugin
+  Plug 'fatih/vim-go'
+
+  " cheatsheet
+  Plug 'reireias/vim-cheatsheet'
   " Plug 'edkolev/tmuxline.vim'
   " Plug 'W0rp/ale'
 call plug#end()
