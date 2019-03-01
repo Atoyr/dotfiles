@@ -76,8 +76,9 @@ call plug#begin()
 
   " cheatsheet
   Plug 'reireias/vim-cheatsheet'
-  " Plug 'edkolev/tmuxline.vim'
-  " Plug 'W0rp/ale'
+
+  " Lint
+  Plug 'W0rp/ale'
 call plug#end()
 "===============================================================================
 " 設定の追加はこの行以降でおこなうこと！
@@ -282,5 +283,8 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
+
+" cheat sheet
+let g:cheatsheet#cheat_file = '~/.vim/.cheatsheet.md'
 
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
