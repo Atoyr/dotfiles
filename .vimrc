@@ -50,6 +50,9 @@ call plug#begin()
   Plug 'vim-airline/vim-airline-themes'
   Plug 'ryanoasis/vim-devicons'
 
+  " WindowResize
+  Plug 'simeji/winresizer'
+
   " file template
   Plug 'mattn/sonictemplate-vim'
 
@@ -66,7 +69,10 @@ call plug#begin()
   Plug 'freitass/todo.txt-vim'
 
   " fileManager
-  Plug 'scrooloose/nerdtree'
+  " Plug 'scrooloose/nerdtree'
+  " Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'Shougo/unite.vim'
+  Plug 'Shougo/vimfiler.vim'
 
   " SNS
   Plug 'wakatime/vim-wakatime'
@@ -197,6 +203,17 @@ set showcmd
 " Clipboard有効化
 set clipboard+=unnamed
 
+" キーバインド
+" leader
+let mapleader = "\<Space>"
+let maplocalleader = "`"
+" 折り返し時に表示行単位での移動できるようにする
+nnoremap j gj
+nnoremap k gk
+
+" sキー無効
+nnoremap s <Nop>
+
 " 見た目系
 " 行番号を表示
 set number
@@ -216,11 +233,6 @@ set showmatch
 set laststatus=2
 " コマンドラインの補完
 set wildmode=list:longest
-" 折り返し時に表示行単位での移動できるようにする
-nnoremap j gj
-nnoremap k gk
-let mapleader = "\<Space>"
-let maplocalleader = "`"
 
 " Tab系
 " 不可視文字を可視化(タブが「?-」と表示される)
@@ -284,7 +296,18 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
+" template
+let g:sonictemplate_vim_template_dir = ['~/.vim/template']
+
 " cheat sheet
 let g:cheatsheet#cheat_file = '~/.vim/.cheatsheet.md'
+
+" Lint
+let g:ale_lint_on_text_changed = 0
+let g:ale_sign_error = '' 
+let g:ale_sign_warning = '' 
+" lint golang
+" let g:ale_linters.go ='gometalinter'
+" let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
 
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
