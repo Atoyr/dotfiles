@@ -49,6 +49,7 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'ryanoasis/vim-devicons'
+  Plug 'bling/vim-bufferline'
 
   " WindowResize
   Plug 'simeji/winresizer'
@@ -85,6 +86,9 @@ call plug#begin()
 
   " Lint
   Plug 'W0rp/ale'
+
+  " markdown
+  " Plug 'suan/vim-instant-markdown'
 call plug#end()
 "===============================================================================
 " 設定の追加はこの行以降でおこなうこと！
@@ -262,12 +266,17 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 " airline関連
 " Powerline系フォントを利用する
+let g:airline_theme = 'badwolf'
 let g:airline_powerline_fonts = 1
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
-let g:airline_theme = 'molokai'
+let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
+let g:airline_section_c = '%t'
+let g:airline_section_x = '%{&filetype}'
+let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
+
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
