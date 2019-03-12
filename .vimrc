@@ -198,6 +198,8 @@ endtry
 set nobackup
 " スワップファイルを作らない
 set noswapfile
+" Undoファイルは作成しない
+set noundofile
 " 編集中のファイルが変更されたら自動で読み直す
 set autoread
 " バッファが編集中でもその他のファイルを開けるように
@@ -206,6 +208,8 @@ set hidden
 set showcmd
 " Clipboard有効化
 set clipboard+=unnamed
+" quickfix
+autocmd QuickFixCmdPost *grep* cwindow
 
 " キーバインド
 " leader
@@ -217,6 +221,11 @@ nnoremap k gk
 
 " sキー無効
 nnoremap s <Nop>
+
+" VimFiler キーマップ
+nmap sf :VimFilerBufferDir<Return>
+nmap sF :VimFilerExplorer -find<Return>
+nmap sb :Unite buffer<Return>
 
 " 見た目系
 " 行番号を表示
@@ -304,6 +313,16 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
+
+" VimFiler
+let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_safe_mode_by_default = 0
+let g:vimfiler_enable_auto_cd = 0
+let g:vimfiler_tree_leaf_icon = ''
+let g:vimfiler_tree_opened_icon = '▾'
+let g:vimfiler_tree_closed_icon = '▸'
+let g:vimfiler_marked_file_icon = '✓'
+
 
 " template
 let g:sonictemplate_vim_template_dir = ['~/.vim/template']
