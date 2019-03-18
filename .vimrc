@@ -79,7 +79,7 @@ call plug#begin()
   Plug 'wakatime/vim-wakatime'
 
   " golang plugin
-  Plug 'fatih/vim-go'
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
   " cheatsheet
   Plug 'reireias/vim-cheatsheet'
@@ -89,6 +89,7 @@ call plug#begin()
 
   " markdown
   " Plug 'suan/vim-instant-markdown'
+
 call plug#end()
 "===============================================================================
 " 設定の追加はこの行以降でおこなうこと！
@@ -282,9 +283,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
-let g:airline_section_c = '%t'
-let g:airline_section_x = '%{&filetype}'
-let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
+" let g:airline_section_c = '%t'
+" let g:airline_section_x = '%{&filetype}'
+" let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
 
 
 if !exists('g:airline_symbols')
@@ -339,3 +340,8 @@ let g:ale_sign_warning = ''
 " let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
 
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+
+" Golang
+let g:go_fmt_command = "goimports"
+au FileType go nmap <leader>s <Plug>(go-def-split)
+au FileType go nmap <leader>v <Plug>(go-def-vertical)
