@@ -216,17 +216,41 @@ autocmd QuickFixCmdPost *grep* cwindow
 " leader
 let mapleader = "\<Space>"
 let maplocalleader = "`"
+
 " 折り返し時に表示行単位での移動できるようにする
-nnoremap j gj
-nnoremap k gk
+nmap j gj
+nmap k gk
+
+" ページめくり
+nmap J <C-f>
+nmap K <C-b>
+
+" buffer切替
+nmap <silent>sj :bn<CR>
+nmap <silent>sk :bp<CR>
 
 " sキー無効
-nnoremap s <Nop>
+nmap s <Nop>
+
+"easymotion 
+nmap s <Plug>(easymotion-s2)
+xmap s <Plug>(easymotion-s2)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <leader><leader> <Plug>(easymotion-prefix)
+map f <Plug>(easymotion-fl)
+map t <Plug>(easymotion-tl)
+map F <Plug>(easymotion-Fl)
+map T <Plug>(easymotion-Tl)
 
 " VimFiler キーマップ
-nmap sf :VimFilerBufferDir<Return>
-nmap sF :VimFilerExplorer -find<Return>
-nmap sb :Unite buffer<Return>
+nmap <leader>f :VimFilerBufferDir<Return>
+nmap <leader>F :VimFilerExplorer -find<Return>
+nmap <leader>b :Unite buffer<Return>
+
+" ESCキーマップ
+imap <silent>jj <ESC>
+imap <silent>っｊ <ESC>
 
 " 見た目系
 " 行番号を表示
@@ -324,6 +348,16 @@ let g:vimfiler_tree_opened_icon = '▾'
 let g:vimfiler_tree_closed_icon = '▸'
 let g:vimfiler_marked_file_icon = '✓'
 
+" easymotion
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_startofline = 0
+let g:EasyMotion_keys = ';HKLYUIOPNM,QWERTASDGZXCVBJF'
+" Show target key with upper case to improve readability
+let g:EasyMotion_use_upper = 1
+" Jump to first match with enter & space
+let g:EasyMotion_enter_jump_first = 1
+let g:EasyMotion_space_jump_first = 1
 
 " template
 let g:sonictemplate_vim_template_dir = ['~/.vim/template']
