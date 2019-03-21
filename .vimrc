@@ -13,34 +13,29 @@ scriptencoding utf-8
 " 推奨設定の読み込み (:h defaults.vim)
 unlet! skip_defaults_vim
 source $VIMRUNTIME/defaults.vim
-    if !isdirectory(expand('~/vimfiles/autoload'))
-      echo 'install vim-plug...'
-      call system('mkdir -p ~/vimfiles/autoload/')
-      call system('mkdir -p ~/vimfiles/plugged')
-      call system('curl -fLo ~/vimfiles/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
-    end
 
+" start once
 if has('vim_starting')
   let &t_SI .= "\e[6 q"
   let &t_EI .= "\e[2 q"
   let &t_SR .= "\e[4 q"
+
   if has ('win32')
-    set rtp+=~/vimfiles/autoload
-    if !isdirectory(expand('~/vimfiles/autoload'))
-      echo 'install vim-plug...'
-      call system('mkdir -p ~/vimfiles/autoload/')
-      call system('mkdir -p ~/vimfiles/plugged')
-      call system('curl -fLo ~/vimfiles/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
-    end
+    let vimfiles = '~/vimfiles/'
   else
-    set rtp+=~/.vim/autoload
-    if !isdirectory(expand('~/.vim/autoload'))
-      echo 'install vim-plug...'
-      call system('mkdir -p ~/.vim/autoload/')
-      call system('mkdir -p ~/.vim/plugged')
-      call system('curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
-    end
+    let vimfiles = '~/.vim/'
   endif
+  " vim-plug導入
+  let autoload = vimfiles . '/autoload'
+  set rtp+=autoload
+  if !isdirectory(expand(autoload))
+    echo 'install vim-plug...'
+    call system('mkdir -p ' . autoload)
+    call system('mkdir -p ' . vimfiles . '/plugged')
+    call system('curl -fLo' . autoload . '/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+  end
+  unlet! vimfiles
+  unlet! autoload
 endif
 
 " Plugin package manager
@@ -76,7 +71,7 @@ call plug#begin()
   Plug 'Shougo/vimfiler.vim'
 
   " SNS
-  Plug 'wakatime/vim-wakatime'
+  " Plug 'wakatime/vim-wakatime'
 
   " golang plugin
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -217,31 +212,29 @@ autocmd QuickFixCmdPost *grep* cwindow
 let mapleader = "\<Space>"
 let maplocalleader = "`"
 
+" キー無効
+nmap s <Nop>
+
 " 折り返し時に表示行単位での移動できるようにする
 nmap j gj
 nmap k gk
 
-" ページめくり
-nmap J <C-f>
-nmap K <C-b>
-
 " buffer切替
 nmap <silent>sj :bn<CR>
 nmap <silent>sk :bp<CR>
-
-" sキー無効
-nmap s <Nop>
 
 "easymotion 
 nmap s <Plug>(easymotion-s2)
 xmap s <Plug>(easymotion-s2)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
-map <leader><leader> <Plug>(easymotion-prefix)
 map f <Plug>(easymotion-fl)
 map t <Plug>(easymotion-tl)
 map F <Plug>(easymotion-Fl)
 map T <Plug>(easymotion-Tl)
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " VimFiler キーマップ
 nmap <leader>f :VimFilerBufferDir<Return>
@@ -251,6 +244,10 @@ nmap <leader>b :Unite buffer<Return>
 " ESCキーマップ
 imap <silent>jj <ESC>
 imap <silent>っｊ <ESC>
+
+" vim-go
+au FileType go nmap <leader>s <Plug>(go-def-split)
+au FileType go nmap <leader>v <Plug>(go-def-vertical)
 
 " 見た目系
 " 行番号を表示
@@ -377,5 +374,3 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
 " Golang
 let g:go_fmt_command = "goimports"
-au FileType go nmap <leader>s <Plug>(go-def-split)
-au FileType go nmap <leader>v <Plug>(go-def-vertical)
