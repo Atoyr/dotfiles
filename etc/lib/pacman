@@ -18,7 +18,7 @@ run_pacman() {
     'zsh'
     )
 
-    local installed=$(apt list --installed >&1 | grep -v deinstall | awk -F/ '{print $1}')
+    local installed=$(pacman -Qqe >&1 | grep -v deinstall | awk -F/ '{print $1}')
 
     for index in ${!desired_formulae[*]}
     do
