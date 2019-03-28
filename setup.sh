@@ -20,9 +20,9 @@ cd ${DOT_DIRECTORY}
 source ./etc/lib/pacman
 
 initialize() {
-  if has "pacman"; then
+  if type "pacman" > /dev/null 2>&1 ; then
     run_pacman
-  elif has "apt"; then
+  elif type "apt" > /dev/null 2>&1 ; then
     run_apt
   fi
 }
