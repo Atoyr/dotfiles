@@ -6,7 +6,7 @@ export DISPLAY=localhost:0.0
 
 # WSL with Docker for Windows
 export DOCKER_HOST="localhost"
-export GOPATH=$HOME
+export GOPATH=$HOME/.go
 
 # TMUX
 if [ $SHLVL = 1 ]; then

@@ -21,9 +21,9 @@ if has('vim_starting')
   let &t_SR .= "\e[4 q"
 
   if has ('win32')
-    let vimfiles = '~/vimfiles/'
+    let vimfiles = '~/vimfiles'
   else
-    let vimfiles = '~/.vim/'
+    let vimfiles = '~/.vim'
   endif
   " vim-plug導入
   let autoload = vimfiles . '/autoload'
@@ -32,7 +32,7 @@ if has('vim_starting')
     echo 'install vim-plug...'
     call system('mkdir -p ' . autoload)
     call system('mkdir -p ' . vimfiles . '/plugged')
-    call system('curl -fLo' . autoload . '/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+    call system('curl -fLo ' . autoload . '/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
   end
   unlet! vimfiles
   unlet! autoload
@@ -40,6 +40,13 @@ endif
 
 " Plugin package manager
 call plug#begin()
+  " LSP
+  Plug 'prabirshrestha/async.vim'
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  Plug 'natebosch/vim-lsc'
+
   " Powerline
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
@@ -241,6 +248,13 @@ nmap <leader>f :VimFilerBufferDir<Return>
 nmap <leader>F :VimFilerExplorer -find<Return>
 nmap <leader>b :Unite buffer<Return>
 
+nmap <silent> <Leader>d :LspDefinition<CR>
+nmap <silent> <Leader>p :LspHover<CR>
+nmap <silent> <Leader>r :LspReferences<CR>
+nmap <silent> <Leader>i :LspImplementation<CR>
+nmap <silent> <Leader>s :split \| :LspDefinition <CR>
+nmap <silent> <Leader>v :vsplit \| :LspDefinition <CR>
+
 " ESCキーマップ
 imap <silent>jj <ESC>
 imap <silent>っｊ <ESC>
@@ -312,29 +326,31 @@ let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+if !exists('g:airline_powerline_fonts')
+  " unicode symbols
+  let g:airline_left_sep = '»'
+  let g:airline_left_sep = '▶'
+  let g:airline_right_sep = '«'
+  let g:airline_right_sep = '◀'
+  let g:airline_symbols.linenr = '␊'
+  let g:airline_symbols.linenr = '␤'
+  let g:airline_symbols.linenr = '¶'
+  let g:airline_symbols.branch = '⎇'
+  let g:airline_symbols.paste = 'ρ'
+  let g:airline_symbols.paste = 'Þ'
+  let g:airline_symbols.paste = '∥'
+  let g:airline_symbols.whitespace = 'Ξ'
+else
 
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-
-" airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+  " airline symbols
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = ''
+endif
 
 " VimFiler
 let g:vimfiler_as_default_explorer = 1
@@ -374,3 +390,32 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 
 " Golang
 let g:go_fmt_command = "goimports"
+let g:go_def_mode = 'gopls'
+let g:go#use_vimproc = 0
+"let g:go_snippet_engine = "minisnip"
+let g:go_def_mapping_enabled = 0
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_term_enabled = 1
+let g:go_highlight_build_constraints = 1
+let g:go_template_autocreate = 0
+let g:go_gocode_unimported_packages = 1
+let g:sonictemplate_enable_pattern = 1
+" debug
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
+" let g:asyncomplete_log_file = expand('~/asyncomplete.log')
+
+" lsp
+let g:lsp_async_completion = 1
+let g:lsp_diagnostics_enabled = 0
+
+if executable('gopls')
+    autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'gopls',
+          \ 'cmd': {server_info->['gopls','-mode','stdio' ]},
+          \ 'whitelist': ['go'],
+          \ })
+endif
