@@ -196,6 +196,14 @@ catch /E411/
 endtry
 
 "-------------------------------------------------------------------------------
+"undo設定
+if has('persistent_undo')
+  set undodir=~/.vim/undo
+  set undofile
+  set undolevels=1000
+endif
+
+"-------------------------------------------------------------------------------
 " 個人設定
 " バックアップファイルを作らない
 set nobackup
@@ -211,6 +219,7 @@ set hidden
 set showcmd
 " Clipboard有効化
 set clipboard+=unnamed
+
 " quickfix
 autocmd QuickFixCmdPost *grep* cwindow
 
@@ -222,19 +231,35 @@ let maplocalleader = "`"
 " キー無効
 nmap s <Nop>
 
+" *検索時に先に進まないように
+noremap * *N
+
+" 指定個所を置換
+nnoremap <Leader>re :%s;<C-R><C-W>;g<Left><Left>;
+
+" 行頭行末
+map H ^
+map L $
+
+nnoremap <silent> <Leader>l :belowright term ++close gol -f<CR>
+
+" relativeNumber切り替え
+nnoremap <silent> <Leader>n :set relativenumber!<CR>
+
+nnoremap <C-j> }
+nnoremap <C-k> {
+
 " 折り返し時に表示行単位での移動できるようにする
 nmap j gj
 nmap k gk
 
 " buffer切替
-nmap <silent>sj :bn<CR>
-nmap <silent>sk :bp<CR>
+nmap <silent> <Leader>j :bn<CR>
+nmap <silent> <Leader>k :bp<CR>
 
 "easymotion 
 nmap s <Plug>(easymotion-s2)
 xmap s <Plug>(easymotion-s2)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
 map f <Plug>(easymotion-fl)
 map t <Plug>(easymotion-tl)
 map F <Plug>(easymotion-Fl)
@@ -260,12 +285,13 @@ imap <silent>jj <ESC>
 imap <silent>っｊ <ESC>
 
 " vim-go
-au FileType go nmap <leader>s <Plug>(go-def-split)
-au FileType go nmap <leader>v <Plug>(go-def-vertical)
+" au FileType go nmap <leader>s <Plug>(go-def-split)
+" au FileType go nmap <leader>v <Plug>(go-def-vertical)
 
 " 見た目系
 " 行番号を表示
 set number
+
 " 現在の行を強調表示
 set cursorline
 " 現在の行を強調表示（縦）
@@ -281,6 +307,7 @@ set showmatch
 " ステータスラインを常に表示
 set laststatus=2
 " コマンドラインの補完
+set wildmenu
 set wildmode=list:longest
 
 " Tab系
