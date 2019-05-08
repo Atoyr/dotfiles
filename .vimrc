@@ -238,8 +238,8 @@ noremap * *N
 nnoremap <Leader>re :%s;<C-R><C-W>;g<Left><Left>;
 
 " 行頭行末
-map H ^
-map L $
+" map H ^
+" map L $
 
 nnoremap <silent> <Leader>l :belowright term ++close gol -f<CR>
 
@@ -403,7 +403,7 @@ let g:EasyMotion_space_jump_first = 1
 let g:sonictemplate_vim_template_dir = ['~/.vim/template']
 
 " cheat sheet
-let g:cheatsheet#cheat_file = '~/.vim/.cheatsheet.md'
+let g:cheatsheet#cheat_file = '~/.config/vim/cheatsheet.md'
 
 " Lint
 let g:ale_lint_on_text_changed = 0
