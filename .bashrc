@@ -13,3 +13,5 @@ if [ $SHLVL = 1 ]; then
   alias tmux="tmux -2 attach || tmux -2 new \; source-file ~/.config/tmux/config"
 fi
 tmux && exit
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

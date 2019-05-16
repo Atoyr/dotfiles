@@ -53,6 +53,10 @@ call plug#begin()
   Plug 'ryanoasis/vim-devicons'
   Plug 'bling/vim-bufferline'
 
+  " fzf
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
+
   " WindowResize
   Plug 'simeji/winresizer'
 
