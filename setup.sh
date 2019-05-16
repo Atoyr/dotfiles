@@ -32,7 +32,7 @@ deploy() {
   do
     [[ ${f} = ".git" ]] && continue
     [[ ${f} = ".gitignore" ]] && continue
-    [[ ${f} = ".config" ]] && continue
+    #[[ ${f} = ".config" ]] && continue
     [[ ${f} = ".vim" ]] && continue
     ln -snfv ${DOT_DIRECTORY}/${f} ${HOME}/${f}
   done
