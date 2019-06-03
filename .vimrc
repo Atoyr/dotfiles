@@ -227,6 +227,10 @@ set hidden
 set showcmd
 " Clipboard有効化
 set clipboard+=unnamed
+" 画面を右に開く
+set splitright
+" 画面を下に開く
+set splitbelow
 
 " quickfix
 autocmd QuickFixCmdPost *grep* cwindow
@@ -272,19 +276,23 @@ map f <Plug>(easymotion-fl)
 map t <Plug>(easymotion-tl)
 map F <Plug>(easymotion-Fl)
 map T <Plug>(easymotion-Tl)
-" Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
+" Move to word  => 使わないので廃止
+" map  <Leader>w <Plug>(easymotion-bd-w)
+" nmap <Leader>w <Plug>(easymotion-overwin-w)
+nnoremap <Leader>z :vertical term<CR>
 
 " VimFiler キーマップ
 nmap <leader>f :VimFilerBufferDir<Return>
 nmap <leader>F :VimFilerExplorer -find<Return>
 nmap <leader>b :Unite buffer<Return>
 
+" LSP キーマップ
 nmap <silent> <Leader>d :LspDefinition<CR>
 nmap <silent> <Leader>p :LspHover<CR>
 nmap <silent> <Leader>r :LspReferences<CR>
 nmap <silent> <Leader>i :LspImplementation<CR>
+
+" split
 nmap <silent> <Leader>s :split \| :LspDefinition <CR>
 nmap <silent> <Leader>v :vsplit \| :LspDefinition <CR>
 
