@@ -81,6 +81,10 @@ call plug#begin()
   Plug 'Shougo/unite.vim'
   Plug 'Shougo/vimfiler.vim'
 
+  " marker
+  Plug 'Shougo/unite.vim'
+  Plug 'tacroe/unite-mark'
+
   " SNS
   " Plug 'wakatime/vim-wakatime'
 
@@ -317,7 +321,7 @@ set wildmode=list:longest
 " Tab系
 " 不可視文字を可視化(タブが「?-」と表示される)
 hi SpecialKey ctermfg=darkmagenta
-set list listchars=tab:\?\-
+set list listchars=tab:\>\-
 " Tab文字を半角スペースにする
 set expandtab
 " 行頭以外のTab文字の表示幅（スペースいくつ分）

@@ -3,7 +3,8 @@
 "0p paset yank registory
 
 ## insert mode
-<C-R> paset
+<C-r>{motion} paset
+<C-o> noromalmode command execute once
 
 ## fzf
 
