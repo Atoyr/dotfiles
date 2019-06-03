@@ -1,4 +1,0 @@
-select-pane -t 1
-split-window -v -p 30
-select-pane -t 1
-display-panes
