@@ -76,10 +76,10 @@ call plug#begin()
   Plug 'freitass/todo.txt-vim'
 
   " fileManager
-  " Plug 'scrooloose/nerdtree'
-  " Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'Shougo/unite.vim'
-  Plug 'Shougo/vimfiler.vim'
+  Plug 'scrooloose/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  " Plug 'Shougo/unite.vim'
+  " Plug 'Shougo/vimfiler.vim'
 
   " marker
   Plug 'Shougo/unite.vim'
@@ -282,9 +282,10 @@ map T <Plug>(easymotion-Tl)
 nnoremap <Leader>z :vertical term<CR>
 
 " VimFiler キーマップ
-nmap <leader>f :VimFilerBufferDir<Return>
-nmap <leader>F :VimFilerExplorer -find<Return>
-nmap <leader>b :Unite buffer<Return>
+" nmap <leader>f :VimFilerBufferDir<Return>
+" nmap <leader>F :VimFilerExplorer -find<Return>
+" nmap <leader>b :Unite buffer<Return>
+map <C-n> :NERDTreeToggle<CR>
 
 " LSP キーマップ
 nmap <silent> <Leader>d :LspDefinition<CR>
