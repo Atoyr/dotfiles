@@ -90,7 +90,7 @@ call plug#begin()
   " Plug 'wakatime/vim-wakatime'
 
   " golang plugin
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
   " cheatsheet
   Plug 'reireias/vim-cheatsheet'
@@ -465,3 +465,16 @@ if executable('gopls')
           \ 'whitelist': ['go'],
           \ })
 endif
+
+" golang
+function! s:gofmt_on_save()
+  let l:curw = winsaveview()
+  silent execute "0,$! gofmt"
+  try | silent undojoin | catch | endtry
+  call winrestview(l:curw)
+endfunction
+
+augroup vim-gofmt-autosave
+  autocmd!
+  autocmd BufWritePre *.go call s:gofmt_on_save()
+augroup END
