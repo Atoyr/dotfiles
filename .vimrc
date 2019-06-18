@@ -65,6 +65,7 @@ call plug#begin()
 
   " easymotion
   Plug 'Lokaltog/vim-easymotion'
+  Plug 'haya14busa/vim-migemo'
 
   " git
   Plug 'tpope/vim-fugitive'
@@ -415,9 +416,10 @@ let g:EasyMotion_use_upper = 1
 " Jump to first match with enter & space
 let g:EasyMotion_enter_jump_first = 1
 let g:EasyMotion_space_jump_first = 1
+let g:EasyMotion_use_migemo = 1
 
 " template
-let g:sonictemplate_vim_template_dir = ['~/.vim/template']
+let g:sonictemplate_vim_template_dir = ['~/.config/vim/template']
 
 " cheat sheet
 let g:cheatsheet#cheat_file = '~/.config/vim/cheatsheet.md'
