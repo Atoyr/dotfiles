@@ -1,6 +1,6 @@
 # Created by newuser for 5.1.1
-export GOPATH=$HOME/.go
-export PATH=$PATH:/usr/lib/go-1.11/bin
+export GOPATH=$HOME/
+export PATH=$PATH:/usr/lib/go/bin
 export PATH=$PATH:$GOPATH/bin
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -33,4 +33,16 @@ fshow() {
         xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
               {}
 FZF-EOF"
+}
+
+# 
+function ghq-fzf() {
+  local target_dir=$(ghq list -p | fzf --query="$LBUFFER")
+
+  if [ -n "$target_dir" ]; then
+    BUFFER="cd ${target_dir}"
+    zle accept-line
+  fi
+
+  zle reset-prompt
 }
