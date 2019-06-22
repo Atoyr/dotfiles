@@ -437,6 +437,7 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 " Golang
 let g:go_fmt_command = "goimports"
 let g:go_def_mode = 'gopls'
+let g:go_info_mode = 'gopls'
 let g:go#use_vimproc = 0
 "let g:go_snippet_engine = "minisnip"
 let g:go_def_mapping_enabled = 0
@@ -450,20 +451,24 @@ let g:go_template_autocreate = 0
 let g:go_gocode_unimported_packages = 1
 let g:sonictemplate_enable_pattern = 1
 " debug
-" let g:lsp_log_verbose = 1
-" let g:lsp_log_file = expand('~/vim-lsp.log')
-" let g:asyncomplete_log_file = expand('~/asyncomplete.log')
+ " let g:lsp_log_verbose = 1
+ " let g:lsp_log_file = expand('~/vim-lsp.log')
+ " let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 
 " lsp
 let g:lsp_async_completion = 1
 let g:lsp_diagnostics_enabled = 0
 
 if executable('gopls')
+  augroup LspGo
+    au!
     autocmd User lsp_setup call lsp#register_server({
           \ 'name': 'gopls',
-          \ 'cmd': {server_info->['gopls','-mode','stdio' ]},
+          \ 'cmd': {server_info->['gopls']},
           \ 'whitelist': ['go'],
           \ })
+    autocmd FileType go setlocal omnifunc=lsp#complete
+  augroup END
 endif
 
 " golang

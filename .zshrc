@@ -1,7 +1,8 @@
 # Created by newuser for 5.1.1
-export GOPATH=$HOME/
+export GOPATH=$HOME
 export PATH=$PATH:/usr/lib/go/bin
 export PATH=$PATH:$GOPATH/bin
+export TERM=xterm-256color
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
