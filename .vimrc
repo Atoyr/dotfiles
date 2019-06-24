@@ -128,11 +128,11 @@ let &grepprg="grep -rnIH --exclude=.git --exclude-dir=.hg --exclude-dir=.svn --e
 let loaded_matchparen = 1         " カーソルが括弧上にあっても括弧ペアをハイライトさせない
 
 " :grep 等でquickfixウィンドウを開く (:lgrep 等でlocationlistウィンドウを開く)
-"augroup qf_win
-"  autocmd!
-"  autocmd QuickfixCmdPost [^l]* copen
-"  autocmd QuickfixCmdPost l* lopen
-"augroup END
+augroup qf_win
+  autocmd!
+  autocmd QuickfixCmdPost [^l]* copen
+  autocmd QuickfixCmdPost l* lopen
+augroup END
 
 " マウスの中央ボタンクリックによるクリップボードペースト動作を抑制する
 noremap <MiddleMouse> <Nop>
