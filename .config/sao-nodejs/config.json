@@ -1,0 +1,22 @@
+{
+	"generators": {
+		"46765595": {
+			"type": "local",
+			"path": "/mnt/c/Users/r.uchiyama.EARTH/.npm/_npx/29877/lib/node_modules/create-nuxt-app",
+			"hash": "46765595"
+		},
+		"2ddb9a38": {
+			"type": "local",
+			"path": "/mnt/c/Users/r.uchiyama.EARTH/.npm/_npx/7342/lib/node_modules/create-nuxt-app",
+			"hash": "2ddb9a38"
+		}
+	},
+	"answers": {
+		"2ddb9a38__npm__2.8.0": {
+			"author": "atoyr"
+		},
+		"46765595__npm__2.8.0": {
+			"author": "atoyr"
+		}
+	}
+}

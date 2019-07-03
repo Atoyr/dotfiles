@@ -91,6 +91,10 @@ call plug#begin()
 
   " golang plugin
   " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  Plug 'atoyr/vim-lightgo'
+
+  " vue
+  Plug 'posva/vim-vue'
 
   " cheatsheet
   Plug 'reireias/vim-cheatsheet'
@@ -100,6 +104,9 @@ call plug#begin()
 
   " markdown
   " Plug 'suan/vim-instant-markdown'
+
+  " benchmark
+  Plug 'mattn/benchvimrc-vim'
 
 call plug#end()
 "===============================================================================

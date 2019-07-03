@@ -3,6 +3,8 @@ export GOPATH=$HOME/
 export PATH=$PATH:/usr/lib/go/bin
 export PATH=$PATH:$GOPATH/bin
 
+eval "$(direnv hook zsh)"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
