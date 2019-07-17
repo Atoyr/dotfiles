@@ -9,9 +9,9 @@ export DOCKER_HOST="localhost"
 export GOPATH=$HOME
 
 # TMUX
-# if [ $SHLVL = 1 ]; then
-#   alias tmux="tmux -2 attach || tmux -2 new \; source-file ~/.config/tmux/config"
-# fi
+ if [ $SHLVL = 1 ]; then
+   alias tmux="tmux -2 attach || tmux -2 new \; source-file ~/.config/tmux/config"
+ fi
 # tmux && exit
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

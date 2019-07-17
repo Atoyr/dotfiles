@@ -9,6 +9,36 @@
 			"type": "local",
 			"path": "/mnt/c/Users/r.uchiyama.EARTH/.npm/_npx/7342/lib/node_modules/create-nuxt-app",
 			"hash": "2ddb9a38"
+		},
+		"4f739b72": {
+			"type": "local",
+			"path": "/mnt/c/Users/r.uchiyama.EARTH/.npm/_npx/268/lib/node_modules/create-nuxt-app",
+			"hash": "4f739b72"
+		},
+		"0348c7d4": {
+			"type": "local",
+			"path": "/mnt/c/Users/r.uchiyama.EARTH/.npm/_npx/1197/lib/node_modules/create-nuxt-app",
+			"hash": "0348c7d4"
+		},
+		"4491e1c6": {
+			"type": "local",
+			"path": "/mnt/c/Users/r.uchiyama.EARTH/.npm/_npx/19353/lib/node_modules/create-nuxt-app",
+			"hash": "4491e1c6"
+		},
+		"7228a650": {
+			"type": "local",
+			"path": "/mnt/c/Users/r.uchiyama.EARTH/.npm/_npx/19864/lib/node_modules/create-nuxt-app",
+			"hash": "7228a650"
+		},
+		"7cc8d55e": {
+			"type": "local",
+			"path": "/mnt/c/Users/r.uchiyama.EARTH/.npm/_npx/30200/lib/node_modules/create-nuxt-app",
+			"hash": "7cc8d55e"
+		},
+		"c3d22812": {
+			"type": "local",
+			"path": "/mnt/c/Users/r.uchiyama.EARTH/.npm/_npx/2481/lib/node_modules/create-nuxt-app",
+			"hash": "c3d22812"
 		}
 	},
 	"answers": {
@@ -17,6 +47,21 @@
 		},
 		"46765595__npm__2.8.0": {
 			"author": "atoyr"
+		},
+		"4f739b72__npm__2.8.0": {
+			"author": "atoyr"
+		},
+		"0348c7d4__npm__2.8.0": {
+			"author": "atoyr"
+		},
+		"7228a650__npm__2.8.0": {
+			"author": "uchiyama"
+		},
+		"7cc8d55e__npm__2.8.0": {
+			"author": "uchiyama"
+		},
+		"c3d22812__npm__2.8.0": {
+			"author": "uchiyama"
 		}
 	}
 }
