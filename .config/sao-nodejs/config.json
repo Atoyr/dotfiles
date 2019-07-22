@@ -39,6 +39,11 @@
 			"type": "local",
 			"path": "/mnt/c/Users/r.uchiyama.EARTH/.npm/_npx/2481/lib/node_modules/create-nuxt-app",
 			"hash": "c3d22812"
+		},
+		"e27aedea": {
+			"type": "local",
+			"path": "/mnt/c/Users/r.uchiyama.EARTH/.npm/_npx/25817/lib/node_modules/create-nuxt-app",
+			"hash": "e27aedea"
 		}
 	},
 	"answers": {
@@ -61,6 +66,9 @@
 			"author": "uchiyama"
 		},
 		"c3d22812__npm__2.8.0": {
+			"author": "uchiyama"
+		},
+		"e27aedea__npm__2.8.0": {
 			"author": "uchiyama"
 		}
 	}

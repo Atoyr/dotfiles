@@ -56,6 +56,7 @@ call plug#begin()
   " fzf
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+  Plug 'relastle/fzf-coalesce.vim'
 
   " WindowResize
   Plug 'simeji/winresizer'
@@ -77,10 +78,10 @@ call plug#begin()
   Plug 'freitass/todo.txt-vim'
 
   " fileManager
-  Plug 'scrooloose/nerdtree'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
-  " Plug 'Shougo/unite.vim'
-  " Plug 'Shougo/vimfiler.vim'
+   Plug 'scrooloose/nerdtree'
+   Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'Shougo/unite.vim'
+  Plug 'Shougo/vimfiler.vim'
 
   " marker
   Plug 'Shougo/unite.vim'
@@ -95,6 +96,9 @@ call plug#begin()
 
   " vue
   Plug 'posva/vim-vue'
+
+  " typescript
+  Plug 'leafgarland/typescript-vim'
 
   " cheatsheet
   Plug 'reireias/vim-cheatsheet'
@@ -133,6 +137,7 @@ set directory-=.                  " swapファイルはローカル作成がト�
 set formatoptions+=mM             " 日本語の途中でも折り返す
 let &grepprg="grep -rnIH --exclude=.git --exclude-dir=.hg --exclude-dir=.svn --exclude=tags"
 let loaded_matchparen = 1         " カーソルが括弧上にあっても括弧ペアをハイライトさせない
+set relativenumber
 
 " :grep 等でquickfixウィンドウを開く (:lgrep 等でlocationlistウィンドウを開く)
 augroup qf_win
@@ -290,9 +295,9 @@ map T <Plug>(easymotion-Tl)
 nnoremap <Leader>z :vertical term<CR>
 
 " VimFiler キーマップ
-" nmap <leader>f :VimFilerBufferDir<Return>
-" nmap <leader>F :VimFilerExplorer -find<Return>
-" nmap <leader>b :Unite buffer<Return>
+ nmap <leader>f :VimFilerBufferDir<Return>
+ nmap <leader>F :VimFilerExplorer -find<Return>
+ nmap <leader>b :Unite buffer<Return>
 map <C-n> :NERDTreeToggle<CR>
 
 " LSP キーマップ
@@ -308,6 +313,12 @@ nmap <silent> <Leader>v :vsplit \| :LspDefinition <CR>
 " ESCキーマップ
 imap <silent>jj <ESC>
 imap <silent>っｊ <ESC>
+
+" fzf
+nnoremap <silent> <localleader>f :GFiles<CR>
+nnoremap <silent> <localleader>F :GFiles?<CR>
+nnoremap <silent> <localleader>b :Buffers<CR>
+nnoremap <silent> <localleader>l :BLines<CR>
 
 " vim-go
 " au FileType go nmap <leader>s <Plug>(go-def-split)
@@ -374,6 +385,13 @@ let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
 " let g:airline_section_x = '%{&filetype}'
 " let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
 
+let g:ale_linters = {
+      \ 'html': [],
+      \ 'css': ['stylelint'],
+      \ 'javascript': ['eslint'],
+      \ 'vue': ['eslint']
+      \ }
+let g:ale_linter_aliases = {'vue': 'css'}
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -462,6 +480,8 @@ let g:sonictemplate_enable_pattern = 1
  " let g:lsp_log_file = expand('~/vim-lsp.log')
  " let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 
+
+
 " lsp
 let g:lsp_async_completion = 1
 let g:lsp_diagnostics_enabled = 0
@@ -485,6 +505,13 @@ function! s:gofmt_on_save()
   try | silent undojoin | catch | endtry
   call winrestview(l:curw)
 endfunction
+
+" miiton
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue'] = ''
+" アイコン入力方法 : `[Ctrl+V]` > `[u]` > `e905`
+let g:NERDTreeExtensionHighlightColor = {}
+let g:NERDTreeExtensionHighlightColor['vue'] = '42B983'
 
 augroup vim-gofmt-autosave
   autocmd!
