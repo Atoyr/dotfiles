@@ -86,6 +86,9 @@ call plug#begin()
   Plug 'Shougo/unite.vim'
   Plug 'tacroe/unite-mark'
 
+  " edit it
+  Plug 'tpope/vim-surround'
+
   " SNS
   " Plug 'wakatime/vim-wakatime'
 
@@ -95,6 +98,10 @@ call plug#begin()
 
   " vue
   Plug 'posva/vim-vue'
+  Plug 'alvan/vim-closetag'
+
+  " js
+  Plug 'pangloss/vim-javascript'
 
   " cheatsheet
   Plug 'reireias/vim-cheatsheet'
@@ -461,6 +468,8 @@ let g:sonictemplate_enable_pattern = 1
  " let g:lsp_log_verbose = 1
  " let g:lsp_log_file = expand('~/vim-lsp.log')
  " let g:asyncomplete_log_file = expand('~/asyncomplete.log')
+
+let g:closetag_filenames = '*.html,*.vue'
 
 " lsp
 let g:lsp_async_completion = 1
