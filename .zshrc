@@ -6,6 +6,9 @@ export TERM=xterm-256color
 
 eval "$(direnv hook zsh)"
 
+# Zplug
+zplug "rupa/z", use:z.sh
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
@@ -37,6 +40,14 @@ fshow() {
               {}
 FZF-EOF"
 }
+
+# fd - cd to selected directory
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+    -o -type d -print 2> /dev/null | fzf +m) &&
+    cd "$dir"
+  }
 
 # 
 function ghq-fzf() {
