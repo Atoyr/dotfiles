@@ -8,6 +8,8 @@ export DISPLAY=localhost:0.0
 export DOCKER_HOST="localhost"
 export GOPATH=$HOME
 
+alias vivi='vim ~/.vimrc'
+
 # TMUX
  if [ $SHLVL = 1 ]; then
    alias tmux="tmux -2 attach || tmux -2 new \; source-file ~/.config/tmux/config"

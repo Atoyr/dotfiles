@@ -44,6 +44,16 @@
 			"type": "local",
 			"path": "/mnt/c/Users/r.uchiyama.EARTH/.npm/_npx/25817/lib/node_modules/create-nuxt-app",
 			"hash": "e27aedea"
+		},
+		"ff9e7d12": {
+			"type": "local",
+			"path": "/mnt/c/Users/r.uchiyama.EARTH/.npm/_npx/26113/lib/node_modules/create-nuxt-app",
+			"hash": "ff9e7d12"
+		},
+		"e981fa16": {
+			"type": "local",
+			"path": "/mnt/c/Users/r.uchiyama.EARTH/.npm/_npx/26973/lib/node_modules/create-nuxt-app",
+			"hash": "e981fa16"
 		}
 	},
 	"answers": {
@@ -69,6 +79,9 @@
 			"author": "uchiyama"
 		},
 		"e27aedea__npm__2.8.0": {
+			"author": "uchiyama"
+		},
+		"e981fa16__npm__2.10.1": {
 			"author": "uchiyama"
 		}
 	}

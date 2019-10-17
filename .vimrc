@@ -51,7 +51,7 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'ryanoasis/vim-devicons'
-  Plug 'bling/vim-bufferline'
+  " Plug 'bling/vim-bufferline'
 
   " fzf
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -80,19 +80,17 @@ call plug#begin()
   " fileManager
    Plug 'scrooloose/nerdtree'
    Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'Shougo/unite.vim'
-  Plug 'Shougo/vimfiler.vim'
+  "Plug 'Shougo/unite.vim'
+  "Plug 'Shougo/vimfiler.vim'
 
   " marker
-  Plug 'Shougo/unite.vim'
-  Plug 'tacroe/unite-mark'
 
   " SNS
   " Plug 'wakatime/vim-wakatime'
 
   " golang plugin
   " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-  Plug 'atoyr/vim-lightgo'
+  Plug 'arp242/gopher.vim'
 
   " vue
   Plug 'posva/vim-vue'
@@ -378,12 +376,13 @@ let g:airline_theme = 'badwolf'
 let g:airline_powerline_fonts = 1
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
+" let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#whitespace#mixed_indent_algo = 1
 let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
 " let g:airline_section_c = '%t'
 " let g:airline_section_x = '%{&filetype}'
 " let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
+
 
 let g:ale_linters = {
       \ 'html': [],
@@ -451,8 +450,8 @@ let g:cheatsheet#cheat_file = '~/.config/vim/cheatsheet.md'
 
 " Lint
 let g:ale_lint_on_text_changed = 0
-let g:ale_sign_error = '' 
-let g:ale_sign_warning = '' 
+let g:ale_sign_error = 'X' 
+let g:ale_sign_warning = '!' 
 " lint golang
 " let g:ale_linters.go ='gometalinter'
 " let g:ale_go_gometalinter_options = '--fast --enable=staticcheck --enable=gosimple --enable=unused'
@@ -513,7 +512,7 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue'] = ''
 let g:NERDTreeExtensionHighlightColor = {}
 let g:NERDTreeExtensionHighlightColor['vue'] = '42B983'
 
-augroup vim-gofmt-autosave
-  autocmd!
-  autocmd BufWritePre *.go call s:gofmt_on_save()
-augroup END
+" augroup vim-gofmt-autosave
+"   autocmd!
+"   autocmd BufWritePre *.go call s:gofmt_on_save()
+" augroup END
