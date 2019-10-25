@@ -73,6 +73,7 @@ call plug#begin()
 
   " color scheme
   Plug 'sjl/badwolf'
+  Plug 'atoyr/badloris'
 
   " todo.txt Plugin
   Plug 'freitass/todo.txt-vim'
@@ -211,7 +212,9 @@ endif
  endif
 "-------------------------------------------------------------------------------
 " カラースキームの設定
-colorscheme badwolf
+" colorscheme badwolf
+set background=dark
+colorscheme badloris
 syntax on
 
 try
