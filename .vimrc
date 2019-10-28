@@ -356,7 +356,6 @@ set wildmode=list:longest
 
 " Tab系
 " 不可視文字を可視化(タブが「?-」と表示される)
-hi SpecialKey ctermfg=darkmagenta
 set list listchars=tab:\>\-
 " Tab文字を半角スペースにする
 set expandtab
