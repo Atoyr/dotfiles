@@ -521,6 +521,10 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue'] = ''
 let g:NERDTreeExtensionHighlightColor = {}
 let g:NERDTreeExtensionHighlightColor['vue'] = '42B983'
 
+if &term =~ '256color'
+  set t_ut=
+endif
+
 " augroup vim-gofmt-autosave
 "   autocmd!
 "   autocmd BufWritePre *.go call s:gofmt_on_save()
@@ -564,3 +568,4 @@ function! s:get_syn_info()
         \ " guibg: " . linkedSyn.guibg
 endfunction
 command! SyntaxInfo call s:get_syn_info()
+
