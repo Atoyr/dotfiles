@@ -117,6 +117,8 @@ call plug#begin()
   " benchmark
   Plug 'mattn/benchvimrc-vim'
 
+  " emoji
+  Plug 'junegunn/vim-emoji'
 call plug#end()
 "===============================================================================
 " 設定の追加はこの行以降でおこなうこと！
