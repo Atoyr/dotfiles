@@ -72,14 +72,13 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
 
   " color scheme
-  Plug 'sjl/badwolf'
   Plug 'atoyr/badloris'
 
   " todo.txt Plugin
   Plug 'freitass/todo.txt-vim'
 
   " fileManager
-   Plug 'scrooloose/nerdtree'
+   Plug 'scrooloose/nerdtree',{ 'on' : 'NERDTreeToggle' }
    Plug 'Xuyuanp/nerdtree-git-plugin'
   "Plug 'Shougo/unite.vim'
   "Plug 'Shougo/vimfiler.vim'
@@ -93,8 +92,8 @@ call plug#begin()
   " Plug 'wakatime/vim-wakatime'
 
   " golang plugin
-  " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-  Plug 'arp242/gopher.vim'
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  " Plug 'arp242/gopher.vim'
 
   " vue
   Plug 'posva/vim-vue'
