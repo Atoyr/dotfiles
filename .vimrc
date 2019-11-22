@@ -72,14 +72,13 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
 
   " color scheme
-  Plug 'sjl/badwolf'
   Plug 'atoyr/badloris'
 
   " todo.txt Plugin
   Plug 'freitass/todo.txt-vim'
 
   " fileManager
-   Plug 'scrooloose/nerdtree'
+   Plug 'scrooloose/nerdtree',{ 'on' : 'NERDTreeToggle' }
    Plug 'Xuyuanp/nerdtree-git-plugin'
   "Plug 'Shougo/unite.vim'
   "Plug 'Shougo/vimfiler.vim'
@@ -93,8 +92,8 @@ call plug#begin()
   " Plug 'wakatime/vim-wakatime'
 
   " golang plugin
-  " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-  Plug 'arp242/gopher.vim'
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  " Plug 'arp242/gopher.vim'
 
   " vue
   Plug 'posva/vim-vue'
@@ -118,6 +117,8 @@ call plug#begin()
   " benchmark
   Plug 'mattn/benchvimrc-vim'
 
+  " emoji
+  Plug 'junegunn/vim-emoji'
 call plug#end()
 "===============================================================================
 " 設定の追加はこの行以降でおこなうこと！
@@ -521,6 +522,10 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue'] = ''
 let g:NERDTreeExtensionHighlightColor = {}
 let g:NERDTreeExtensionHighlightColor['vue'] = '42B983'
 
+if &term =~ '256color'
+  set t_ut=
+endif
+
 " augroup vim-gofmt-autosave
 "   autocmd!
 "   autocmd BufWritePre *.go call s:gofmt_on_save()
@@ -564,3 +569,4 @@ function! s:get_syn_info()
         \ " guibg: " . linkedSyn.guibg
 endfunction
 command! SyntaxInfo call s:get_syn_info()
+
