@@ -87,6 +87,7 @@ call plug#begin()
 
   " edit it
   Plug 'tpope/vim-surround'
+  Plug 'andymass/vim-matchup'
 
   " SNS
   " Plug 'wakatime/vim-wakatime'
@@ -104,6 +105,9 @@ call plug#begin()
 
   " typescript
   Plug 'leafgarland/typescript-vim'
+
+  " C#
+  Plug 'OmniSharp/omnisharp-vim'
 
   " cheatsheet
   Plug 'reireias/vim-cheatsheet'
