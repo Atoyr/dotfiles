@@ -109,6 +109,10 @@ call plug#begin()
   " C#
   Plug 'OmniSharp/omnisharp-vim'
 
+  " Dart
+  Plug 'dart-lang/dart-vim-plugin'
+  Plug 'thosakwe/vim-flutter' 
+
   " cheatsheet
   Plug 'reireias/vim-cheatsheet'
 
