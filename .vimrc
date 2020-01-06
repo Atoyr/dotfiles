@@ -21,7 +21,7 @@ if has('vim_starting')
   let &t_SR .= "\e[4 q"
 
   if has ('win32')
-    let vimfiles = '~/vimfiles'
+    let vimfiles = '%USERPROFILE%/vimfiles'
   else
     let vimfiles = '~/.vim'
   endif
