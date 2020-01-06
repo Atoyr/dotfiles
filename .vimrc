@@ -46,6 +46,7 @@ call plug#begin()
   Plug 'prabirshrestha/asyncomplete.vim'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
   Plug 'natebosch/vim-lsc'
+  Plug 'mattn/vim-lsp-settings'
 
   " Powerline
   Plug 'vim-airline/vim-airline'
@@ -87,13 +88,15 @@ call plug#begin()
 
   " edit it
   Plug 'tpope/vim-surround'
+  Plug 'andymass/vim-matchup'
 
   " SNS
   " Plug 'wakatime/vim-wakatime'
 
   " golang plugin
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   " Plug 'arp242/gopher.vim'
+  Plug 'mattn/vim-goimports'
 
   " vue
   Plug 'posva/vim-vue'
@@ -104,6 +107,13 @@ call plug#begin()
 
   " typescript
   Plug 'leafgarland/typescript-vim'
+
+  " C#
+  Plug 'OmniSharp/omnisharp-vim'
+
+  " Dart
+  Plug 'dart-lang/dart-vim-plugin'
+  Plug 'thosakwe/vim-flutter' 
 
   " cheatsheet
   Plug 'reireias/vim-cheatsheet'
@@ -495,17 +505,17 @@ let g:closetag_filenames = '*.html,*.vue'
 let g:lsp_async_completion = 1
 let g:lsp_diagnostics_enabled = 0
 
-if executable('gopls')
-  augroup LspGo
-    au!
-    autocmd User lsp_setup call lsp#register_server({
-          \ 'name': 'gopls',
-          \ 'cmd': {server_info->['gopls']},
-          \ 'whitelist': ['go'],
-          \ })
-    autocmd FileType go setlocal omnifunc=lsp#complete
-  augroup END
-endif
+" if executable('gopls')
+"   augroup LspGo
+"     au!
+"     autocmd User lsp_setup call lsp#register_server({
+"           \ 'name': 'gopls',
+"           \ 'cmd': {server_info->['gopls']},
+"           \ 'whitelist': ['go'],
+"           \ })
+"     autocmd FileType go setlocal omnifunc=lsp#complete
+"   augroup END
+" endif
 
 " golang
 function! s:gofmt_on_save()
