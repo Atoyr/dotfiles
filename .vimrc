@@ -9,6 +9,7 @@
 set fileformats=unix,dos,mac
 set encoding=utf-8
 scriptencoding utf-8
+set runtimepath^=~/.vim
 
 " 推奨設定の読み込み (:h defaults.vim)
 unlet! skip_defaults_vim
