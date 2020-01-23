@@ -9,7 +9,6 @@
 set fileformats=unix,dos,mac
 set encoding=utf-8
 scriptencoding utf-8
-set runtimepath^=~/.vim
 
 " 推奨設定の読み込み (:h defaults.vim)
 unlet! skip_defaults_vim
@@ -22,7 +21,7 @@ if has('vim_starting')
   let &t_SR .= "\e[4 q"
 
   if has ('win32')
-    let vimfiles = '%USERPROFILE%/vimfiles'
+    let vimfiles = '~/vimfiles'
   else
     let vimfiles = '~/.vim'
   endif
