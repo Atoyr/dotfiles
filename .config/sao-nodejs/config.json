@@ -54,6 +54,11 @@
 			"type": "local",
 			"path": "/mnt/c/Users/r.uchiyama.EARTH/.npm/_npx/26973/lib/node_modules/create-nuxt-app",
 			"hash": "e981fa16"
+		},
+		"08b43cd2": {
+			"type": "local",
+			"path": "/mnt/c/Users/r.uchiyama.EARTH/.npm/_npx/2343/lib/node_modules/create-nuxt-app",
+			"hash": "08b43cd2"
 		}
 	},
 	"answers": {
@@ -83,6 +88,9 @@
 		},
 		"e981fa16__npm__2.10.1": {
 			"author": "uchiyama"
+		},
+		"08b43cd2__npm__2.14.0": {
+			"author": "r.uchiyama"
 		}
 	}
 }
