@@ -21,7 +21,7 @@ if has('vim_starting')
   let &t_SR .= "\e[4 q"
 
   if has ('win32')
-    let vimfiles = '%USERPROFILE%/vimfiles'
+    let vimfiles = '~/vimfiles'
   else
     let vimfiles = '~/.vim'
   endif
@@ -579,4 +579,3 @@ function! s:get_syn_info()
         \ " guibg: " . linkedSyn.guibg
 endfunction
 command! SyntaxInfo call s:get_syn_info()
-
