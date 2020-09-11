@@ -52,12 +52,11 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'ryanoasis/vim-devicons'
-  " Plug 'bling/vim-bufferline'
 
-  " fzf
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
-  Plug 'relastle/fzf-coalesce.vim'
+"  " fzf
+"  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"  Plug 'junegunn/fzf.vim'
+"  Plug 'relastle/fzf-coalesce.vim'
 
   " WindowResize
   Plug 'simeji/winresizer'
@@ -75,23 +74,18 @@ call plug#begin()
   " color scheme
   Plug 'atoyr/badloris'
 
-  " todo.txt Plugin
-  Plug 'freitass/todo.txt-vim'
+"  " todo.txt Plugin
+"  Plug 'freitass/todo.txt-vim'
 
   " fileManager
    Plug 'scrooloose/nerdtree',{ 'on' : 'NERDTreeToggle' }
    Plug 'Xuyuanp/nerdtree-git-plugin'
-  "Plug 'Shougo/unite.vim'
-  "Plug 'Shougo/vimfiler.vim'
 
   " marker
 
   " edit it
   Plug 'tpope/vim-surround'
   Plug 'andymass/vim-matchup'
-
-  " SNS
-  " Plug 'wakatime/vim-wakatime'
 
   " golang plugin
   " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -114,9 +108,6 @@ call plug#begin()
   " Dart
   Plug 'dart-lang/dart-vim-plugin'
   Plug 'thosakwe/vim-flutter' 
-
-  " cheatsheet
-  Plug 'reireias/vim-cheatsheet'
 
   " Lint
   Plug 'W0rp/ale'
@@ -463,7 +454,7 @@ let g:EasyMotion_space_jump_first = 1
 let g:EasyMotion_use_migemo = 1
 
 " template
-let g:sonictemplate_vim_template_dir = ['~/.config/vim/template']
+let g:sonictemplate_vim_template_dir = ['~/.vim/template']
 
 " cheat sheet
 let g:cheatsheet#cheat_file = '~/.config/vim/cheatsheet.md'
