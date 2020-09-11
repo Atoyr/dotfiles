@@ -17,6 +17,7 @@ EOF
 }
 
 cd ${DOT_DIRECTORY}
+source ./etc/lib/apt
 source ./etc/lib/pacman
 
 initialize() {
