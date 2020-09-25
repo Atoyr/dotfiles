@@ -20,6 +20,7 @@ if has('vim_starting')
   let &t_EI .= "\e[2 q"
   let &t_SR .= "\e[4 q"
 
+  " gvimrcの読込対応
   if has ('win32')
     let vimfiles = '~/vimfiles'
   else
@@ -52,6 +53,9 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'ryanoasis/vim-devicons'
+
+  " CtrlP
+  Plug 'ctrlpvim/ctrlp.vim'
 
 "  " fzf
 "  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
