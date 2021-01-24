@@ -1,11 +1,11 @@
 # Powerline
-. ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+# . ~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
 
 # DISPLAY
-export DISPLAY=localhost:0.0
+# export DISPLAY=localhost:0.0
 
 # WSL with Docker for Windows
-export DOCKER_HOST="localhost"
+# export DOCKER_HOST="localhost"
 export GOPATH=$HOME
 
 alias vivi='vim ~/.vimrc'

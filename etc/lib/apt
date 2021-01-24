@@ -1,8 +1,8 @@
 #!/bin/bash
 run_apt() {
     echo "Updating apt..."
-    sudo apt-get update
-    sudo apt-get upgrade
+    sudo apt update
+    sudo apt upgrade
     [[ $? ]] && echo "$(tput setaf 2) Update apt  complete. ✔︎$(tput sgr0)"
 
     local list_formulae
@@ -15,11 +15,10 @@ run_apt() {
     'patch'
     'tig'
     'tmux'
-    'vim'
     'zsh'
     )
 
-    local installed=$(apt-get install >&1 | grep -v deinstall | awk -F/ '{print $1}')
+    local installed=$(apt install >&1 | grep -v deinstall | awk -F/ '{print $1}')
 
     for index in ${!desired_formulae[*]}
     do
@@ -39,4 +38,7 @@ run_apt() {
       [[ $? ]] && echo "$(tput setaf 2)Installed missing formulae ✔︎$(tput sgr0)"
     fi
 
+    echo "autoremove Package..."
+    sudo apt autoremove
+    [[ $? ]] && echo "$(tput setaf 2) autoremove complete. ✔︎$(tput sgr0)"
 }
