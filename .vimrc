@@ -42,11 +42,11 @@ endif
 " Plugin package manager
 call plug#begin()
   " LSP
-  Plug 'prabirshrestha/async.vim'
+  " Plug 'prabirshrestha/async.vim'
   Plug 'prabirshrestha/vim-lsp'
-  Plug 'prabirshrestha/asyncomplete.vim'
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  Plug 'natebosch/vim-lsc'
+  " Plug 'prabirshrestha/asyncomplete.vim'
+  " Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  " Plug 'natebosch/vim-lsc'
   Plug 'mattn/vim-lsp-settings'
 
   " Powerline
@@ -97,21 +97,21 @@ call plug#begin()
   " Plug 'mattn/vim-goimports'
 
   " vue
-  Plug 'posva/vim-vue'
-  Plug 'alvan/vim-closetag'
+  " Plug 'posva/vim-vue'
+  " Plug 'alvan/vim-closetag'
 
   " js
-  Plug 'pangloss/vim-javascript'
+  " Plug 'pangloss/vim-javascript'
 
   " typescript
-  Plug 'leafgarland/typescript-vim'
+  " Plug 'leafgarland/typescript-vim'
 
   " C#
-  Plug 'OmniSharp/omnisharp-vim'
+"  Plug 'OmniSharp/omnisharp-vim'
 
   " Dart
-  Plug 'dart-lang/dart-vim-plugin'
-  Plug 'thosakwe/vim-flutter' 
+  " Plug 'dart-lang/dart-vim-plugin'
+  " Plug 'thosakwe/vim-flutter' 
 
   " Lint
   Plug 'W0rp/ale'
@@ -120,7 +120,7 @@ call plug#begin()
   " Plug 'suan/vim-instant-markdown'
 
   " benchmark
-  Plug 'mattn/benchvimrc-vim'
+  " Plug 'mattn/benchvimrc-vim'
 
   " emoji
   Plug 'junegunn/vim-emoji'
@@ -458,7 +458,7 @@ let g:EasyMotion_space_jump_first = 1
 let g:EasyMotion_use_migemo = 1
 
 " template
-let g:sonictemplate_vim_template_dir = ['~/.vim/template']
+let g:sonictemplate_vim_template_dir = ['$HOME/.vim/template']
 
 " cheat sheet
 let g:cheatsheet#cheat_file = '~/.config/vim/cheatsheet.md'

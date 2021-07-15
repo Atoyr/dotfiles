@@ -1,6 +1,6 @@
-# Created by newuser for 5.1.1
+ Created by newuser for 5.1.1
 export GOPATH=$HOME
-export PATH=$PATH:/usr/lib/go/bin
+export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
 export TERM=xterm-256color
 

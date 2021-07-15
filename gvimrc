@@ -12,7 +12,8 @@ set mousehide
 " font
 if has('win32')
     " When VL Gothic isn't found in the system, use MS Gothic.
-  set guifont=Ricty_for_Powerline:h12:cANSI
+  " set guifont=Ricty_for_Powerline:h12:cANSI
+  set guifont=Cica:h12:cANSI
     set linespace=0
 elseif has('mac')
     set guifont=VL_Gothic:h16
@@ -23,3 +24,10 @@ endif
 if exists('&imdisableactivate')
     set noimdisableactivate
 endif
+set guioptions-=T
+set guioptions-=m
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+set guioptions-=b
