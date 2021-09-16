@@ -539,7 +539,7 @@ if &term =~ '256color'
 endif
 
 " SKK
-let skk_large_jisyo = '~/SKK-JISYO.L'
+let skk_large_jisyo = '~/.skk/SKK-JISYO.L'
 
 " augroup vim-gofmt-autosave
 "   autocmd!
