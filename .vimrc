@@ -124,6 +124,10 @@ call plug#begin()
 
   " emoji
   Plug 'junegunn/vim-emoji'
+
+  " SKK
+  Plug 'tyru/skk.vim'
+
 call plug#end()
 "===============================================================================
 " 設定の追加はこの行以降でおこなうこと！
@@ -531,6 +535,9 @@ if &term =~ '256color'
   set t_ut=
 endif
 
+" SKK
+let skk_large_jisyo = '~/SKK-JISYO.L'
+
 " augroup vim-gofmt-autosave
 "   autocmd!
 "   autocmd BufWritePre *.go call s:gofmt_on_save()
@@ -574,3 +581,5 @@ function! s:get_syn_info()
         \ " guibg: " . linkedSyn.guibg
 endfunction
 command! SyntaxInfo call s:get_syn_info()
+
+
