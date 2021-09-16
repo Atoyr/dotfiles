@@ -75,6 +75,9 @@ call plug#begin()
   " git
   Plug 'tpope/vim-fugitive'
 
+  " editorconfig
+  Plug 'editorconfig/editorconfig-vim'
+
   " color scheme
   Plug 'atoyr/badloris'
 
@@ -306,7 +309,7 @@ map T <Plug>(easymotion-Tl)
 " Move to word  => 使わないので廃止
 " map  <Leader>w <Plug>(easymotion-bd-w)
 " nmap <Leader>w <Plug>(easymotion-overwin-w)
-nnoremap <Leader>z :vertical term<CR>
+nnoremap <Leader>z :belowright term<CR>
 
 " VimFiler キーマップ
  nmap <leader>f :VimFilerBufferDir<Return>
