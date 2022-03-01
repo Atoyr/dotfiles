@@ -129,7 +129,7 @@ call plug#begin()
   Plug 'junegunn/vim-emoji'
 
   " SKK
-  Plug 'tyru/skk.vim'
+  Plug 'vim-skk/eskk.vim'
 
 call plug#end()
 "===============================================================================
@@ -539,7 +539,7 @@ if &term =~ '256color'
 endif
 
 " SKK
-let skk_large_jisyo = '~/.skk/SKK-JISYO.L'
+let g:eskk#large_dictionary = {'path': "~/.skk/SKK-JISYO.L", 'sorted': 1, 'encoding': 'euc-jp',}
 
 " augroup vim-gofmt-autosave
 "   autocmd!
