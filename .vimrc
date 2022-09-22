@@ -47,7 +47,7 @@ call plug#begin()
   " Plug 'prabirshrestha/asyncomplete.vim'
   " Plug 'prabirshrestha/asyncomplete-lsp.vim'
   " Plug 'natebosch/vim-lsc'
-  Plug 'mattn/vim-lsp-settings'
+  " Plug 'mattn/vim-lsp-settings'
 
   " Powerline
   Plug 'vim-airline/vim-airline'
@@ -73,7 +73,7 @@ call plug#begin()
   Plug 'haya14busa/vim-migemo'
 
   " git
-  Plug 'tpope/vim-fugitive'
+"  Plug 'tpope/vim-fugitive'
 
   " editorconfig
   Plug 'editorconfig/editorconfig-vim'
@@ -110,7 +110,7 @@ call plug#begin()
   " Plug 'leafgarland/typescript-vim'
 
   " C#
-"  Plug 'OmniSharp/omnisharp-vim'
+  " Plug 'OmniSharp/omnisharp-vim'
 
   " Dart
   " Plug 'dart-lang/dart-vim-plugin'
@@ -130,6 +130,9 @@ call plug#begin()
 
   " SKK
   Plug 'vim-skk/eskk.vim'
+
+  " CSV
+  Plug 'mechatroner/rainbow_csv'
 
 call plug#end()
 "===============================================================================
@@ -465,7 +468,9 @@ let g:EasyMotion_space_jump_first = 1
 let g:EasyMotion_use_migemo = 1
 
 " template
-let g:sonictemplate_vim_template_dir = ['$HOME/.vim/template']
+let g:sonictemplate_vim_template_dir = [
+      \'$HOME/.vim/template',
+      \'$HOME/template']
 
 " cheat sheet
 let g:cheatsheet#cheat_file = '~/.config/vim/cheatsheet.md'
