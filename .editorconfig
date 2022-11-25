@@ -1,0 +1,22 @@
+root = true
+
+# All files
+[*]
+indent_style = space
+
+# sh files
+[*.sh]
+indent_size = 4
+tab_width = 4
+
+# Xml files
+[*.xml]
+indent_size = 4
+tab_width = 4
+
+# PowerShell files
+[*.ps1]
+indent_size = 4
+tab_width = 4
+
+
