@@ -47,23 +47,10 @@ function Setup-SymbolicLinks {
     New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\vimfiles\gvimrc" -Target "$env:USERPROFILE\dotfiles\config\gvimrc.symlink"
 }
 
-# install Chocolatey
-function Setup-Chocolatey {
-    Title "Install Chocolatey"
-
-    Set-ExecutionPolicy Bypass -Scope Process -Force
-    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-    iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-}
-
 switch ($Flag)
 {
     "link" {
         Setup-SymbolicLinks
-        break
-    }
-    "choco" {
-        Setup-Chocolatey
         break
     }
     "all" {
