@@ -1,5 +1,6 @@
-
 Param ( [string]$Flag = "")
+
+Import-Module .\Utility.psm1
 
 function Title {
     Param ( [string]$arg = "")
@@ -7,36 +8,11 @@ function Title {
     Write-Host "==============================" -ForegroundColor Gray
 }
 
-function Write-Error {
-    Param ( [string]$msg = "")
-    Write-Host " ERROR " -NoNewline -BackgroundColor DarkRed
-    Write-Host " " -NoNewline
-    Write-Host $msg -ForegroundColor DarkRed
-}
-
-function Write-Warning {
-    Param ( [string]$msg = "")
-    Write-Host " WARNING " -NoNewline -BackgroundColor DarkYellow
-    Write-Host " " -NoNewline
-    Write-Host $msg -ForegroundColor DarkYellow
-}
-
-function Write-Info {
-    Param ( [string]$msg = "")
-    Write-Host " INFO " -NoNewline -BackgroundColor DarkCyan
-    Write-Host " " -NoNewline
-    Write-Host $msg -ForegroundColor DarkCyan
-}
-
-function Write-Success {
-    Param ( [string]$msg = "")
-    Write-Host $msg -ForegroundColor DarkGreen
-}
 
 function Write-Help {
     Write-Host ""
-    Write-Host "link    :Setup Symbolic Links"
-    Write-Host "choco   :Setup Chocolatey"
+    Write-Host "link    : Setup Symbolic Links"
+    Write-Host "app     : Install Applications"
 }
 
 # creating symbolic link
@@ -47,10 +23,20 @@ function Setup-SymbolicLinks {
     New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\vimfiles\gvimrc" -Target "$env:USERPROFILE\dotfiles\config\gvimrc.symlink"
 }
 
-switch ($Flag)
-{
+# Install Application
+function Install-Applications {
+    Title "Install Applications"
+
+    .\installer\Windows\Install-Vim.ps1 install
+}
+
+switch ($Flag) {
     "link" {
         Setup-SymbolicLinks
+        break
+    }
+    "app" {
+        Install-Applications
         break
     }
     "all" {
@@ -71,4 +57,3 @@ switch ($Flag)
 }
 
 Write-Success "done."
-
