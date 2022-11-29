@@ -19,8 +19,20 @@ function Write-Help {
 function Setup-SymbolicLinks {
     Title "Creating symlinks"
 
+    # target , path
+    $hash = [ordered]@{}
+    $hash.Add("config\vimrc.symlink", "$env:USERPROFILE\vimfiles\vimrc")
+    $hash.Add("config\gvimrc.symlink", "$env:USERPROFILE\vimfiles\gvimrc")
+
+
+
     New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\vimfiles\vimrc" -Target "$env:USERPROFILE\dotfiles\config\vimrc.symlink"
     New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\vimfiles\gvimrc" -Target "$env:USERPROFILE\dotfiles\config\gvimrc.symlink"
+    if((Test-Path $dir) -eq "True"){
+      Write-Host "True"
+    }else{
+      Write-Host "False"
+    }
 }
 
 # Install Application
