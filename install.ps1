@@ -1,6 +1,8 @@
 Param ( [string]$Flag = "")
-
 Import-Module .\Utility.psm1
+
+$currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+$isAdmin = $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 
 function Title {
     Param ( [string]$arg = "")
@@ -10,7 +12,8 @@ function Title {
 
 
 function Write-Help {
-    Write-Host ""
+    Write-Host "DOTFILES"
+    Write-Host "all     : Setup and install"
     Write-Host "link    : Setup Symbolic Links"
     Write-Host "app     : Install Applications"
 }
@@ -19,25 +22,37 @@ function Write-Help {
 function Setup-SymbolicLinks {
     Title "Creating symlinks"
 
+    if(!$isAdmin)
+    {
+        Write-Error "Please run with administrator privileges"
+        Exit
+    }
+
     # target , path
-    $hash = [ordered]@{}
-    $hash.Add("config\vimrc.symlink", "$env:USERPROFILE\vimfiles\vimrc")
-    $hash.Add("config\gvimrc.symlink", "$env:USERPROFILE\vimfiles\gvimrc")
+    $symbolicLinks = [ordered]@{}
+    $symbolicLinks.Add("config\vimrc.symlink", "$env:USERPROFILE\vimfiles\vimrc")
+    $symbolicLinks.Add("config\gvimrc.symlink", "$env:USERPROFILE\vimfiles\gvimrc")
 
-
-
-    New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\vimfiles\vimrc" -Target "$env:USERPROFILE\dotfiles\config\vimrc.symlink"
-    New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\vimfiles\gvimrc" -Target "$env:USERPROFILE\dotfiles\config\gvimrc.symlink"
-    if((Test-Path $dir) -eq "True"){
-      Write-Host "True"
-    }else{
-      Write-Host "False"
+    foreach($target in $symbolicLinks.Keys){
+        $symbolicLinkPath = $symbolicLinks[$target]
+        if (Test-Path $symbolicLinkPath) {
+            Write-Info "$symbolicLinkPath already exists... Skipping."
+        } else {
+            Write-info "Creating symlink for $symbolicLinkPath"
+            New-Item -ItemType SymbolicLink -Path $symbolicLinkPath -Target $target > $null
+        }
     }
 }
 
 # Install Application
 function Install-Applications {
     Title "Install Applications"
+
+    if(!$isAdmin)
+    {
+        Write-Error "Please run with administrator privileges"
+        Exit
+    }
 
     .\installer\Windows\Install-Vim.ps1 install
 }
@@ -52,15 +67,9 @@ switch ($Flag) {
         break
     }
     "all" {
-        Write-Host "All"
+        Setup-SymbolicLinks
+        Install-Applications
         break;
-    }
-    "debug" {
-        Write-Error "Error Message"
-        Write-Warning "Warning Message"
-        Write-Info "Info Message"
-        Write-Success "Success Message"
-        Exit;
     }
     default {
         Write-Help
