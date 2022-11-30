@@ -7,7 +7,7 @@ function Install {
         Write-Info "gsudo is installed... skipping."
     } else {
         Write-Info "Installing gsudo"
-        winget install gerardog.gsudo
+        winget install --silent gerardog.gsudo
     }
 }
 

@@ -7,7 +7,7 @@ function Install {
         Write-Info "Chrome is installed... skipping."
     } else {
         Write-Info "Installing Chrome"
-        winget install Google.Chrome
+        winget install --silent Google.Chrome
     }
 }
 

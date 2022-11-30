@@ -7,7 +7,7 @@ function Install {
         Write-Info "WindowsTerminal is installed... skipping."
     } else {
         Write-Info "Installing WindowsTerminal"
-        winget install Microsoft.WindowsTerminal
+        winget install --silent Microsoft.WindowsTerminal
     }
     
 }

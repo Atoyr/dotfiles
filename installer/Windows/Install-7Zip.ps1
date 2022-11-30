@@ -7,7 +7,7 @@ function Install {
         Write-Info "7Zip is installed... skipping."
     } else {
         Write-Info "Installing 7Zip"
-        winget install 7zip.7zip
+        winget install --silent 7zip.7zip
     }
 }
 

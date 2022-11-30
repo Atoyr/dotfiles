@@ -7,7 +7,7 @@ function Install {
         Write-Info "GitHub CLI is installed... skipping."
     } else {
         Write-Info "Installing GitHub CLI"
-        winget install GitHub.cli
+        winget install --silent GitHub.cli
     }
 }
 

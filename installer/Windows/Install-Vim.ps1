@@ -7,7 +7,7 @@ function Install {
         Write-Info "Vim is installed... skipping."
     } else {
         Write-Info "Installing Vim"
-        winget install vim.vim
+        winget install --silent vim.vim
         if (Test-Path $HOME\vimfiles) {
             New-Item $HOME\vimfiles -ItemType Directory
         }
