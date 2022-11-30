@@ -55,6 +55,29 @@ function Install-Applications {
     }
 
     .\installer\Windows\Install-Vim.ps1 install
+    .\installer\Windows\Install-WindowsTerminal.ps1 install
+    .\installer\Windows\Install-Chrome.ps1 install
+    .\installer\Windows\Install-7Zip.ps1 install
+    .\installer\Windows\Install-gsudo.ps1 install
+
+    # reload Path
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+}
+
+# Install Developer tools
+function Install-DevApplications {
+    Title "Install Developer Applications"
+
+    if(!$isAdmin)
+    {
+        Write-Error "Please run with administrator privileges"
+        Exit
+    }
+
+    .\installer\Windows\Install-GitHubCLI.ps1 install
+
+    # reload Path
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 }
 
 switch ($Flag) {
@@ -65,6 +88,9 @@ switch ($Flag) {
     "app" {
         Install-Applications
         break
+    }
+    "dev" {
+        Install-DevApplications
     }
     "all" {
         Setup-SymbolicLinks

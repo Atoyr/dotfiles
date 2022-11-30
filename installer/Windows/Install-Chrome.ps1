@@ -4,10 +4,10 @@ Import-Module $PSScriptRoot\..\..\Utility.psm1
 
 function Install {
     if (Is-Installed) {
-        Write-Info "Vim is installed... skipping."
+        Write-Info "Chrome is installed... skipping."
     } else {
-        Write-Info "Installing Vim"
-        winget install vim.vim
+        Write-Info "Installing Chrome"
+        winget install Google.Chrome
     }
 }
 
@@ -20,8 +20,8 @@ function Uninstall {
 }
 
 function Is-Installed {
-    $info = winget list vim.vim
-    return $info -Like "*vim.vim *"
+    $info = winget list Google.Chrome
+    return $info -Like "*Google.Chrome *"
 }
 
 switch ($Flag) {

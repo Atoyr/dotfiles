@@ -4,10 +4,10 @@ Import-Module $PSScriptRoot\..\..\Utility.psm1
 
 function Install {
     if (Is-Installed) {
-        Write-Info "Vim is installed... skipping."
+        Write-Info "7Zip is installed... skipping."
     } else {
-        Write-Info "Installing Vim"
-        winget install vim.vim
+        Write-Info "Installing 7Zip"
+        winget install 7zip.7zip
     }
 }
 
@@ -20,8 +20,8 @@ function Uninstall {
 }
 
 function Is-Installed {
-    $info = winget list vim.vim
-    return $info -Like "*vim.vim *"
+    $info = winget list 7zip.7zip
+    return $info -Like "*7zip.7zip *"
 }
 
 switch ($Flag) {

@@ -4,10 +4,10 @@ Import-Module $PSScriptRoot\..\..\Utility.psm1
 
 function Install {
     if (Is-Installed) {
-        Write-Info "Vim is installed... skipping."
+        Write-Info "GitHub CLI is installed... skipping."
     } else {
-        Write-Info "Installing Vim"
-        winget install vim.vim
+        Write-Info "Installing GitHub CLI"
+        winget install GitHub.cli
     }
 }
 
@@ -20,8 +20,8 @@ function Uninstall {
 }
 
 function Is-Installed {
-    $info = winget list vim.vim
-    return $info -Like "*vim.vim *"
+    $info = winget list GitHub.cli
+    return $info -Like "*GitHub.cli *"
 }
 
 switch ($Flag) {

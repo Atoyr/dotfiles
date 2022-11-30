@@ -4,11 +4,12 @@ Import-Module $PSScriptRoot\..\..\Utility.psm1
 
 function Install {
     if (Is-Installed) {
-        Write-Info "Vim is installed... skipping."
+        Write-Info "WindowsTerminal is installed... skipping."
     } else {
-        Write-Info "Installing Vim"
-        winget install vim.vim
+        Write-Info "Installing WindowsTerminal"
+        winget install Microsoft.WindowsTerminal
     }
+    
 }
 
 function Upgrade {
@@ -20,8 +21,8 @@ function Uninstall {
 }
 
 function Is-Installed {
-    $info = winget list vim.vim
-    return $info -Like "*vim.vim *"
+    $info = winget list Microsoft.WindowsTerminal
+    return $info -Like "*Microsoft.WindowsTerminal *"
 }
 
 switch ($Flag) {
