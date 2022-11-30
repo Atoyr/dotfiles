@@ -30,8 +30,8 @@ function Setup-SymbolicLinks {
 
     # target , path
     $symbolicLinks = [ordered]@{}
-    $symbolicLinks.Add("config\vimrc.symlink", "$env:USERPROFILE\vimfiles\vimrc")
-    $symbolicLinks.Add("config\gvimrc.symlink", "$env:USERPROFILE\vimfiles\gvimrc")
+    $symbolicLinks.Add("config\vimrc.symlink", "$HOME\vimfiles\vimrc")
+    $symbolicLinks.Add("config\gvimrc.symlink", "$HOME\vimfiles\gvimrc")
 
     foreach($target in $symbolicLinks.Keys){
         $symbolicLinkPath = $symbolicLinks[$target]

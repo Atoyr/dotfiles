@@ -8,10 +8,21 @@ function Install {
     } else {
         Write-Info "Installing Vim"
         winget install vim.vim
+        if (Test-Path $HOME\vimfiles) {
+            New-Item $HOME\vimfiles -ItemType Directory
+        }
+        iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
+        ni $HOME/vimfiles/autoload/plug.vim -Force
     }
 }
 
 function Upgrade {
+    if (Is-Installed) {
+        Write-Info "Upgrading Vim"
+        winget upgrade vim.vim
+    } else {
+        Install
+    }
 
 }
 

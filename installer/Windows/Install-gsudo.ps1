@@ -16,8 +16,7 @@ function Upgrade {
         Write-Info "Upgrading gsudo"
         winget upgrade gerardog.gsudo
     } else {
-        Write-Info "Installing gsudo"
-        winget install gerardog.gsudo
+        Install
     }
 }
 
