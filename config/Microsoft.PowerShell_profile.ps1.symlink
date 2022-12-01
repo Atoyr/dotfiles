@@ -1,0 +1,3 @@
+if ($env:WT_PROFILE_ID) {
+    oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\free-ukraine.omp.json" | Invoke-Expression
+}

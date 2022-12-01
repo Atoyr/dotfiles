@@ -21,6 +21,7 @@ setup_symlinks() {
     for file in $(get_linkables) ; do
         # Exclusion Setting
         [[ $(basename "$file") = "gvimrc.symlink" ]] && continue
+        [[ $(basename "$file") = "Microsoft.PowerShell_profile.ps1.symlink" ]] && continue
 
         target="$HOME/.$(basename "$file" '.symlink')"
         if [ -e "$target" ]; then

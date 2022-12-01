@@ -32,9 +32,15 @@ function Setup-SymbolicLinks {
     $symbolicLinks = [ordered]@{}
     $symbolicLinks.Add("config\vimrc.symlink", "$HOME\vimfiles\vimrc")
     $symbolicLinks.Add("config\gvimrc.symlink", "$HOME\vimfiles\gvimrc")
+    $symbolicLinks.Add("config\Microsoft.PowerShell_profile.ps1.symlink", "$PROFILE")
 
     foreach($target in $symbolicLinks.Keys){
         $symbolicLinkPath = $symbolicLinks[$target]
+        $symbolicLinkDir = Split-Path $symbolicLinkPath
+        if (!(Test-Path $symbolicLinkDir)) {
+            Write-Info "Creating directory for $symbolicLinkDir"
+            New-Item -Path $symbolicLinkDir -Type Directory -Force > $null
+        }
         if (Test-Path $symbolicLinkPath) {
             Write-Info "$symbolicLinkPath already exists... Skipping."
         } else {
@@ -55,10 +61,12 @@ function Install-Applications {
     }
 
     .\installer\Windows\Install-Vim.ps1 install
+    .\installer\Windows\Install-WinMerge.ps1 install
     .\installer\Windows\Install-WindowsTerminal.ps1 install
     .\installer\Windows\Install-Chrome.ps1 install
     .\installer\Windows\Install-7Zip.ps1 install
     .\installer\Windows\Install-gsudo.ps1 install
+    .\installer\Windows\Install-OhMyPosh.ps1 install
 
     # reload Path
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
