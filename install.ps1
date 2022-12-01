@@ -60,6 +60,7 @@ function Install-Applications {
         Exit
     }
 
+    Install-Module PSReadLine -Confirm:$false -Force 
     .\installer\Windows\Install-Vim.ps1 install
     .\installer\Windows\Install-WinMerge.ps1 install
     .\installer\Windows\Install-WindowsTerminal.ps1 install
