@@ -1,32 +1,18 @@
 Param ( [string]$Flag = "")
 
-Import-Module $PSScriptRoot\..\..\Utility.psm1
-
-function Install {
-    if (Is-Installed) {
-        Write-Info "GitHub CLI is installed... skipping."
-    } else {
-        Write-Info "Installing GitHub CLI"
-        winget install --silent GitHub.cli
-    }
-}
-
-function Upgrade {
-
-}
-
-function Uninstall {
-
-}
-
-function Is-Installed {
-    $info = winget list GitHub.cli
-    return $info -Like "*GitHub.cli *"
-}
+Import-Module $PSScriptRoot\Installer.psm1
 
 switch ($Flag) {
     "install" {
-        Install
+        Install GitHub.cli "GitHub CLI"
+        break
+    }
+    "upgrade" {
+        Upgrade GitHub.cli "GitHub CLI"
+        break
+    }
+    "uninstall" {
+        Uninstall GitHub.cli "GitHub CLI"
         break
     }
 

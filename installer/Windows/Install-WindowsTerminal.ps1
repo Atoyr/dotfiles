@@ -1,33 +1,18 @@
 Param ( [string]$Flag = "")
 
-Import-Module $PSScriptRoot\..\..\Utility.psm1
-
-function Install {
-    if (Is-Installed) {
-        Write-Info "WindowsTerminal is installed... skipping."
-    } else {
-        Write-Info "Installing WindowsTerminal"
-        winget install --silent Microsoft.WindowsTerminal
-    }
-    
-}
-
-function Upgrade {
-
-}
-
-function Uninstall {
-
-}
-
-function Is-Installed {
-    $info = winget list Microsoft.WindowsTerminal
-    return $info -Like "*Microsoft.WindowsTerminal *"
-}
+Import-Module $PSScriptRoot\Installer.psm1
 
 switch ($Flag) {
     "install" {
-        Install
+        Install Microsoft.WindowsTerminal WindowsTerminal
+        break
+    }
+    "upgrade" {
+        Upgrade Microsoft.WindowsTerminal WindowsTerminal
+        break
+    }
+    "uninstall" {
+        Uninstall Microsoft.WindowsTerminal WindowsTerminal
         break
     }
 

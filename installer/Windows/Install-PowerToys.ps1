@@ -1,55 +1,21 @@
 Param ( [string]$Flag = "")
 
-Import-Module $PSScriptRoot\..\..\Utility.psm1
-
-function Install {
-    if (Is-Installed) {
-        Write-Info "PowerToys is installed... skipping."
-    } else {
-        Write-Info "Installing PowerToys"
-        winget install --silent --id Microsoft.PowerToys
-        if (!$?) {
-            Write-Error "Installing PowerToys is failed."
-        }
-    }
-}
-
-function Upgrade {
-    if (Is-Installed) {
-        Write-Info "Upgrading PowerToys"
-        winget upgrade Microsoft.PowerToys
-    } else {
-        Write-Error "PowerToys is not installed... skipping."
-    }
-}
-
-function Uninstall {
-    if (Is-Installed) {
-        Write-Info "Uninstall PowerToys"
-        winget uninstall Microsoft.PowerToys
-    } else {
-        Write-Info "PowerToys is not installed... skipping."
-    }
-}
-
-function Is-Installed {
-    $info = winget list Microsoft.PowerToys
-    return $info -Like "*Microsoft.PowerToys *"
-}
+Import-Module $PSScriptRoot\Installer.psm1
 
 switch ($Flag) {
     "install" {
-        Install
+        Install Microsoft.PowerToys PowerToys
         break
     }
     "upgrade" {
-        Upgrade
+        Upgrade Microsoft.PowerToys PowerToys
         break
     }
     "uninstall" {
-        Uninstall
+        Uninstall Microsoft.PowerToys PowerToys
         break
     }
+
     default {
         Exit;
     }

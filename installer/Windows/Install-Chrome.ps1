@@ -1,32 +1,18 @@
 Param ( [string]$Flag = "")
 
-Import-Module $PSScriptRoot\..\..\Utility.psm1
-
-function Install {
-    if (Is-Installed) {
-        Write-Info "Chrome is installed... skipping."
-    } else {
-        Write-Info "Installing Chrome"
-        winget install --silent Google.Chrome
-    }
-}
-
-function Upgrade {
-
-}
-
-function Uninstall {
-
-}
-
-function Is-Installed {
-    $info = winget list Google.Chrome
-    return $info -Like "*Google.Chrome *"
-}
+Import-Module $PSScriptRoot\Installer.psm1
 
 switch ($Flag) {
     "install" {
-        Install
+        Install Google.Chrome Chrome
+        break
+    }
+    "upgrade" {
+        Upgrade Google.Chrome Chrome
+        break
+    }
+    "uninstall" {
+        Uninstall Google.Chrome Chrome
         break
     }
 
@@ -34,3 +20,4 @@ switch ($Flag) {
         Exit;
     }
 }
+
