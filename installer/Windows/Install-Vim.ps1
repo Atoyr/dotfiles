@@ -8,7 +8,7 @@ function Install {
     } else {
         Write-Info "Installing Vim"
         winget install --silent vim.vim
-        if (Test-Path $HOME\vimfiles) {
+        if (!Test-Path $HOME\vimfiles) {
             New-Item $HOME\vimfiles -ItemType Directory
         }
         iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
