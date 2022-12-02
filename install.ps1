@@ -50,6 +50,12 @@ function Setup-SymbolicLinks {
     }
 }
 
+function Install-Fonts {
+    Title "Install Fonts"
+
+    .\installer\Windows\Install-Fonts.ps1 install
+}
+
 # Install Application
 function Install-Applications {
     Title "Install Applications"
@@ -71,6 +77,7 @@ function Install-Applications {
 
     # reload Path
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+    . $PROFILE
 }
 
 # Install Developer tools
