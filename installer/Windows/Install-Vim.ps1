@@ -7,7 +7,7 @@ function Install {
         Write-Info "Vim is installed... skipping."
     } else {
         Write-Info "Installing Vim"
-        winget install --silent vim.vim
+        winget install -s winget --silent vim.vim
         if (!(Test-Path $HOME\vimfiles)) {
             New-Item $HOME\vimfiles -ItemType Directory
         }
@@ -19,7 +19,7 @@ function Install {
 function Upgrade {
     if (Is-Installed) {
         Write-Info "Upgrading Vim"
-        winget upgrade vim.vim
+        winget -s winget upgrade vim.vim
     } else {
         Install
     }
@@ -31,7 +31,7 @@ function Uninstall {
 }
 
 function Is-Installed {
-    $info = winget list vim.vim
+    $info = winget -s winget list vim.vim
     return $info -Like "*vim.vim *"
 }
 

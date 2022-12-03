@@ -11,7 +11,7 @@ function Install {
         Write-Info "$Name is installed... skipping."
     } else {
         Write-Info "Installing $Name"
-        winget install --silent --id $Id
+        winget install -s winget --silent --id $Id
         if (!$?) {
             Write-Error "Installing $Name is failed."
         }
@@ -27,7 +27,7 @@ function Upgrade {
 
     if (Test-Installed $Id) {
         Write-Info "Upgrading $Name"
-        winget upgrade $Id
+        winget upgrade -s winget $Id
     } else {
         Write-Error "$Name is not installed... skipping."
     }
@@ -42,7 +42,7 @@ function Uninstall {
 
     if (Test-Installed $Id) {
         Write-Info "Uninstall $Name"
-        winget uninstall $Id
+        winget uninstall -s winget $Id
     } else {
         Write-Info "$Name is not installed... skipping."
     }

@@ -16,6 +16,7 @@ function Write-Help {
     Write-Host "all     : Setup and install"
     Write-Host "link    : Setup Symbolic Links"
     Write-Host "app     : Install Applications"
+    Write-Host "font    : Install Fonts"
 }
 
 # creating symbolic link
@@ -50,10 +51,16 @@ function Setup-SymbolicLinks {
     }
 }
 
+function Set-MyExecutionPolicy {
+    Title "Set ExecutionPolicy"
+    Write-Info "Set ExecutionPolicy to RemoteSigned"
+    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+}
+
 function Install-Fonts {
     Title "Install Fonts"
 
-    .\installer\Windows\Install-Fonts.ps1 install
+    .\installer\Windows\Install-Fonts.ps1
 }
 
 # Install Application
@@ -66,6 +73,7 @@ function Install-Applications {
         Exit
     }
 
+    Write-Info "Installing PSReadLine"
     Install-Module PSReadLine -Confirm:$false -Force 
     .\installer\Windows\Install-Vim.ps1 install
     .\installer\Windows\Install-WinMerge.ps1 install
@@ -99,6 +107,7 @@ function Install-DevApplications {
 switch ($Flag) {
     "link" {
         Setup-SymbolicLinks
+        Set-MyExecutionPolicy
         break
     }
     "app" {
@@ -108,8 +117,13 @@ switch ($Flag) {
     "dev" {
         Install-DevApplications
     }
+    "font" {
+        Install-Fonts
+    }
     "all" {
         Setup-SymbolicLinks
+        Set-MyExecutionPolicy
+        Install-Fonts
         Install-Applications
         break;
     }
