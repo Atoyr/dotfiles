@@ -36,7 +36,7 @@ function Uninstall {
 }
 
 function Test-Installed {
-    $info = winget list JanDeDobbeleer.OhMyPosh
+    $info = winget list -s winget JanDeDobbeleer.OhMyPosh
     return $info -Like "*JanDeDobbeleer.OhMyPosh *"
 }
 

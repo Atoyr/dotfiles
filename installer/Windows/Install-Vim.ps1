@@ -3,7 +3,7 @@ Param ( [string]$Flag = "")
 Import-Module $PSScriptRoot\..\..\Utility.psm1
 
 function Install {
-    if (Is-Installed) {
+    if (Test-Installed) {
         Write-Info "Vim is installed... skipping."
     } else {
         Write-Info "Installing Vim"
@@ -17,7 +17,7 @@ function Install {
 }
 
 function Upgrade {
-    if (Is-Installed) {
+    if (Test-Installed) {
         Write-Info "Upgrading Vim"
         winget -s winget upgrade vim.vim
     } else {
@@ -30,8 +30,8 @@ function Uninstall {
 
 }
 
-function Is-Installed {
-    $info = winget -s winget list vim.vim
+function Test-Installed {
+    $info = winget list -s winget vim.vim
     return $info -Like "*vim.vim *"
 }
 

@@ -55,7 +55,7 @@ function Test-Installed {
         Exit
     }
 
-    $info = winget list $Id
+    $info = winget list -s winget $Id
     return $info -Like "*$Id *"
 }
 
