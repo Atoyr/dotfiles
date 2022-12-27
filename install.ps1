@@ -81,6 +81,7 @@ function Install-Applications {
     .\installer\Windows\Install-Chrome.ps1 install
     .\installer\Windows\Install-7Zip.ps1 install
     .\installer\Windows\Install-gsudo.ps1 install
+    .\installer\Windows\Install-ScreenToGif.ps1 install
     .\installer\Windows\Install-OhMyPosh.ps1 install
 
     # reload Path
