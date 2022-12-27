@@ -36,6 +36,7 @@ setup_symlinks() {
 install_applications() {
     case $(whichdistro) in
         debian)
+            ${DOTFILES}/installer/Debian/install-unzip.sh 
             ${DOTFILES}/installer/Debian/install-vim.sh 
             ;;
         *)
