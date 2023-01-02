@@ -4,11 +4,11 @@ Import-Module $PSScriptRoot\Installer.psm1
 
 switch ($Flag) {
     "install" {
-        Install  Microsoft.SQLServerManagementStudio SQLServerManagementStudio
+        Install Microsoft.SQLServerManagementStudio SQLServerManagementStudio
         break
     }
     "upgrade" {
-        Upgrace Microsoft.SQLServerManagementStudio SQLServerManagementStudio
+        Upgrade Microsoft.SQLServerManagementStudio SQLServerManagementStudio
         break
     }
     "uninstall" {
