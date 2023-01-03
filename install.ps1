@@ -76,11 +76,18 @@ function Install-Applications {
     Write-Info "Installing PSReadLine"
     Install-Module PSReadLine -Confirm:$false -Force 
     .\installer\Windows\Install-Vim.ps1 install
+    .\installer\Windows\Install-VisualStudioCode.ps1 install
     .\installer\Windows\Install-WinMerge.ps1 install
     .\installer\Windows\Install-WindowsTerminal.ps1 install
     .\installer\Windows\Install-Chrome.ps1 install
     .\installer\Windows\Install-7Zip.ps1 install
     .\installer\Windows\Install-gsudo.ps1 install
+
+    .\installer\Windows\Install-1password.ps1 install
+    .\installer\Windows\Install-AWSCli.ps1 install
+    .\installer\Windows\Install-AzureCli.ps1 install
+    .\installer\Windows\Install-AzureStorageExplorer.ps1 install
+    .\installer\Windows\Install-Slack.ps1 install
     .\installer\Windows\Install-Notion.ps1 install
     .\installer\Windows\Install-Slack.ps1 install
     .\installer\Windows\Install-Discord.ps1 install
