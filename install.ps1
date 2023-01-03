@@ -13,10 +13,12 @@ function Title {
 
 function Write-Help {
     Write-Host "DOTFILES"
-    Write-Host "all     : Setup and install"
-    Write-Host "link    : Setup Symbolic Links"
-    Write-Host "app     : Install Applications"
-    Write-Host "font    : Install Fonts"
+    Write-Host "all       : Setup And Install All Applications"
+    Write-Host "link      : Setup Symbolic Links"
+    Write-Host "app       : Install Applications"
+    Write-Host "dev       : Install Develolper Applications"
+    Write-Host "personal  : Install Personal Applications"
+    Write-Host "font      : Install Fonts"
 }
 
 # creating symbolic link
@@ -75,29 +77,13 @@ function Install-Applications {
 
     Write-Info "Installing PSReadLine"
     Install-Module PSReadLine -Confirm:$false -Force 
-    .\installer\Windows\Install-Vim.ps1 install
-    .\installer\Windows\Install-VisualStudioCode.ps1 install
-    .\installer\Windows\Install-WinMerge.ps1 install
     .\installer\Windows\Install-WindowsTerminal.ps1 install
     .\installer\Windows\Install-Chrome.ps1 install
     .\installer\Windows\Install-7Zip.ps1 install
     .\installer\Windows\Install-gsudo.ps1 install
 
-    .\installer\Windows\Install-1password.ps1 install
-    .\installer\Windows\Install-AWSCli.ps1 install
-    .\installer\Windows\Install-AzureCli.ps1 install
-    .\installer\Windows\Install-AzureStorageExplorer.ps1 install
-    .\installer\Windows\Install-Slack.ps1 install
-    .\installer\Windows\Install-Notion.ps1 install
-    .\installer\Windows\Install-Slack.ps1 install
-    .\installer\Windows\Install-Discord.ps1 install
-    .\installer\Windows\Install-ScreenToGif.ps1 install
-    .\installer\Windows\Install-SSMS.ps1 install
-    .\installer\Windows\Install-OhMyPosh.ps1 install
-
     # reload Path
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
-    . $PROFILE
 }
 
 # Install Developer tools
@@ -110,10 +96,39 @@ function Install-DevApplications {
         Exit
     }
 
+    .\installer\Windows\Install-Vim.ps1 install
+    .\installer\Windows\Install-VisualStudioCode.ps1 install
+    .\installer\Windows\Install-WinMerge.ps1 install
     .\installer\Windows\Install-GitHubCLI.ps1 install
+    .\installer\Windows\Install-AWSCli.ps1 install
+    .\installer\Windows\Install-AzureCli.ps1 install
+    .\installer\Windows\Install-AzureStorageExplorer.ps1 install
+    .\installer\Windows\Install-SSMS.ps1 install
 
     # reload Path
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+}
+
+# Install Personal Applications
+function Install-PersonalApplications {
+    Title "Install Personal Applications"
+
+    if(!$isAdmin)
+    {
+        Write-Error "Please run with administrator privileges"
+        Exit
+    }
+
+    .\installer\Windows\Install-1password.ps1 install
+    .\installer\Windows\Install-Slack.ps1 install
+    .\installer\Windows\Install-Notion.ps1 install
+    .\installer\Windows\Install-Discord.ps1 install
+    .\installer\Windows\Install-ScreenToGif.ps1 install
+    .\installer\Windows\Install-OhMyPosh.ps1 install
+
+    # reload Path
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+    . $PROFILE
 }
 
 switch ($Flag) {
@@ -129,6 +144,9 @@ switch ($Flag) {
     "dev" {
         Install-DevApplications
     }
+    "personal" {
+        Install-PersonalApplications
+    }
     "font" {
         Install-Fonts
     }
@@ -137,6 +155,8 @@ switch ($Flag) {
         Set-MyExecutionPolicy
         Install-Fonts
         Install-Applications
+        Install-DevApplications
+        Install-PersonalApplications
         break;
     }
     default {
