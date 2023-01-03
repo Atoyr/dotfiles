@@ -5,7 +5,7 @@ $Source      = "$SourceDir\*"
 $Destination = (New-Object -ComObject Shell.Application).Namespace(0x14)
 
 function Install {
-    Remove-Item "$SourceDir"  -Recurse -Force
+    Remove-Item "$SourceDir"  -Recurse -Force > $null
     New-Item -ItemType Directory -Force -Path $SourceDir > $null
     Write-Info "Download CascadinaCode Font."
     Invoke-DownloadAndUnzip "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.0-RC/CascadiaCode.zip"
