@@ -119,6 +119,7 @@ function Install-PersonalApplications {
         Exit
     }
 
+    .\installer\Windows\Install-PowerToys.ps1 install
     .\installer\Windows\Install-1password.ps1 install
     .\installer\Windows\Install-Slack.ps1 install
     .\installer\Windows\Install-Notion.ps1 install
