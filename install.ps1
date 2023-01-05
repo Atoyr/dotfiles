@@ -49,7 +49,7 @@ function Setup-SymbolicLinks {
         if (Test-Path $symbolicLinkPath) {
             if ($symbolicLink.Force)
             {
-                Write-info "Overwrited $symbolicLinkPath with symlink file"
+                Write-info "Overwriting $symbolicLinkPath with symlink file"
                 New-Item -ItemType SymbolicLink -Path $symbolicLinkPath -Target $target -Force > $null
             } else {
                 Write-Info "$symbolicLinkPath already exists... Skipping."
