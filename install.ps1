@@ -33,19 +33,27 @@ function Setup-SymbolicLinks {
 
     # target , path
     $symbolicLinks = [ordered]@{}
-    $symbolicLinks.Add("config\vimrc.symlink", "$HOME\vimfiles\vimrc")
-    $symbolicLinks.Add("config\gvimrc.symlink", "$HOME\vimfiles\gvimrc")
-    $symbolicLinks.Add("config\Microsoft.PowerShell_profile.ps1.symlink", "$PROFILE")
+    $symbolicLinks.Add("config\vimrc.symlink", @{"Path" = "$HOME\vimfiles\vimrc"; "Force" = $false})
+    $symbolicLinks.Add("config\gvimrc.symlink", @{"Path" = "$HOME\vimfiles\gvimrc"; "Force" = $false})
+    $symbolicLinks.Add("config\Microsoft.PowerShell_profile.ps1.symlink", @{"Path" = "$PROFILE"; "Force" = $false})
+    $symbolicLinks.Add("config\WindowsTerminal.settings.json.symlink", @{"Path" = "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"; "Force" = $true})
 
     foreach($target in $symbolicLinks.Keys){
-        $symbolicLinkPath = $symbolicLinks[$target]
+        $symbolicLink = $symbolicLinks[$target]
+        $symbolicLinkPath = $symbolicLink.Path
         $symbolicLinkDir = Split-Path $symbolicLinkPath
         if (!(Test-Path $symbolicLinkDir)) {
             Write-Info "Creating directory for $symbolicLinkDir"
             New-Item -Path $symbolicLinkDir -Type Directory -Force > $null
         }
         if (Test-Path $symbolicLinkPath) {
-            Write-Info "$symbolicLinkPath already exists... Skipping."
+            if ($symbolicLink.Force)
+            {
+                Write-info "Overwrited $symbolicLinkPath with symlink file"
+                New-Item -ItemType SymbolicLink -Path $symbolicLinkPath -Target $target -Force > $null
+            } else {
+                Write-Info "$symbolicLinkPath already exists... Skipping."
+            }
         } else {
             Write-info "Creating symlink for $symbolicLinkPath"
             New-Item -ItemType SymbolicLink -Path $symbolicLinkPath -Target $target > $null
