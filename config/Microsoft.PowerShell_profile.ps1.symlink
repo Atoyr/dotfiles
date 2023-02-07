@@ -5,5 +5,3 @@ Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineKeyHandler -Key "Ctrl+f" -Function ForwardWord
 
 Set-Alias vim 'C:\Program Files\vim\vim90\vim.exe'
-
-clear
