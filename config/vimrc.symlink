@@ -110,7 +110,7 @@ call plug#begin()
   " Plug 'leafgarland/typescript-vim'
 
   " C#
-  " Plug 'OmniSharp/omnisharp-vim'
+  Plug 'OmniSharp/omnisharp-vim'
 
   " Dart
   " Plug 'dart-lang/dart-vim-plugin'
