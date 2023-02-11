@@ -4,8 +4,8 @@
     "actions": 
     [
         {
-            "command": "find",
-            "keys": "ctrl+shift+f"
+            "command": "paste",
+            "keys": "ctrl+shift+v"
         },
         {
             "command": 
@@ -16,8 +16,8 @@
             "keys": "ctrl+c"
         },
         {
-            "command": "paste",
-            "keys": "ctrl+shift+v"
+            "command": "find",
+            "keys": "ctrl+shift+f"
         },
         {
             "command": 
@@ -62,18 +62,6 @@
                 "source": "Windows.Terminal.Azure"
             },
             {
-                "guid": "{d0851f0b-8ff9-58c1-8a8d-1abe85d6ac03}",
-                "hidden": false,
-                "name": "Developer Command Prompt for VS 2022",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{bd95e2fd-c8b1-570e-8768-5d8b2f1425f4}",
-                "hidden": false,
-                "name": "Developer PowerShell for VS 2022",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
                 "guid": "{131a6984-be81-529a-a8fa-d6e65b740863}",
                 "hidden": true,
                 "name": "Developer Command Prompt for VS 2019",
@@ -96,6 +84,18 @@
                 "hidden": false,
                 "name": "PowerShell",
                 "source": "Windows.Terminal.PowershellCore"
+            },
+            {
+                "guid": "{ebb815e1-747b-5b6e-a719-53f525ae551d}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{5547d01c-875d-5173-bc5f-ceb268200095}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 2022",
+                "source": "Windows.Terminal.VisualStudio"
             }
         ]
     },

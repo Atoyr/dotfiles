@@ -10,15 +10,21 @@ function Title {
     Write-Host "==============================" -ForegroundColor Gray
 }
 
-
 function Write-Help {
     Write-Host "DOTFILES"
-    Write-Host "all       : Setup And Install All Applications"
-    Write-Host "link      : Setup Symbolic Links"
-    Write-Host "app       : Install Applications"
-    Write-Host "dev       : Install Develolper Applications"
-    Write-Host "personal  : Install Personal Applications"
-    Write-Host "font      : Install Fonts"
+    Write-Host "all       : Setup and install all applications."
+    Write-Host "env       : Setup user environment variable."
+    Write-Host "link      : Setup symbolic links."
+    Write-Host "app       : Install applications."
+    Write-Host "dev       : Install develolper applications."
+    Write-Host "personal  : Install personal applications."
+    Write-Host "font      : Install fonts."
+}
+
+function Set-UserEnvironmentVariable {
+    Write-Info "Set User environment variable."
+    [Environment]::SetEnvironmentVariable('XDG_CONFIG_HOME', '%USERPROFILE%\.config', 'User')
+    [Environment]::SetEnvironmentVariable('XDG_DATA_HOME', '%USERPROFILE%\.local\share', 'User')
 }
 
 # creating symbolic link
@@ -35,6 +41,9 @@ function Setup-SymbolicLinks {
     $symbolicLinks = [ordered]@{}
     $symbolicLinks.Add("config\vimrc.symlink", @{"Path" = "$HOME\vimfiles\vimrc"; "Force" = $false})
     $symbolicLinks.Add("config\gvimrc.symlink", @{"Path" = "$HOME\vimfiles\gvimrc"; "Force" = $false})
+    $symbolicLinks.Add("config\nvim_init.lua.symlink", @{"Path" = "$HOME\.config\nvim\init.lua"; "Force" = $false})
+    $symbolicLinks.Add("config\nvim_lua_plugins.lua.symlink", @{"Path" = "$HOME\.config\nvim\lua\plugins.lua"; "Force" = $false})
+    $symbolicLinks.Add("config\nvim_lua_powerline.lua.symlink", @{"Path" = "$HOME\.config\nvim\lua\powerline.lua"; "Force" = $false})
     $symbolicLinks.Add("config\Microsoft.PowerShell_profile.ps1.symlink", @{"Path" = "$PROFILE"; "Force" = $false})
     $symbolicLinks.Add("config\WindowsTerminal.settings.json.symlink", @{"Path" = "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"; "Force" = $true})
 
@@ -141,6 +150,9 @@ function Install-PersonalApplications {
 }
 
 switch ($Flag) {
+    "env" {
+        Set-UserEnvironmentVariable
+    }
     "link" {
         Setup-SymbolicLinks
         Set-MyExecutionPolicy

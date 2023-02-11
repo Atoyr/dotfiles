@@ -1,0 +1,35 @@
+require("plugins")
+require("powerline")
+
+local options = {
+  encoding = "utf-8",
+    tabstop = 2,
+    cursorline = true,
+    number = true,
+    relativenumber = true,
+}
+
+for k, v in pairs(options) do
+    vim.opt[k] = v
+end
+
+-- setting key maps
+local opts = { noremap = true, silent = true }
+local term_opts = { silent = true }
+local keymap = vim.api.nvim_set_keymap
+
+--Remap space as leader key
+keymap("", "<Space>", "<Nop>", opts)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+
+-- setting color schema
+vim.cmd [[
+try
+  colorscheme nightfox
+catch /^Vim\%((\a\+)\)\=:E185/
+  colorscheme default
+  set background=dark
+endtry
+]]
