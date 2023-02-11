@@ -114,6 +114,7 @@ function Install-DevApplications {
     }
 
     .\installer\Windows\Install-Vim.ps1 install
+    .\installer\Windows\Install-Neovim.ps1 install
     .\installer\Windows\Install-VisualStudioCode.ps1 install
     .\installer\Windows\Install-WinMerge.ps1 install
     .\installer\Windows\Install-GitHubCLI.ps1 install
