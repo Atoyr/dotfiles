@@ -3,10 +3,20 @@ require("powerline")
 
 local options = {
   encoding = "utf-8",
-    tabstop = 2,
-    cursorline = true,
-    number = true,
-    relativenumber = true,
+	expandtab = true,
+  tabstop = 2,
+	shiftwidth = 2,
+  cursorline = true,
+  number = true,
+  relativenumber = true,
+	backup = false,
+	swapfile = false,
+	undofile = true,
+	autoread = true,
+	hidden = true,
+	clipboard = "unnamedplus",
+	virtualedit = "onemore",
+	showmatch = true,
 }
 
 for k, v in pairs(options) do
@@ -20,9 +30,43 @@ local keymap = vim.api.nvim_set_keymap
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
+keymap("", "s", "<Nop>", opts)
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "`"
 
+-- Modes
+--   normal_mode = 'n',
+--   insert_mode = 'i',
+--   visual_mode = 'v',
+--   visual_block_mode = 'x',
+--   term_mode = 't',
+--   command_mode = 'c',
+
+keymap("n", "j", "gj", opts)
+keymap("n", "k", "gk", opts)
+
+-- change buffer
+keymap("n", "<Leader>j", ":bn<CR>", opts)
+keymap("n", "<Leader>k", ":bp<CR>", opts)
+
+-- window split
+keymap("n", "<Leader>s", ":split<CR>", opts)
+keymap("n", "<Leader>v", ":vsplit<CR>", opts)
+
+-- select all
+keymap("n", "<C-a>", "gg<S-v>G", opts)
+
+-- cancel hightlight
+keymap("n", "<Esc><Esc>", ":<C-u>set nohlsearch<CR>", opts)
+
+-- terminal
+keymap("n", "<Leader>z", ":belowright term<CR>", opts)
+
+-- auto space
+keymap("i", ",", ",<Space>", opts)
+
+keymap("i", "<silent>jj", "<ESC>", opts)
+keymap("i", "<silent>ｊｊ", "<ESC>", opts)
 
 -- setting color schema
 vim.cmd [[
