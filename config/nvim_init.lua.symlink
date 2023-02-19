@@ -17,11 +17,15 @@ local options = {
 	clipboard = "unnamedplus",
 	virtualedit = "onemore",
 	showmatch = true,
+  termguicolors = true, 
+
 }
 
 for k, v in pairs(options) do
     vim.opt[k] = v
 end
+
+vim.g.editorconfig_enable = true
 
 -- setting key maps
 local opts = { noremap = true, silent = true }
@@ -54,7 +58,7 @@ keymap("n", "<Leader>s", ":split<CR>", opts)
 keymap("n", "<Leader>v", ":vsplit<CR>", opts)
 
 -- select all
-keymap("n", "<C-a>", "gg<S-v>G", opts)
+keymap("n", "<Leader>a", "gg<S-v>G", opts)
 
 -- cancel hightlight
 keymap("n", "<Esc><Esc>", ":<C-u>set nohlsearch<CR>", opts)

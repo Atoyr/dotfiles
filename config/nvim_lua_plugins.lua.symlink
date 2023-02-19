@@ -66,38 +66,16 @@ return packer.startup(function(use)
 
 -- noice
 use "MunifTanjim/nui.nvim"
-use "rcarriga/nvim-notify"
--- use {
---   "folke/noice.nvim",
---   event = { "BufRead", "BufNewFile", "InsertEnter", "CmdlineEnter" },
---   module = { "noice" },
---   requires = {
---     { "MunifTanjim/nui.nvim" },
---     {
---       "rcarriga/nvim-notify",
---       module = { "notify" },
---       config = function()
---         require("notify").setup { }
---       end
---     },
---   },
---   wants = { "nvim-treesitter" },
---   setup = function()
---   end,
---   config = function()
---     require("noice").setup {
---       presets = {
---         bottom_search = false, -- use a classic bottom cmdline for search
---         command_palette = false, -- position the cmdline and popupmenu together
---         long_message_to_split = false, -- long messages will be sent to a split
---         inc_rename = false, -- enables an input dialog for inc-rename.nvim
---       }, 
---       cmdline = {
---             view = "cmdline",
---           },
---     }
---   end
--- }
+use {
+  "rcarriga/nvim-notify",
+  config = function()
+    local notify = require("notify")
+    notify.setup{
+      render = "minimal"
+    }
+    vim.notify = notify
+  end,
+}
 
 -- Color schema
 use 'EdenEast/nightfox.nvim'
@@ -111,25 +89,48 @@ use {
   end,
 }
 use {
-  'williamboman/mason-lspconfig.nvim', 
+  'williamboman/mason-lspconfig.nvim',
+    requires = {
+      { "williamboman/mason.nvim"} ,
+      { "neovim/nvim-lspconfig" },
+  },
+  wants = {
+      "williamboman/mason.nvim",
+      "neovim/nvim-lspconfig",
+  },
   config = function()
-    require('mason-lspconfig').setup_handlers({ function(server)
-    local opt = {
-      -- -- Function executed when the LSP server startup
-      -- on_attach = function(client, bufnr)
-      --   local opts = { noremap=true, silent=true }
-      --   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-      --   vim.cmd 'autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)'
-      -- end,
-      capabilities = require('cmp_nvim_lsp').default_capabilities(
-        vim.lsp.protocol.make_client_capabilities()
-      )
-    }
-    require('lspconfig')[server].setup(opt)
+    require('mason-lspconfig').setup_handlers({ function(server_name)
+    local opts = { }
+    opts.on_attach = function(_, bufnr)
+      local bufopts = { silent = true }
+      local keymap = vim.api.nvim_buf_set_keymap
+      keymap(bufnr, 'n', 'K',  '<cmd>lua vim.lsp.buf.hover()<CR>', bufopts)
+      keymap(bufnr, 'n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>', bufopts)
+      keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', bufopts)
+      keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', bufopts)
+      keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', bufopts)
+      keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', bufopts)
+      keymap(bufnr, 'n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', bufopts)
+      keymap(bufnr, 'n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>', bufopts)
+      keymap(bufnr, 'n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
+      keymap(bufnr, 'n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>', bufopts)
+      keymap(bufnr, 'n', 'g]', '<cmd>lua vim.diagnostic.goto_next()<CR>', bufopts)
+      keymap(bufnr, 'n', 'g[', '<cmd>lua vim.diagnostic.goto_prev()<CR>', bufopts)
+    end
+
+    if server_name == "omnisharp" then
+      opts.enable_editorconfig_support = true
+      opts.cmd = { "dotnet", "C:/users/r.uchiyama/.local/share/nvim-data/mason/packages/omnisharp/OmniSharp.dll" }
+      -- local pid = vim.fn.getpid()
+      -- opts.cmd = { "C:\\users\\r.uchiyama\\.local\\share\\nvim-data\\mason\\packages\\omnisharp",  "--languageserver", "--hostPID", tostring(pid) }
+    end
+    require("lspconfig")[server_name].setup(opts)
   end})
+    require('mason-lspconfig').setup()
   end,
 }
 
+-- cmp
 use {
   "hrsh7th/nvim-cmp",
     module = { "cmp" },
@@ -154,6 +155,7 @@ use {
             { name = "nvim_lsp" },
             { name = "buffer" },
             { name = "path" },
+            { name = "cmdline" },
           },
           mapping = cmp.mapping.preset.insert({
             ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -184,7 +186,7 @@ use "nvim-lua/plenary.nvim"
 use {
   "nvim-telescope/telescope.nvim",
     module = { "telescope" },
-    requires = { "nvim-lua/plenary.nvim" }, 
+    requires = { "nvim-lua/plenary.nvim" },
     wants = { },
     setup = function()
       local function builtin(name)
@@ -219,7 +221,7 @@ use {
 -- PowerLine
 use 'nvim-lualine/lualine.nvim'
 
--- Fileruse 
+-- Fileruse
 use {
   'nvim-tree/nvim-tree.lua',
     module = { "nvim-tree" },
@@ -252,12 +254,22 @@ use {
       }
   end,
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
-} 
+}
 
 
 -- Treesitter
 use({ "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" } })
 use({ "nvim-telescope/telescope-file-browser.nvim" })
+
+-- etc
+use{
+  "mattn/sonictemplate-vim",
+  config = function()
+    vim.g.sonictemplate_vim_template_dir = {
+      '$HOME/.vim/template',
+      '$HOME/template'}
+  end,
+}
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
