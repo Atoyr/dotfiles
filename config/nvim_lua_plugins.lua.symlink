@@ -44,6 +44,9 @@ return packer.startup(function(use)
     -- Package Manager
     use 'wbthomason/packer.nvim'
 
+    -- lua module
+    use "nvim-lua/plenary.nvim"
+
     -- Visual
     use 'nvim-tree/nvim-web-devicons'
     use 'folke/todo-comments.nvim'
@@ -119,7 +122,7 @@ use {
     end
 
     if server_name == "omnisharp" then
-      opts.enable_editorconfig_support = true
+      -- opts.enable_editorconfig_support = true
       opts.cmd = { "dotnet", "C:/users/r.uchiyama/.local/share/nvim-data/mason/packages/omnisharp/OmniSharp.dll" }
       -- local pid = vim.fn.getpid()
       -- opts.cmd = { "C:\\users\\r.uchiyama\\.local\\share\\nvim-data\\mason\\packages\\omnisharp",  "--languageserver", "--hostPID", tostring(pid) }
@@ -129,6 +132,9 @@ use {
     require('mason-lspconfig').setup()
   end,
 }
+
+-- editor config
+use "gpanders/editorconfig.nvim"
 
 -- cmp
 use {
@@ -178,11 +184,10 @@ use "hrsh7th/cmp-emoji"
 use "hrsh7th/cmp-cmdline"
 use "hrsh7th/vim-vsnip"
 use 'folke/lsp-colors.nvim'
-use 'folke/trouble.nvim'
+-- use 'folke/trouble.nvim'
 use 'j-hui/fidget.nvim'
 
 -- fzf
-use "nvim-lua/plenary.nvim"
 use {
   "nvim-telescope/telescope.nvim",
     module = { "telescope" },
@@ -224,6 +229,9 @@ use 'nvim-lualine/lualine.nvim'
 -- Fileruse
 use {
   'nvim-tree/nvim-tree.lua',
+--     keys = {
+--       {"n", "<C-n>" }
+--    },
     module = { "nvim-tree" },
     setup = function()
       vim.keymap.set("n", "<C-n>", function()
@@ -268,7 +276,14 @@ use{
     vim.g.sonictemplate_vim_template_dir = {
       '$HOME/.vim/template',
       '$HOME/template'}
-  end,
+  end
+}
+use {
+  "folke/todo-comments.nvim",
+  requires = "nvim-lua/plenary.nvim",
+  config = function()
+    require("todo-comments").setup { }
+  end
 }
 
 -- Automatically set up your configuration after cloning packer.nvim
