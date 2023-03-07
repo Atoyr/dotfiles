@@ -36,7 +36,7 @@
     {
         "defaults": 
         {
-            "colorScheme": "Campbell",
+            "colorScheme": "Tokyo Night",
             "cursorShape": "vintage",
             "font": 
             {
@@ -286,6 +286,29 @@
             "yellow": "#C4A000"
         },
         {
+            "background": "#1A1B2C",
+            "black": "#414868",
+            "blue": "#7AA2F7",
+            "brightBlack": "#414868",
+            "brightBlue": "#7AA2F7",
+            "brightCyan": "#7DCFFF",
+            "brightGreen": "#73DACA",
+            "brightPurple": "#BB9AF7",
+            "brightRed": "#F7768E",
+            "brightWhite": "#C0CAF5",
+            "brightYellow": "#E0AF68",
+            "cursorColor": "#C0CAF5",
+            "cyan": "#7DCFFF",
+            "foreground": "#A9B1DC",
+            "green": "#73DACA",
+            "name": "Tokyo Night",
+            "purple": "#BB9AF7",
+            "red": "#F7768E",
+            "selectionBackground": "#28344A",
+            "white": "#C0CAF5",
+            "yellow": "#E0AF68"
+        },
+        {
             "background": "#300A24",
             "black": "#171421",
             "blue": "#0037DA",
@@ -330,29 +353,7 @@
             "selectionBackground": "#FFFFFF",
             "white": "#C0C0C0",
             "yellow": "#808000"
-        },
-        {
-          "name": "Tokyo Night",
-          "foreground": "#a9b1dc",
-          "background": "#1a1b2c",
-          "cursorColor": "#c0caf5",
-          "selectionBackground": "#28344a",
-          "black": "#414868",
-          "red": "#f7768e",
-          "green": "#73daca",
-          "yellow": "#e0af68",
-          "blue": "#7aa2f7",
-          "purple": "#bb9af7",
-          "cyan": "#7dcfff",
-          "white": "#c0caf5",
-          "brightBlack": "#414868",
-          "brightRed": "#f7768e",
-          "brightGreen": "#73daca",
-          "brightYellow": "#e0af68",
-          "brightBlue": "#7aa2f7",
-          "brightPurple": "#bb9af7",
-          "brightCyan": "#7dcfff",
-          "brightWhite": "#c0caf5"
         }
-    ]
+    ],
+    "themes": []
 }
