@@ -82,6 +82,7 @@ use {
 
 -- Color schema
 use 'EdenEast/nightfox.nvim'
+use 'folke/tokyonight.nvim'
 
 -- LSP and autocomplete
 use 'neovim/nvim-lspconfig'
