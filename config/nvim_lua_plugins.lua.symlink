@@ -123,10 +123,8 @@ use {
     end
 
     if server_name == "omnisharp" then
-      -- opts.enable_editorconfig_support = true
-      opts.cmd = { "dotnet", "C:/users/r.uchiyama/.local/share/nvim-data/mason/packages/omnisharp/OmniSharp.dll" }
-      -- local pid = vim.fn.getpid()
-      -- opts.cmd = { "C:\\users\\r.uchiyama\\.local\\share\\nvim-data\\mason\\packages\\omnisharp",  "--languageserver", "--hostPID", tostring(pid) }
+      local omnisharp_file_path = vim.fn.expand('$HOME/.local/share/nvim-data/mason/packages/omnisharp/OmniSharp.dll')
+      opts.cmd = { "dotnet", omnisharp_file_path }
     end
     require("lspconfig")[server_name].setup(opts)
   end})
