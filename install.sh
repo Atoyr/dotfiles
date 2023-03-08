@@ -23,12 +23,17 @@ setup_symlinks() {
         [[ $(basename "$file") = "gvimrc.symlink" ]] && continue
         [[ $(basename "$file") = "Microsoft.PowerShell_profile.ps1.symlink" ]] && continue
 
-        target="$HOME/.$(basename "$file" '.symlink')"
+	name="$(basename "$file" '.symlink')"
+        target="$HOME/.${name//_/\/}"
         if [ -e "$target" ]; then
             info "~${target#$HOME} already exists... Skipping."
         else
-            info "Creating symlink for $file"
-            ln -s "$file" "$target"
+		if [ ! -d "$(dirname ${target})" ]; then
+			info "Creating directory for $(dirname ${target})"
+			mkdir -p $(dirname ${target})
+		fi
+		info "Creating symlink for $file"
+		ln -s "$file" "$target"
         fi
     done
 }
