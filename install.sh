@@ -22,6 +22,8 @@ setup_symlinks() {
         # Exclusion Setting
         [[ $(basename "$file") = "gvimrc.symlink" ]] && continue
         [[ $(basename "$file") = "Microsoft.PowerShell_profile.ps1.symlink" ]] && continue
+        [[ $(basename "$file") = "WindowsTerminal.settings.json.symlink" ]] && continue
+        [[ $(basename "$file") = "appdata_Rowming_alacritty_alacritty.yaml.symlink" ]] && continue
 
 	name="$(basename "$file" '.symlink')"
         target="$HOME/.${name//_/\/}"
@@ -59,6 +61,7 @@ case "$1" in
         ;;
     all)
         setup_symlinks
+        install_applications
         ;;
     debug)
         warning "warning"

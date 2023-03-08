@@ -46,7 +46,7 @@ function Setup-SymbolicLinks {
     $symbolicLinks.Add("config\config_nvim_lua_powerline.lua.symlink", @{"Path" = "$HOME\.config\nvim\lua\powerline.lua"; "Force" = $false})
     $symbolicLinks.Add("config\Microsoft.PowerShell_profile.ps1.symlink", @{"Path" = "$PROFILE"; "Force" = $false})
     $symbolicLinks.Add("config\WindowsTerminal.settings.json.symlink", @{"Path" = "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"; "Force" = $true})
-    $symbolicLinks.Add("config\config_alacritty.yaml.symlink", @{"Path" = "$env:APPDATA\alacritty\alacritty.yml"; "Force" = $false})
+    $symbolicLinks.Add("config\appdata_Rowming_alacritty_alacritty.yaml.symlink", @{"Path" = "$env:APPDATA\alacritty\alacritty.yml"; "Force" = $false})
 
     foreach($target in $symbolicLinks.Keys){
         $symbolicLink = $symbolicLinks[$target]
