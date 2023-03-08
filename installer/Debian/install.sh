@@ -1,20 +1,15 @@
-#!/usr/bin/env bash
-
-source $(dirname "${BASH_SOURCE[0]:-$0}")/../../utility.sh
-
-install() {
-    infl "Updating apt..."
+#!/bin/bash
+run_apt() {
+    echo "Updating apt..."
     sudo apt update
     sudo apt upgrade
-
-    [[ $? ]] && info "$(tput setaf 2) Update apt  complete. ✔︎$(tput sgr0)"
+    [[ $? ]] && echo "$(tput setaf 2) Update apt  complete. ✔︎$(tput sgr0)"
 
     local list_formulae
     local -a missing_formulae
     local -a desired_formulae=(
     'autoconf'
     'automake'
-    'curl'
     'git'
     'openssl'
     'patch'
@@ -47,5 +42,3 @@ install() {
     sudo apt autoremove
     [[ $? ]] && echo "$(tput setaf 2) autoremove complete. ✔︎$(tput sgr0)"
 }
-
-install
