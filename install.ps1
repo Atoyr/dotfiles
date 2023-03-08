@@ -41,12 +41,12 @@ function Setup-SymbolicLinks {
     $symbolicLinks = [ordered]@{}
     $symbolicLinks.Add("config\vimrc.symlink", @{"Path" = "$HOME\vimfiles\vimrc"; "Force" = $false})
     $symbolicLinks.Add("config\gvimrc.symlink", @{"Path" = "$HOME\vimfiles\gvimrc"; "Force" = $false})
-    $symbolicLinks.Add("config\nvim_init.lua.symlink", @{"Path" = "$HOME\.config\nvim\init.lua"; "Force" = $false})
-    $symbolicLinks.Add("config\nvim_lua_plugins.lua.symlink", @{"Path" = "$HOME\.config\nvim\lua\plugins.lua"; "Force" = $false})
-    $symbolicLinks.Add("config\nvim_lua_powerline.lua.symlink", @{"Path" = "$HOME\.config\nvim\lua\powerline.lua"; "Force" = $false})
+    $symbolicLinks.Add("config\config_nvim_init.lua.symlink", @{"Path" = "$HOME\.config\nvim\init.lua"; "Force" = $false})
+    $symbolicLinks.Add("config\config_nvim_lua_plugins.lua.symlink", @{"Path" = "$HOME\.config\nvim\lua\plugins.lua"; "Force" = $false})
+    $symbolicLinks.Add("config\config_nvim_lua_powerline.lua.symlink", @{"Path" = "$HOME\.config\nvim\lua\powerline.lua"; "Force" = $false})
     $symbolicLinks.Add("config\Microsoft.PowerShell_profile.ps1.symlink", @{"Path" = "$PROFILE"; "Force" = $false})
     $symbolicLinks.Add("config\WindowsTerminal.settings.json.symlink", @{"Path" = "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"; "Force" = $true})
-    $symbolicLinks.Add("config\alacritty.yaml.symlink", @{"Path" = "$env:APPDATA\alacritty\alacritty.yml"; "Force" = $false})
+    $symbolicLinks.Add("config\config_alacritty.yaml.symlink", @{"Path" = "$env:APPDATA\alacritty\alacritty.yml"; "Force" = $false})
 
     foreach($target in $symbolicLinks.Keys){
         $symbolicLink = $symbolicLinks[$target]
