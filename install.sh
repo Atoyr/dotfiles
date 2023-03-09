@@ -10,6 +10,11 @@ title() {
     echo -e "${COLOR_GRAY}==============================${COLOR_NONE}\n"
 }
 
+help_message() {
+    echo -e "${COLOR_GRAY}==============================${COLOR_NONE}\n"
+
+}
+
 
 get_linkables() {
     find -H "$DOTFILES" -maxdepth 3 -name '*.symlink'
@@ -43,8 +48,9 @@ setup_symlinks() {
 install_applications() {
     case $(whichdistro) in
         debian)
-            ${DOTFILES}/installer/Debian/install-unzip.sh 
-            ${DOTFILES}/installer/Debian/install-vim.sh 
+            bash ${DOTFILES}/installer/Debian/install.sh 
+            # ${DOTFILES}/installer/Debian/install-unzip.sh 
+            # ${DOTFILES}/installer/Debian/install-vim.sh 
             ;;
         *)
             error "install command not working"
@@ -52,7 +58,19 @@ install_applications() {
     esac
 }
 
+update_apt() {
+    info "update apt..."
+    sudo apt update
+    info "upgrade apt..."
+    sudo apt upgrade
+
+    [[ $? ]] && success "$(tput setaf 2) Update apt  complete. ✔︎$(tput sgr0)"
+}
+
 case "$1" in
+    apt)
+        update_apt
+        ;;
     link)
         setup_symlinks
         ;;

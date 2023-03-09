@@ -1,16 +1,14 @@
-#!/bin/bash
-run_apt() {
-    echo "Updating apt..."
-    sudo apt update
-    sudo apt upgrade
-    [[ $? ]] && echo "$(tput setaf 2) Update apt  complete. ✔︎$(tput sgr0)"
+#!/usr/bin/env bash
 
-    local list_formulae
-    local -a missing_formulae
+source $(dirname "${BASH_SOURCE[0]:-$0}")/../../utility.sh
+
+install() {
     local -a desired_formulae=(
     'autoconf'
     'automake'
+    'curl'
     'git'
+    'unzip'
     'openssl'
     'patch'
     'tig'
@@ -18,27 +16,21 @@ run_apt() {
     'zsh'
     )
 
-    local installed=$(apt install >&1 | grep -v deinstall | awk -F/ '{print $1}')
-
     for index in ${!desired_formulae[*]}
     do
-      local formula=`echo ${desired_formulae[$index]} | cut -d' ' -f 1`
-      if [[ -z `echo "${installed}" | grep "^${formula}$"` ]]; then
-        missing_formulae=("${missing_formulae[@]}" "${desired_formulae[$index]}")
-      else
-        echo "Installed ${formula}"
-      fi
+        local formula=`echo ${desired_formulae[$index]} | cut -d' ' -f 1`
+        if which ${formula} > /dev/null ; then
+            info "${formula} is installed... skipping."
+        else
+            info "Installing ${formula}"
+            sudo apt -y install ${formula}
+            [[ $? ]] && success "$(tput setaf 2) Installed ${formula} ✔︎$(tput sgr0)"
+        fi
     done
-    if [[ "$missing_formulae" ]]; then
-      list_formulae=$( printf "%s " "${missing_formulae[@]}" )
 
-      echo "Installing missing package formulae..."
-      sudo apt-get install $list_formulae
-
-      [[ $? ]] && echo "$(tput setaf 2)Installed missing formulae ✔︎$(tput sgr0)"
-    fi
-
-    echo "autoremove Package..."
-    sudo apt autoremove
-    [[ $? ]] && echo "$(tput setaf 2) autoremove complete. ✔︎$(tput sgr0)"
+    info "autoremove Package..."
+    sudo apt -y autoremove
+    [[ $? ]] && success "$(tput setaf 2) autoremove complete. ✔︎$(tput sgr0)"
 }
+
+install
