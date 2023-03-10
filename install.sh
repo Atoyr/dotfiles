@@ -49,6 +49,7 @@ install_applications() {
     case $(whichdistro) in
         debian)
             bash ${DOTFILES}/installer/Debian/install.sh 
+            bash ${DOTFILES}/installer/Debian/install-ohmyposh.sh 
             # ${DOTFILES}/installer/Debian/install-unzip.sh 
             # ${DOTFILES}/installer/Debian/install-vim.sh 
             ;;
