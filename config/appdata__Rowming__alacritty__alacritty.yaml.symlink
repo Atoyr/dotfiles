@@ -80,3 +80,7 @@ font:
 # ENV
 env:
   TERM: alacritty
+
+# Key config
+key_bindings:
+- { key: N,              mods: Control,                    action: CreateNewWindow       }
