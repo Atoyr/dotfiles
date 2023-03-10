@@ -28,10 +28,10 @@ setup_symlinks() {
         [[ $(basename "$file") = "gvimrc.symlink" ]] && continue
         [[ $(basename "$file") = "Microsoft.PowerShell_profile.ps1.symlink" ]] && continue
         [[ $(basename "$file") = "WindowsTerminal.settings.json.symlink" ]] && continue
-        [[ $(basename "$file") = "appdata_Rowming_alacritty_alacritty.yaml.symlink" ]] && continue
+        [[ $(basename "$file") = "appdata__Rowming__alacritty__alacritty.yaml.symlink" ]] && continue
 
 	name="$(basename "$file" '.symlink')"
-        target="$HOME/.${name//_/\/}"
+        target="$HOME/.${name//__/\/}"
         if [ -e "$target" ]; then
             info "~${target#$HOME} already exists... Skipping."
         else
