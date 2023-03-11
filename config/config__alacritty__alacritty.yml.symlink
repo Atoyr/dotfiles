@@ -77,6 +77,14 @@ font:
     family: 'CaskaydiaCove Nerd Font'
     style: Bold Italic
 
+#shell
+shell:
+  program: /bin/zsh
+  args:
+    - "--login"
+
 # ENV
 env:
   TERM: alacritty
+
+
