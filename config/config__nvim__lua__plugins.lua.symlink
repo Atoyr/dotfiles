@@ -107,6 +107,7 @@ use {
     local opts = { }
     opts.on_attach = function(_, bufnr)
       local bufopts = { silent = true }
+      -- TODO change vim.keymap.set
       local keymap = vim.api.nvim_buf_set_keymap
       keymap(bufnr, 'n', 'K',  '<cmd>lua vim.lsp.buf.hover()<CR>', bufopts)
       keymap(bufnr, 'n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>', bufopts)
@@ -263,12 +264,20 @@ use {
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
 }
 
+-- Git
+use{
+  "lewis6991/gitsigns.nvim",
+  config = function()
+    require("gitsigns").setup{}
+  end
+}
 
 -- Treesitter
 use({ "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" } })
 use({ "nvim-telescope/telescope-file-browser.nvim" })
 
 -- etc
+-- Template
 use{
   "mattn/sonictemplate-vim",
   config = function()
@@ -277,12 +286,79 @@ use{
       '$HOME/template'}
   end
 }
+-- TODO
 use {
   "folke/todo-comments.nvim",
   requires = "nvim-lua/plenary.nvim",
   config = function()
     require("todo-comments").setup { }
   end
+}
+-- colorrizer
+use {
+  "norcalli/nvim-colorizer.lua",
+  config = function()
+    require("colorizer").setup { }
+  end
+}
+-- Indent
+use {
+  "lukas-reineke/indent-blankline.nvim",
+  config = function()
+    require("indent_blankline").setup {
+      show_current_context = true,
+      show_current_context_start = true,
+    }
+  end
+}
+-- auto pairs
+use {
+	"windwp/nvim-autopairs",
+  config = function()
+    require("nvim-autopairs").setup {}
+  end
+}
+
+use {
+  "j-hui/fidget.nvim",
+  config = function()
+    require("fidget").setup{}
+  end
+}
+
+use{
+  "Maan2003/lsp_lines.nvim",
+  config = function()
+    require("lsp_lines").setup()
+  end,
+}
+
+use {
+  "kevinhwang91/nvim-hlslens",
+  setup = function()
+    local kopts = {noremap = true, silent = true}
+    vim.api.nvim_set_keymap('n', 'n',
+        [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+        kopts)
+    vim.api.nvim_set_keymap('n', 'N',
+        [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+        kopts)
+    vim.api.nvim_set_keymap('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+    vim.api.nvim_set_keymap('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+    vim.api.nvim_set_keymap('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+    vim.api.nvim_set_keymap('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+
+    vim.api.nvim_set_keymap('n', '<Leader>l', '<Cmd>noh<CR>', kopts)
+  end,
+  config = function()
+    require("hlslens").setup{}
+  end
+}
+use {
+	"tversteeg/registers.nvim",
+	config = function()
+		require("registers").setup()
+	end,
 }
 
 -- Automatically set up your configuration after cloning packer.nvim

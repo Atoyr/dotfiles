@@ -1,5 +1,6 @@
 alias vivi='vim ~/.vimrc'
 alias g='git'
 alias git-log='git log --pretty=format:"%h - %ad : %s"'
+alias src='cd src'
 
 eval "$(oh-my-posh init bash --config ~/.poshthemes/tokyo.omp.json)"

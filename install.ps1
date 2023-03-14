@@ -41,6 +41,7 @@ function Setup-SymbolicLinks {
     $symbolicLinks = [ordered]@{}
     $symbolicLinks.Add("config\vimrc.symlink", @{"Path" = "$HOME\vimfiles\vimrc"; "Force" = $false})
     $symbolicLinks.Add("config\gvimrc.symlink", @{"Path" = "$HOME\vimfiles\gvimrc"; "Force" = $false})
+    $symbolicLinks.Add("config\bash_profile.symlink", @{"Path" = "$HOME\.bash_profile"; "Force" = $true})
     $symbolicLinks.Add("config\config__nvim__init.lua.symlink", @{"Path" = "$HOME\.config\nvim\init.lua"; "Force" = $false})
     $symbolicLinks.Add("config\config__nvim__lua__plugins.lua.symlink", @{"Path" = "$HOME\.config\nvim\lua\plugins.lua"; "Force" = $false})
     $symbolicLinks.Add("config\config__nvim__lua__powerline.lua.symlink", @{"Path" = "$HOME\.config\nvim\lua\powerline.lua"; "Force" = $false})

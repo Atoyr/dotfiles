@@ -83,4 +83,4 @@ env:
 
 # Key config
 key_bindings:
-- { key: N,              mods: Control,                    action: CreateNewWindow       }
+- { key: N,              mods: Control|Alt,                    action: CreateNewWindow       }
