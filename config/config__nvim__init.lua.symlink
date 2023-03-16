@@ -31,11 +31,10 @@ vim.g.editorconfig_enable = true
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
 -- TODO change vim.keymap.set
-local keymap = vim.api.nvim_set_keymap
 
 --Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
-keymap("", "s", "<Nop>", opts)
+vim.keymap.set("n", "<Space>", "<Nop>", opts)
+vim.keymap.set("n", "s", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "`"
 
@@ -47,31 +46,31 @@ vim.g.maplocalleader = "`"
 --   term_mode = 't',
 --   command_mode = 'c',
 
-keymap("n", "j", "gj", opts)
-keymap("n", "k", "gk", opts)
+vim.keymap.set("n", "j", "gj", opts)
+vim.keymap.set("n", "k", "gk", opts)
 
 -- change buffer
-keymap("n", "<Leader>j", ":bn<CR>", opts)
-keymap("n", "<Leader>k", ":bp<CR>", opts)
+vim.keymap.set("n", "<Leader>j", ":bn<CR>", opts)
+vim.keymap.set("n", "<Leader>k", ":bp<CR>", opts)
 
 -- window split
-keymap("n", "<Leader>s", ":split<CR>", opts)
-keymap("n", "<Leader>v", ":vsplit<CR>", opts)
+vim.keymap.set("n", "<Leader>s", ":split<CR>", opts)
+vim.keymap.set("n", "<Leader>v", ":vsplit<CR>", opts)
 
 -- select all
-keymap("n", "<Leader>a", "gg<S-v>G", opts)
+vim.keymap.set("n", "<Leader>a", "gg<S-v>G", opts)
 
 -- cancel hightlight
-keymap("n", "<Esc><Esc>", ":<C-u>set nohlsearch<CR>", opts)
+vim.keymap.set("n", "<Esc><Esc>", ":<C-u>set nohlsearch<CR>", opts)
 
 -- terminal
-keymap("n", "<Leader>z", ":belowright term<CR>", opts)
+vim.keymap.set("n", "<Leader>z", ":belowright term<CR>", opts)
 
 -- auto space
-keymap("i", ",", ",<Space>", opts)
+vim.keymap.set("i", ",", ",<Space>", opts)
 
-keymap("i", "<silent>jj", "<ESC>", opts)
-keymap("i", "<silent>ｊｊ", "<ESC>", opts)
+vim.keymap.set("i", "<silent>jj", "<ESC>", opts)
+vim.keymap.set("i", "<silent>ｊｊ", "<ESC>", opts)
 
 -- setting color schema
 vim.cmd [[
