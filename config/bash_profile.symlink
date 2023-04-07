@@ -3,4 +3,8 @@ alias g='git'
 alias git-log='git log --pretty=format:"%h - %ad : %s"'
 alias src='cd src'
 
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 eval "$(oh-my-posh init bash --config ~/.poshthemes/tokyo.omp.json)"
+
