@@ -106,7 +106,7 @@ use {
     require('mason-lspconfig').setup_handlers({ function(server_name)
     local opts = { }
     opts.on_attach = function(_, bufnr)
-      local bufopts = { silent = true , buffer = bufnr}
+      local bufopts = { silent = true , buffer = bufnr, noremap = true}
       -- TODO change vim.keymap.set
       vim.keymap.set('n', 'K',  vim.lsp.buf.hover, bufopts)
       vim.keymap.set('n', 'gf', vim.lsp.buf.formatting, bufopts)
@@ -123,14 +123,36 @@ use {
     end
 
     if server_name == "omnisharp" then
-      local omnisharp_file_path = vim.fn.expand('$HOME/.local/share/nvim-data/mason/packages/omnisharp/OmniSharp.dll')
-      opts.cmd = { "dotnet", omnisharp_file_path }
+      local omnisharp_file_path = vim.fn.expand('$HOME/.local/share/nvim-data/mason/packages/omnisharp/omnisharp.cmd')
+      opts.cmd = { omnisharp_file_path }
+      vim.g.OmniSharp_server_use_net6 = 1
     end
     require("lspconfig")[server_name].setup(opts)
   end})
     require('mason-lspconfig').setup()
   end,
 }
+
+-- GitHub Copilot
+use({
+  "github/copilot.vim",
+  config = function()
+    vim.g.copilot_no_tab_map = true
+
+    local keymap = vim.keymap.set
+    -- https://github.com/orgs/community/discussions/29817#discussioncomment-4217615
+    keymap(
+      "i",
+      "<C-g>",
+      'copilot#Accept("<CR>")',
+      { silent = true, expr = true, script = true, replace_keycodes = false }
+    )
+    keymap("i", "<C-j>", "<Plug>(copilot-next)")
+    keymap("i", "<C-k>", "<Plug>(copilot-previous)")
+    keymap("i", "<C-o>", "<Plug>(copilot-dismiss)")
+    keymap("i", "<C-s>", "<Plug>(copilot-suggest)")
+  end,
+})
 
 -- editor config
 use "gpanders/editorconfig.nvim"
@@ -304,10 +326,7 @@ use {
 use {
   "lukas-reineke/indent-blankline.nvim",
   config = function()
-    require("indent_blankline").setup {
-      show_current_context = true,
-      show_current_context_start = true,
-    }
+    require("ibl").setup { }
   end
 }
 -- auto pairs
@@ -325,12 +344,12 @@ use {
   end
 }
 
-use{
-  "Maan2003/lsp_lines.nvim",
-  config = function()
-    require("lsp_lines").setup()
-  end,
-}
+-- use{
+--   "Maan2003/lsp_lines.nvim",
+--   config = function()
+--     require("lsp_lines").setup()
+--   end,
+-- }
 
 use {
   "kevinhwang91/nvim-hlslens",
