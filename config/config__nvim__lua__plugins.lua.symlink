@@ -125,7 +125,7 @@ use {
     if server_name == "omnisharp" then
       local omnisharp_file_path = vim.fn.expand('$HOME/.local/share/nvim-data/mason/packages/omnisharp/omnisharp.cmd')
       opts.cmd = { omnisharp_file_path }
-      vim.g.OmniSharp_server_use_net6 = 1
+      vim.g.OmniSharp_server_use_net6 = 0
     end
     require("lspconfig")[server_name].setup(opts)
   end})
