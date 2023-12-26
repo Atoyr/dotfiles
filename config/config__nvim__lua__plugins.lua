@@ -1,5 +1,6 @@
 local fn = vim.fn
 
+
 -- Automatically install packer
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -19,6 +20,7 @@ vim.cmd([[packadd packer.nvim]])
   vim.cmd([[
       augroup packer_user_config
       autocmd!
+
       autocmd BufWritePost plugins.lua source <afile> | PackerSync
       augroup end
   ]])
@@ -34,6 +36,7 @@ vim.cmd([[packadd packer.nvim]])
       display = {
       open_fn = function()
       return require("packer.util").float({ border = "rounded" })
+
       end,
       },
       })
@@ -50,6 +53,7 @@ return packer.startup(function(use)
     -- Visual
     use 'nvim-tree/nvim-web-devicons'
     use 'folke/todo-comments.nvim'
+
     use {
       "petertriho/nvim-scrollbar",
       event = {
@@ -59,6 +63,7 @@ return packer.startup(function(use)
         "TermEnter",
         "TextChanged",
         "VimResized",
+
         "WinEnter",
         "WinScrolled",
       },
@@ -67,12 +72,14 @@ return packer.startup(function(use)
       end,
     }
 
+
 -- noice
 use "MunifTanjim/nui.nvim"
 use {
   "rcarriga/nvim-notify",
   config = function()
     local notify = require("notify")
+
     notify.setup{
       render = "minimal"
     }
@@ -84,20 +91,27 @@ use {
 use 'EdenEast/nightfox.nvim'
 use 'folke/tokyonight.nvim'
 
+
 -- LSP and autocomplete
+
 use 'neovim/nvim-lspconfig'
 use {
   'williamboman/mason.nvim',
   config = function()
+
       require("mason").setup {}
+
   end,
 }
 use {
   'williamboman/mason-lspconfig.nvim',
+
     requires = {
       { "williamboman/mason.nvim"} ,
       { "neovim/nvim-lspconfig" },
+
   },
+
   wants = {
       "williamboman/mason.nvim",
       "neovim/nvim-lspconfig",
@@ -106,6 +120,7 @@ use {
     require('mason-lspconfig').setup_handlers({ function(server_name)
     local opts = { }
     opts.on_attach = function(_, bufnr)
+
       local bufopts = { silent = true , buffer = bufnr, noremap = true}
       -- TODO change vim.keymap.set
       vim.keymap.set('n', 'K',  vim.lsp.buf.hover, bufopts)
@@ -144,12 +159,15 @@ use({
     keymap(
       "i",
       "<C-g>",
+
       'copilot#Accept("<CR>")',
       { silent = true, expr = true, script = true, replace_keycodes = false }
     )
+
     keymap("i", "<C-j>", "<Plug>(copilot-next)")
     keymap("i", "<C-k>", "<Plug>(copilot-previous)")
     keymap("i", "<C-o>", "<Plug>(copilot-dismiss)")
+
     keymap("i", "<C-s>", "<Plug>(copilot-suggest)")
   end,
 })
@@ -160,6 +178,7 @@ use "gpanders/editorconfig.nvim"
 -- cmp
 use {
   "hrsh7th/nvim-cmp",
+
     module = { "cmp" },
     requires = {
       { "hrsh7th/cmp-nvim-lsp", event = { "InsertEnter" } },
@@ -172,6 +191,7 @@ use {
     },
     config = function()
       local cmp = require("cmp")
+
       require("cmp").setup{
         snippet = {
             expand = function(args)
@@ -179,6 +199,7 @@ use {
             end,
           },
           sources = {
+
             { name = "nvim_lsp" },
             { name = "buffer" },
             { name = "path" },
@@ -195,11 +216,13 @@ use {
             ghost_text = true,
           },
       }
+
   end,
 }
 use "hrsh7th/cmp-nvim-lsp"
 use "hrsh7th/cmp-nvim-lsp-signature-help"
 use "hrsh7th/cmp-buffer"
+
 use "hrsh7th/cmp-path"
 use "hrsh7th/cmp-emoji"
 use "hrsh7th/cmp-cmdline"
@@ -216,16 +239,20 @@ use {
     wants = { },
     setup = function()
       local function builtin(name)
+
         return function(opt)
           return function()
           return require("telescope.builtin")[name](opt or {})
           end
         end
+
       end
 
       local function extensions(name, prop)
         return function(opt)
+
           return function()
+
             local telescope = require "telescope"
             telescope.load_extension(name)
             return telescope.extensions[name][prop](opt or {})
@@ -233,23 +260,29 @@ use {
         end
       end
 
+
       vim.keymap.set("n", "<Leader>ff", builtin "find_files" {})
       vim.keymap.set("n", "<Leader>fg", builtin "live_grep" {})
       vim.keymap.set("n", "<Leader>fh", builtin "help_tags" { lang = "en" })
+
       vim.keymap.set("n", "<Leader>fb", builtin "buffers" {})
       end,
     config = function()
       require("telescope").setup {
+
       }
   end
 }
+
 
 -- PowerLine
 use 'nvim-lualine/lualine.nvim'
 
 -- Fileruse
+
 use {
   'nvim-tree/nvim-tree.lua',
+
 --     keys = {
 --       {"n", "<C-n>" }
 --    },
@@ -263,18 +296,23 @@ use {
     requires = {
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
+
     config = function()
       require("nvim-tree").setup {
         sort_by = "case_sensitive",
+
         view = {
           width = 30,
           mappings = {
             list = {
               { key = "U", action = "dir_up" },
+
             },
           },
         },
+
         renderer = {
+
           group_empty = true,
         },
         filters = {
@@ -303,12 +341,14 @@ use{
   "mattn/sonictemplate-vim",
   config = function()
     vim.g.sonictemplate_vim_template_dir = {
+
       '$HOME/.vim/template',
       '$HOME/template'}
   end
 }
 -- TODO
 use {
+
   "folke/todo-comments.nvim",
   requires = "nvim-lua/plenary.nvim",
   config = function()
@@ -327,6 +367,7 @@ use {
   "lukas-reineke/indent-blankline.nvim",
   config = function()
     require("ibl").setup {
+
     }
   end
 }
@@ -348,12 +389,14 @@ use {
 -- use{
 --   "Maan2003/lsp_lines.nvim",
 --   config = function()
+
 --     require("lsp_lines").setup()
 --   end,
 -- }
 
 use {
   "kevinhwang91/nvim-hlslens",
+
   setup = function()
     local kopts = {noremap = true, silent = true}
     vim.api.nvim_set_keymap('n', 'n',
@@ -392,4 +435,3 @@ if PACKER_BOOTSTRAP then
   require("packer").sync()
 end
 end)
-

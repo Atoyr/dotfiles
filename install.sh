@@ -17,22 +17,33 @@ help_message() {
 
 
 get_linkables() {
-    find -H "$DOTFILES" -maxdepth 3 -name '*.symlink'
+    find -H "$DOTFILES/config" -maxdepth 3 -name '*.*'
+}
+
+get_configfiles() {
+    for file in $(get_linkables) ; do
+        # ファイル名を取得
+        basename=$(basename "$file")
+
+        # 除外するファイル名をチェック
+        [[ $basename = "gvimrc" ]] && continue
+        [[ $basename = "Microsoft.PowerShell_profile.ps1" ]] && continue
+        [[ $basename = "WindowsTerminal.settings.json" ]] && continue
+        [[ $basename = "appdata__Rowming__alacritty__alacritty.yaml" ]] && continue
+
+        # 除外されていないファイルを出力
+        echo "$file"
+    done
 }
 
 setup_symlinks() {
     title "Creating symlinks"
 
-    for file in $(get_linkables) ; do
-        # Exclusion Setting
-        [[ $(basename "$file") = "gvimrc.symlink" ]] && continue
-        [[ $(basename "$file") = "Microsoft.PowerShell_profile.ps1.symlink" ]] && continue
-        [[ $(basename "$file") = "WindowsTerminal.settings.json.symlink" ]] && continue
-        [[ $(basename "$file") = "appdata__Rowming__alacritty__alacritty.yaml.symlink" ]] && continue
-
-	name="$(basename "$file" '.symlink')"
+    for file in $(get_configfiles) ; do
+        name="$(basename "$file")"
         target="$HOME/.${name//__/\/}"
-        if [ -e "$target" ]; then
+
+        if [ -L "$target" ]; then
             info "~${target#$HOME} already exists... Skipping."
         else
 		if [ ! -d "$(dirname ${target})" ]; then
@@ -41,6 +52,19 @@ setup_symlinks() {
 		fi
 		info "Creating symlink for $file"
 		ln -s "$file" "$target"
+        fi
+    done
+}
+
+remove_symlinks() {
+    title "Remove symlinks"
+
+    for file in $(get_configfiles) ; do
+        name="$(basename "$file")"
+        target="$HOME/.${name//__/\/}"
+        if [ -L "$target" ]; then
+            info "unlink $file"
+            unlink "$target"
         fi
     done
 }
@@ -74,6 +98,9 @@ case "$1" in
         ;;
     link)
         setup_symlinks
+        ;;
+    unlink)
+        remove_symlinks
         ;;
     app)
         install_applications

@@ -1,43 +1,7 @@
-require("plugins")
-require("powerline")
-
-local options = {
-  encoding = "utf-8",
-  fileencoding = "utf-8",
-
-  title = true, 
-  hlsearch = true, 
-	backup = false,
-  showcmd = true, 
-  cmdheight = 1, 
-  laststatus = 2, 
-	expandtab = true,
-
-  tabstop = 2,
-	shiftwidth = 2,
-  cursorline = true,
-  number = true,
-  relativenumber = true,
-	swapfile = false,
-	undofile = true,
-	autoread = true,
-	hidden = true,
-	clipboard = "unnamedplus",
-	virtualedit = "onemore",
-	showmatch = true,
-  termguicolors = true, 
-}
-
-for k, v in pairs(options) do
-    vim.opt[k] = v
-end
-
-vim.g.editorconfig_enable = true
-
 -- setting key maps
 local opts = { noremap = true, silent = true }
+
 local term_opts = { silent = true }
--- TODO change vim.keymap.set
 
 --Remap space as leader key
 vim.keymap.set("n", "<Space>", "<Nop>", opts)
@@ -45,9 +9,11 @@ vim.keymap.set("n", "s", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "`"
 
+
 -- Modes
 --   normal_mode = 'n',
 --   insert_mode = 'i',
+
 --   visual_mode = 'v',
 --   visual_block_mode = 'x',
 --   term_mode = 't',
@@ -64,6 +30,7 @@ vim.keymap.set("n", "<Leader>k", ":bp<CR>", opts)
 vim.keymap.set("n", "<Leader>s", ":split<CR>", opts)
 vim.keymap.set("n", "<Leader>v", ":vsplit<CR>", opts)
 
+
 -- select all
 vim.keymap.set("n", "<Leader>a", "gg<S-v>G", opts)
 
@@ -79,12 +46,4 @@ vim.keymap.set("i", ",", ",<Space>", opts)
 vim.keymap.set("i", "<silent>jj", "<ESC>", opts)
 vim.keymap.set("i", "<silent>ｊｊ", "<ESC>", opts)
 
--- setting color schema
-vim.cmd [[
-try
-  colorscheme tokyonight
-catch /^Vim\%((\a\+)\)\=:E185/
-  colorscheme default
-  set background=dark
-endtry
-]]
+

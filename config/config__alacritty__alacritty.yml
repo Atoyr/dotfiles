@@ -1,6 +1,8 @@
 # Colors (Tokyo Night)
+
 schemes:
   # Tokyo Night theme, based on both:
+
   #   https://github.com/ghifarit53/tokyonight-vim
   #   https://github.com/enkia/tokyo-night-vscode-theme
   tokyo-night: &tokyo-night
@@ -13,6 +15,7 @@ schemes:
     normal:
       black:   '#32344a'
       red:     '#f7768e'
+
       green:   '#9ece6a'
       yellow:  '#e0af68'
       blue:    '#7aa2f7'
@@ -22,6 +25,7 @@ schemes:
 
     # Bright colors
     bright:
+
       black:   '#444b6a'
       red:     '#ff7a93'
       green:   '#b9f27c'
@@ -31,11 +35,16 @@ schemes:
       cyan:    '#0db9d7'
       white:   '#acb0d0'
 
+
   tokyo-night-storm: &tokyo-night-storm
     # Default colors
+
     primary:
+
       background: '#24283b'
+
       foreground: '#a9b1d6'
+
 
     # Normal colors
     normal:
@@ -45,6 +54,7 @@ schemes:
       yellow:  '#e0af68'
       blue:    '#7aa2f7'
       magenta: '#ad8ee6'
+
       cyan:    '#449dab'
       white:   '#9699a8'
 
@@ -54,12 +64,14 @@ schemes:
       red:     '#ff7a93'
       green:   '#b9f27c'
       yellow:  '#ff9e64'
+
       blue:    '#7da6ff'
       magenta: '#bb9af7'
       cyan:    '#0db9d7'
       white:   '#acb0d0'
 
 colors: *tokyo-night
+
 
 # Font
 font:
@@ -77,10 +89,13 @@ font:
     family: 'CaskaydiaCove Nerd Font'
     style: Bold Italic
 
+#shell
+shell:
+  program: /bin/bash
+  args:
+
+    - "--login"
+
 # ENV
 env:
   TERM: alacritty
-
-# Key config
-key_bindings:
-- { key: N,              mods: Control|Alt,                    action: CreateNewWindow       }

@@ -27,6 +27,23 @@ function Set-UserEnvironmentVariable {
     [Environment]::SetEnvironmentVariable('XDG_DATA_HOME', "$env:USERPROFILE\.local\share", 'User')
 }
 
+function Get-ConfigFiles {
+    # target , path
+    $symbolicLinks = [ordered]@{}
+    $symbolicLinks.Add("config\vimrc", @{"Path" = "$HOME\vimfiles\vimrc"; "Force" = $false})
+    $symbolicLinks.Add("config\gvimrc", @{"Path" = "$HOME\vimfiles\gvimrc"; "Force" = $false})
+    $symbolicLinks.Add("config\bash_profile", @{"Path" = "$HOME\.bash_profile"; "Force" = $true})
+    $symbolicLinks.Add("config\config__nvim__init.lua", @{"Path" = "$HOME\.config\nvim\init.lua"; "Force" = $false})
+    $symbolicLinks.Add("config\config__nvim__lua__plugins.lua", @{"Path" = "$HOME\.config\nvim\lua\plugins.lua"; "Force" = $false})
+    $symbolicLinks.Add("config\config__nvim__lua__powerline.lua", @{"Path" = "$HOME\.config\nvim\lua\powerline.lua"; "Force" = $false})
+    $symbolicLinks.Add("config\Microsoft.PowerShell_profile.ps1", @{"Path" = "$PROFILE"; "Force" = $false})
+    $symbolicLinks.Add("config\WindowsTerminal.settings.json", @{"Path" = "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"; "Force" = $true})
+    $symbolicLinks.Add("config\appdata__Rowming__alacritty__alacritty.yml", @{"Path" = "$env:APPDATA\alacritty\alacritty.yml"; "Force" = $false})
+    
+    return $symbolicLinks
+}
+
+
 # creating symbolic link
 function Setup-SymbolicLinks {
     Title "Creating symlinks"
@@ -37,17 +54,7 @@ function Setup-SymbolicLinks {
         Exit
     }
 
-    # target , path
-    $symbolicLinks = [ordered]@{}
-    $symbolicLinks.Add("config\vimrc.symlink", @{"Path" = "$HOME\vimfiles\vimrc"; "Force" = $false})
-    $symbolicLinks.Add("config\gvimrc.symlink", @{"Path" = "$HOME\vimfiles\gvimrc"; "Force" = $false})
-    $symbolicLinks.Add("config\bash_profile.symlink", @{"Path" = "$HOME\.bash_profile"; "Force" = $true})
-    $symbolicLinks.Add("config\config__nvim__init.lua.symlink", @{"Path" = "$HOME\.config\nvim\init.lua"; "Force" = $false})
-    $symbolicLinks.Add("config\config__nvim__lua__plugins.lua.symlink", @{"Path" = "$HOME\.config\nvim\lua\plugins.lua"; "Force" = $false})
-    $symbolicLinks.Add("config\config__nvim__lua__powerline.lua.symlink", @{"Path" = "$HOME\.config\nvim\lua\powerline.lua"; "Force" = $false})
-    $symbolicLinks.Add("config\Microsoft.PowerShell_profile.ps1.symlink", @{"Path" = "$PROFILE"; "Force" = $false})
-    $symbolicLinks.Add("config\WindowsTerminal.settings.json.symlink", @{"Path" = "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"; "Force" = $true})
-    $symbolicLinks.Add("config\appdata__Rowming__alacritty__alacritty.yml.symlink", @{"Path" = "$env:APPDATA\alacritty\alacritty.yml"; "Force" = $false})
+    $symbolicLinks = Get-ConfigFiles
 
     foreach($target in $symbolicLinks.Keys){
         $symbolicLink = $symbolicLinks[$target]
@@ -70,6 +77,29 @@ function Setup-SymbolicLinks {
             New-Item -ItemType SymbolicLink -Path $symbolicLinkPath -Target $target > $null
         }
     }
+}
+
+function Remove-SymbolicLinks {
+    Title "Delete symlinks"
+
+    if(!$isAdmin)
+    {
+        Write-Error "Please run with administrator privileges"
+        Exit
+    }
+
+    $symbolicLinks = Get-ConfigFiles
+
+    foreach($target in $symbolicLinks.Keys){
+        $symbolicLink = $symbolicLinks[$target]
+        $symbolicLinkPath = $symbolicLink.Path
+        $symbolicLinkDir = Split-Path $symbolicLinkPath
+        if (Test-Path $symbolicLinkPath) {
+            Write-info "Delete $symbolicLinkPath"
+            Remove-Item -Path $symbolicLinkPath -ErrorAction SilentlyContinue -Force > $null
+        }
+    }
+
 }
 
 function Set-MyExecutionPolicy {
@@ -159,6 +189,10 @@ switch ($Flag) {
     "link" {
         Setup-SymbolicLinks
         Set-MyExecutionPolicy
+        break
+    }
+    "unlink" {
+        Remove-SymbolicLinks
         break
     }
     "app" {
