@@ -30,6 +30,7 @@ get_configfiles() {
         [[ $basename = "Microsoft.PowerShell_profile.ps1" ]] && continue
         [[ $basename = "WindowsTerminal.settings.json" ]] && continue
         [[ $basename = "appdata__Rowming__alacritty__alacritty.yaml" ]] && continue
+        [[ $basename = "luarc.json" ]] && continue
 
         # 除外されていないファイルを出力
         echo "$file"

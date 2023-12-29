@@ -34,6 +34,8 @@ function Get-ConfigFiles {
     $symbolicLinks.Add("config\gvimrc", @{"Path" = "$HOME\vimfiles\gvimrc"; "Force" = $false})
     $symbolicLinks.Add("config\bash_profile", @{"Path" = "$HOME\.bash_profile"; "Force" = $true})
     $symbolicLinks.Add("config\config__nvim__init.lua", @{"Path" = "$HOME\.config\nvim\init.lua"; "Force" = $false})
+    $symbolicLinks.Add("config\config__nvim__lua__base.lua", @{"Path" = "$HOME\.config\nvim\lua\base.lua"; "Force" = $false})
+    $symbolicLinks.Add("config\config__nvim__lua__keymaps.lua", @{"Path" = "$HOME\.config\nvim\lua\keymaps.lua"; "Force" = $false})
     $symbolicLinks.Add("config\config__nvim__lua__plugins.lua", @{"Path" = "$HOME\.config\nvim\lua\plugins.lua"; "Force" = $false})
     $symbolicLinks.Add("config\config__nvim__lua__powerline.lua", @{"Path" = "$HOME\.config\nvim\lua\powerline.lua"; "Force" = $false})
     $symbolicLinks.Add("config\Microsoft.PowerShell_profile.ps1", @{"Path" = "$PROFILE"; "Force" = $false})
