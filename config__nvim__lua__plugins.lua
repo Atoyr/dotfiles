@@ -1,1 +1,0 @@
-config__nvim__lua__plugins.lua
