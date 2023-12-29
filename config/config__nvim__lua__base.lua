@@ -1,3 +1,6 @@
+vim.cmd("autocmd!")
+vim.cmd("syntax on")
+
 local options = {
   encoding = "utf-8",
   fileencoding = "utf-8",
@@ -31,12 +34,11 @@ local options = {
 
 }
 
-
 for k, v in pairs(options) do
     vim.opt[k] = v
 end
 
-
+vim.scriptencoding = "utf-8"
 vim.g.editorconfig_enable = true
 
 

@@ -1,6 +1,5 @@
 -- setting key maps
 local opts = { noremap = true, silent = true }
-
 local term_opts = { silent = true }
 
 --Remap space as leader key
@@ -8,7 +7,6 @@ vim.keymap.set("n", "<Space>", "<Nop>", opts)
 vim.keymap.set("n", "s", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "`"
-
 
 -- Modes
 --   normal_mode = 'n',
