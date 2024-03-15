@@ -17,7 +17,7 @@ help_message() {
 
 
 get_linkables() {
-    find -H "$DOTFILES/config" -maxdepth 3 -name '*.*'
+    find -H "$DOTFILES/config" -maxdepth 3 -name '*'
 }
 
 get_configfiles() {
