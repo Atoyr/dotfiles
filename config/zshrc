@@ -76,6 +76,11 @@ function ghq-fzf() {
   zle reset-prompt
 }
 
+function ide() {
+  tmux split-window -v -p 25 #ウィンドウを垂直に分割し、新しいペインを作成
+  tmux split-window -h -p 50 #新しく作成されたペインをさらに水平に分割
+}
+
 
 # source
 eval "$(oh-my-posh init zsh --config ~/.poshthemes/tokyo.omp.json)"
