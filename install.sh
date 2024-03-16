@@ -12,7 +12,6 @@ title() {
 
 help_message() {
     echo -e "${COLOR_GRAY}==============================${COLOR_NONE}\n"
-
 }
 
 
@@ -93,6 +92,16 @@ update_apt() {
     [[ $? ]] && success "$(tput setaf 2) Update apt  complete. ✔︎$(tput sgr0)"
 }
 
+change_shell() {
+
+    if [ "`cat /etc/shells | grep '/bin/zsh'`" ]; then
+        info "change shell to zsh..."
+        chsh -s /bin/zsh
+    else
+        error "zsh is not installed"
+    fi
+}
+
 case "$1" in
     apt)
         update_apt
@@ -106,9 +115,13 @@ case "$1" in
     app)
         install_applications
         ;;
+    chsh)
+        change_shell
+        ;;
     all)
         setup_symlinks
         install_applications
+        change_shell
         ;;
     debug)
         warning "warning"

@@ -14,6 +14,7 @@ install() {
     'tig'
     'tmux'
     'zsh'
+    'zsh-syntax-highlighting'
     )
 
     for index in ${!desired_formulae[*]}
