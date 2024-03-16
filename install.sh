@@ -74,6 +74,7 @@ install_applications() {
         debian)
             bash ${DOTFILES}/installer/Debian/install.sh 
             bash ${DOTFILES}/installer/Debian/install-ohmyposh.sh 
+            bash ${DOTFILES}/installer/Debian/install-lazygit.sh 
             # ${DOTFILES}/installer/Debian/install-unzip.sh 
             # ${DOTFILES}/installer/Debian/install-vim.sh 
             ;;
