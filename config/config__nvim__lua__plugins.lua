@@ -123,18 +123,18 @@ use {
 
       local bufopts = { silent = true , buffer = bufnr, noremap = true}
       -- TODO change vim.keymap.set
-      vim.keymap.set('n', 'K',  vim.lsp.buf.hover, bufopts)
-      vim.keymap.set('n', 'gf', vim.lsp.buf.formatting, bufopts)
-      vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-      vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, bufopts)
-      vim.keymap.set('n', 'gn', vim.lsp.buf.rename, bufopts)
-      vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, bufopts)
-      vim.keymap.set('n', 'ge', vim.diagnostic.open_float, bufopts)
-      vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, bufopts)
-      vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev, bufopts)
+      vim.keymap.set('n', 'K',  'vim.lsp.buf.hover', bufopts)
+      vim.keymap.set('n', 'gf', 'vim.lsp.buf.formatting', bufopts)
+      vim.keymap.set('n', 'gr', 'vim.lsp.buf.references', bufopts)
+      vim.keymap.set('n', 'gd', 'vim.lsp.buf.definition', bufopts)
+      vim.keymap.set('n', 'gD', 'vim.lsp.buf.declaration', bufopts)
+      vim.keymap.set('n', 'gi', 'vim.lsp.buf.implementation', bufopts)
+      vim.keymap.set('n', 'gt', 'vim.lsp.buf.type_definition', bufopts)
+      vim.keymap.set('n', 'gn', 'vim.lsp.buf.rename', bufopts)
+      vim.keymap.set('n', 'ga', 'vim.lsp.buf.code_action', bufopts)
+      vim.keymap.set('n', 'ge', 'vim.diagnostic.open_float', bufopts)
+      vim.keymap.set('n', 'g]', 'vim.diagnostic.goto_next', bufopts)
+      vim.keymap.set('n', 'g[', 'vim.diagnostic.goto_prev', bufopts)
     end
 
     if server_name == "omnisharp" then
