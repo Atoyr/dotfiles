@@ -25,10 +25,11 @@ get_configfiles() {
         basename=$(basename "$file")
 
         # 除外するファイル名をチェック
+        [[ $basename = "config" ]] && continue # 自分自身も除外
         [[ $basename = "gvimrc" ]] && continue
         [[ $basename = "Microsoft.PowerShell_profile.ps1" ]] && continue
         [[ $basename = "WindowsTerminal.settings.json" ]] && continue
-        [[ $basename = "appdata__Rowming__alacritty__alacritty.yaml" ]] && continue
+        [[ $basename = "appdata__Rowming__alacritty__alacritty.yml" ]] && continue
         [[ $basename = "luarc.json" ]] && continue
 
         # 除外されていないファイルを出力

@@ -84,4 +84,5 @@ function ide() {
 
 # source
 eval "$(oh-my-posh init zsh --config ~/.poshthemes/tokyo.omp.json)"
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
