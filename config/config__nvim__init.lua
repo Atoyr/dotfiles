@@ -1,7 +1,7 @@
-require("base")
-require("keymaps")
-require("plugins")
-require("powerline")
+require("core.base")
+require("core.keymaps")
+require("core.lazy")
+require("core.powerline")
 
 
 -- setting color schema

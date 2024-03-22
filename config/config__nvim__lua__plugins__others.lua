@@ -18,16 +18,6 @@ return {
     end,
   }, 
 
-  -- template
-  {
-    "mattn/sonictemplate-vim",
-    config = function()
-      vim.g.sonictemplate_vim_template_dir = {
-        '$HOME/.vim/template',
-        '$HOME/template'}
-    end
-  }, 
-
   -- editor config
   { "gpanders/editorconfig.nvim"}, 
 
@@ -52,9 +42,6 @@ return {
   -- PowerLine
   { 'nvim-lualine/lualine.nvim'}, 
 
-  -- Treesitter
-  { "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" } }, 
-  { "nvim-telescope/telescope-file-browser.nvim" }, 
   -- css colorizer
   {
     "norcalli/nvim-colorizer.lua",
@@ -81,7 +68,7 @@ return {
   {
     "kevinhwang91/nvim-hlslens",
 
-    setup = function()
+    init = function()
       local kopts = {noremap = true, silent = true}
       vim.api.nvim_set_keymap('n', 'n',
           [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
@@ -104,7 +91,7 @@ return {
   -- TODO TOOL
   {
     "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
     config = function()
       require("todo-comments").setup { }
     end
