@@ -338,6 +338,7 @@ use({ "nvim-telescope/telescope-file-browser.nvim" })
 -- etc
 -- Template
 use{
+-- check
   "mattn/sonictemplate-vim",
   config = function()
     vim.g.sonictemplate_vim_template_dir = {
