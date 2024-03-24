@@ -7,6 +7,7 @@ install() {
     'autoconf'
     'automake'
     'curl'
+    'cargo'
     'git'
     'unzip'
     'openssl'
