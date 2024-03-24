@@ -5,7 +5,6 @@ local options = {
   encoding = "utf-8",
   fileencoding = "utf-8",
 
-
   title = true, 
   hlsearch = true, 
 	backup = false,
