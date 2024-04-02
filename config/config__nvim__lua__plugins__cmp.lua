@@ -1,11 +1,7 @@
-
-
 return{ 
   {
     "hrsh7th/nvim-cmp",
-
-      module = { "cmp" },
-      requires = {
+      dependencies = {
         { "hrsh7th/cmp-nvim-lsp", event = { "InsertEnter" } },
         { "hrsh7th/cmp-nvim-lsp-signature-help", event = { "InsertEnter" } },
         { "hrsh7th/cmp-buffer", event = { "InsertEnter" } },
@@ -47,12 +43,10 @@ return{
   { "hrsh7th/cmp-nvim-lsp"}, 
   { "hrsh7th/cmp-nvim-lsp-signature-help"}, 
   { "hrsh7th/cmp-buffer"}, 
-
   { "hrsh7th/cmp-path"}, 
   { "hrsh7th/cmp-emoji"}, 
   { "hrsh7th/cmp-cmdline"}, 
   { "hrsh7th/vim-vsnip"}, 
   { 'folke/lsp-colors.nvim'}, 
   { 'j-hui/fidget.nvim'}, 
-
 }
