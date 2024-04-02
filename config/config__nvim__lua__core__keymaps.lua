@@ -69,7 +69,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return { desc = desc, buffer = ev.buf }
     end
     vim.keymap.set('n', 'K',  vim.lsp.buf.hover, lsp("Show hover information"))
-    vim.keymap.set('n', 'gf', vim.lsp.buf.formatting, lsp("[F]ormat the current buffer"))
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, lsp("Goto [R]eferences"))
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, lsp("Goto [d]efinition"))
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, lsp("Goto [D]eclaration"))
