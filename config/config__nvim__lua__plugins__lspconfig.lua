@@ -1,5 +1,11 @@
 return {
   { 'neovim/nvim-lspconfig' }, 
+  { 'OmniSharp/omnisharp-vim', 
+    init = function()
+      vim.g.OmniSharp_server_use_net6 = 1
+      vim.g.OmniSharp_server_use_mono = 0
+    end,
+  }, 
   {
     'williamboman/mason.nvim',
     config = function()
@@ -8,26 +14,19 @@ return {
   }, 
   {
     'williamboman/mason-lspconfig.nvim',
-    requires = {
+    dependencies = {
       { "williamboman/mason.nvim"} ,
       { "neovim/nvim-lspconfig" },
     },
-
-    wants = {
-      "williamboman/mason.nvim",
-      "neovim/nvim-lspconfig",
-    },
     config = function()
       require('mason-lspconfig').setup_handlers({ function(server_name)
-      local opts = { }
+        local opts = { }
 
-      if server_name == "omnisharp" then
-        local omnisharp_file_path = vim.fn.expand('$HOME/.local/share/nvim-data/mason/packages/omnisharp/omnisharp.cmd')
-        opts.cmd = { omnisharp_file_path }
-        vim.g.OmniSharp_server_use_net6 = 0
-      end
-      require("lspconfig")[server_name].setup(opts)
-    end})
+        if server_name == "omnisharp" then
+          vim.g.OmniSharp_server_use_net6 = 1
+        end
+        require("lspconfig")[server_name].setup(opts)
+      end})
       require('mason-lspconfig').setup()
     end,
   },

@@ -1,5 +1,17 @@
 return {
   {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+      init = function()
+        cs = {
+          icon = ''
+        }
+        require("nvim-web-devicons").setup {
+          default = true,
+        }
+      end,
+
+  }, 
+  {
     'nvim-tree/nvim-tree.lua',
     init = function()
       vim.keymap.set("n", "<C-n>", function()
