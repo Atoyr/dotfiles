@@ -3,14 +3,12 @@ return {
   { 
     "nvim-treesitter/nvim-treesitter", 
     build = ":TSUpdate", 
-    event = "UIEnter",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
-    lazy = {
+    main = 'nvim-treesitter.configs', 
+    opts = {
       highlight = { enable = true },
-      auto_install = false,
-      ensure_installed = "all",
       textobjects = {
         select = {
           enable = true,
@@ -33,12 +31,6 @@ return {
         },
       },
     }, 
-    config = function()
-      local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-      parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
-      parser_config.typescript.filetype_to_parsername = { "javascript", "typescript.tsx" }
-      parser_config.javascript.filetype_to_parsername = { "javascript", "typescript.tsx" }
-    end, 
   }, 
   {
     "nvim-treesitter/nvim-treesitter-textobjects",

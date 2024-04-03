@@ -1,15 +1,14 @@
 return {
   {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
-      init = function()
-        cs = {
-          icon = ''
-        }
-        require("nvim-web-devicons").setup {
-          default = true,
-        }
-      end,
-
+    'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    init = function()
+      cs = {
+        icon = ''
+      }
+      require("nvim-web-devicons").setup {
+        default = true,
+      }
+    end,
   }, 
   {
     'nvim-tree/nvim-tree.lua',
@@ -26,17 +25,6 @@ return {
     config = function()
       require("nvim-tree").setup {
         sort_by = "case_sensitive",
-
-        view = {
-          width = 30,
-          mappings = {
-            list = {
-              { key = "U", action = "dir_up" },
-
-            },
-          },
-        },
-
         renderer = {
 
           group_empty = true,
