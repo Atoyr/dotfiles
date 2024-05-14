@@ -18,6 +18,23 @@ return {
     end,
   }, 
 
+  -- indent 
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "UIEnter" },
+    config = function()
+      require("hlchunk").setup({})
+    end
+  },
+  -- {
+  --   'Wansmer/treesj',
+  --   -- keys = { '<space>u', '<space>i', '<space>o' },
+  --   dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  --   config = function()
+  --     require('treesj').setup({})
+  --   end,
+  -- }, 
+
   -- editor config
   { "gpanders/editorconfig.nvim"}, 
 
@@ -47,13 +64,6 @@ return {
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup { }
-    end
-  }, 
-  -- Git Sign
-  {
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require("gitsigns").setup{}
     end
   }, 
   -- Indent
@@ -104,6 +114,12 @@ return {
       require("nvim-autopairs").setup {}
     end
   }, 
+  -- <C-a> <C-x> 
+  {
+    "monaqa/dial.nvim", 
+    config = function()
+    end
+  }, 
 
   -- register
   {
@@ -111,12 +127,32 @@ return {
     config = function()
       require("registers").setup()
     end,
-  }
+  }, 
 
---  {
---    "j-hui/fidget.nvim",
---    config = function()
---      require("fidget").setup{}
---    end
---  }, 
+  -- key support
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+    opts = {
+    }
+  }, 
+
+  -- outline navigation
+  {
+    'stevearc/aerial.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = {
+       "nvim-treesitter/nvim-treesitter",
+       "nvim-tree/nvim-web-devicons"
+    },
+  }, 
+
+  {
+    "j-hui/fidget.nvim",
+  }, 
 }
