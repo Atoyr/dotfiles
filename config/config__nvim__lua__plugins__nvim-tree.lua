@@ -2,11 +2,13 @@ return {
   {
     'nvim-tree/nvim-web-devicons', -- optional, for file icons
     init = function()
-      cs = {
-        icon = ''
-      }
       require("nvim-web-devicons").setup {
         default = true,
+        override = {
+          cs = {
+            icon = ''
+          }
+        }
       }
     end,
   }, 
