@@ -3,11 +3,20 @@ layout {
         plugin location="zellij:tab-bar"
     }
     pane {
-
-      pane
+      pane {
+        command "nvim"
+        size "80%"
+      }
       pane split_direction="vertical" {
-        pane
-        pane
+        size "20%"
+        pane {
+          size "75%"
+        }
+        pane {
+          command "htop"
+          size "25%"
+          borderless true
+        }
       }
     }
     pane size=2 borderless=true {

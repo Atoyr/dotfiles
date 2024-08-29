@@ -24,6 +24,13 @@ return {
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
 
+    actions = {
+      expand_all = {
+        max_folder_discovery = 100,
+        exclude = { '.git', 'target', 'build', 'node_modules' }
+      },
+    },
+
     config = function()
       require("nvim-tree").setup {
         sort_by = "case_sensitive",

@@ -70,6 +70,12 @@ keybinds {
         bind "8" { GoToTab 8; SwitchToMode "Normal"; }
         bind "9" { GoToTab 9; SwitchToMode "Normal"; }
         bind "Tab" { ToggleTab; }
+        bind "i" {NewTab {
+                     name "ide"
+                     layout "ide"
+                   };
+                  SwitchToMode "Normal";
+                 }
     }
     scroll {
         bind "Ctrl s" { SwitchToMode "Normal"; }
