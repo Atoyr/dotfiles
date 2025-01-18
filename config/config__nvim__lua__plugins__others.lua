@@ -155,4 +155,30 @@ return {
   {
     "j-hui/fidget.nvim",
   }, 
+
+  -- debug 
+  --
+  {
+    'mfussenegger/nvim-dap', 
+    config = function()
+      -- nvim-dapのNode.js設定例
+      local dap = require('dap')
+      dap.adapters.node2 = {
+        type = 'executable',
+        command = 'node',
+        args = {os.getenv('HOME') .. '/.vscode/extensions/ms-vscode.node-debug2/out/src/nodeDebug.js'},
+      }
+      dap.configurations.javascript = {
+        {
+          type = 'node2',
+          request = 'launch',
+          program = '${workspaceFolder}/node_modules/.bin/remix',  -- Remixアプリを実行
+          cwd = vim.fn.getcwd(),
+          sourceMaps = true,
+          protocol = 'inspector',
+          console = 'integratedTerminal',
+        },
+      }
+    end,
+  }
 }
