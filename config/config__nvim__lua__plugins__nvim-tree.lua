@@ -14,11 +14,8 @@ return {
   }, 
   {
     'nvim-tree/nvim-tree.lua',
-    init = function()
-      vim.keymap.set("n", "<C-n>", function()
-        require("nvim-tree.api").tree.toggle()
-        end)
-    end,
+    version = "*",
+    lazy = false,
 
     dependencies = {
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
@@ -35,13 +32,18 @@ return {
       require("nvim-tree").setup {
         sort_by = "case_sensitive",
         renderer = {
-
           group_empty = true,
+          highlight_git = true,
+          highlight_opened_files = "none",
         },
         filters = {
           dotfiles = true,
         },
       }
+
+      vim.keymap.set("n", "<C-n>", function()
+        require("nvim-tree.api").tree.toggle()
+        end)
     end,
     -- version = 'nightly' -- optional, updated every week. (see issue #1193)
   }
