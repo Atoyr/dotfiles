@@ -29,7 +29,7 @@ get_configfiles() {
         [[ $basename = "gvimrc" ]] && continue
         [[ $basename = "Microsoft.PowerShell_profile.ps1" ]] && continue
         [[ $basename = "WindowsTerminal.settings.json" ]] && continue
-        [[ $basename = "appdata__Rowming__alacritty__alacritty.yml" ]] && continue
+        [[ $basename = "Appdata__Roaming__alacritty__alacritty.toml" ]] && continue
         [[ $basename = "luarc.json" ]] && continue
 
         # 除外されていないファイルを出力
