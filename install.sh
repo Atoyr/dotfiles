@@ -42,7 +42,7 @@ setup_symlinks() {
 
     for file in $(get_configfiles) ; do
         name="$(basename "$file")"
-        target="$HOME/.${name//__/\/}"
+        target="$HOME/.$(echo "$name" | sed 's/__/\//g')"
 
         if [ -L "$target" ]; then
             info "~${target#$HOME} already exists... Skipping."
