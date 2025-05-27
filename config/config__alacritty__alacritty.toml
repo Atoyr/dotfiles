@@ -48,13 +48,9 @@ style = "Italic"
 family = "CaskaydiaCove Nerd Font"
 style = "Regular"
 
-[[keyboard.bindings]]
-action = "CreateNewWindow"
-key = "N"
-mods = "Control|Alt"
-
-[general]
-import = [
-   "~/.config/alacritty/themes/themes/tokyo-night.toml"
+[keyboard]
+bindings = [
+  { action = "CreateNewWindow", key = "N", mods = "Control|Alt" }, 
+  { action = "ToggleViMode", key = "Z", mods = "Control|Shift"}
 ]
 

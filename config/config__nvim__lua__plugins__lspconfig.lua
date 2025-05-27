@@ -7,15 +7,17 @@ return {
     end,
   }, 
   {
-    'williamboman/mason.nvim',
+    'mason-org/mason.nvim',
+    version = "^1.0.0", 
     config = function()
         require("mason").setup {}
     end,
   }, 
   {
-    'williamboman/mason-lspconfig.nvim',
+    'mason-org/mason-lspconfig.nvim',
+    version = "^1.0.0", 
     dependencies = {
-      { "williamboman/mason.nvim"} ,
+      { "mason-org/mason.nvim" } ,
       { "neovim/nvim-lspconfig" },
     },
     config = function()
