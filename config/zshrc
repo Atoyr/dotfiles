@@ -1,51 +1,12 @@
-# export GOPATH=$HOME
-export PATH=$PATH:/usr/local/go/bin
-# export PATH=$PATH:$GOPATH/bin
 export TERM=xterm-256color
-
-# ruby
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-# rust
-export PATH=$PATH:~/.cargo/bin
-export PATH=$PATH:~/go/bin
-
-PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init - zsh)"
-
-# HACK direnvは不要？
-# eval "$(direnv hook zsh)"
-
 export HISTFILE=~/.zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# Zplug
-zplug "rupa/z", use:z.sh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
-export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
 # change default editor
 export EDITOR='nvim'
 
-# alias
-alias git-log='git log --pretty=format:"%h - %ad : %s"'
-alias lg='lazygit'
-alias s='source ~/.zshrc'
-alias t='tmux'
-alias vim='nvim'
-alias vivi='vim ~/.vimrc'
-alias z='zellij attach --index 0 --create'
-
-# function
-function g () { git "$*"; }
-function zr () { zellij run --name "$*" -- zsh -ic "$*";}
-
-
+# TODO: zsh.dの設定はインストール済みかどうかでわけたい
 ### split zsh ###
 ZSHHOME="${HOME}/.zsh.d"
 
@@ -53,63 +14,21 @@ ZSHHOME="${HOME}/.zsh.d"
 for i in $ZSHHOME/*; do
   [[ ${i##*/} = *.zsh ]] && [ \( -f $i -o -h $i \) -a -r $i ]  && . $i
 done
-    
-# fzf func
-# fbr - checkout git branch
- fbr() {
-   local branches branch
-     branches=$(git branch -vv) &&
-       branch=$(echo "$branches" | fzf +m) &&
-         git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
-         }
-# fbrm - checkout git branch (including remote branches)
-fbrm() {
-  local branches branch
-  branches=$(git branch --all | grep -v HEAD) &&
-    branch=$(echo "$branches" |
-    fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-    git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
-# fshow - git commit browser
-fshow() {
-  git log --graph --color=always \
-    --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-    fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
-    --bind "ctrl-m:execute:
-      (grep -o '[a-f0-9]\{7\}' | head -1 |
-        xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
-              {}
-FZF-EOF"
-}
 
-# fd - cd to selected directory
-fd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-    -o -type d -print 2> /dev/null | fzf +m) &&
-    cd "$dir"
-  }
-
-# 
-function ghq-fzf() {
-  local target_dir=$(ghq list -p | fzf --query="$LBUFFER")
-
-  if [ -n "$target_dir" ]; then
-    BUFFER="cd ${target_dir}"
-    zle accept-line
-  fi
-
-  zle reset-prompt
-}
-
-function ide() {
-  tmux split-window -v -p 25 #ウィンドウを垂直に分割し、新しいペインを作成
-  tmux split-window -h -p 50 #新しく作成されたペインをさらに水平に分割
-}
+# NOTE 対応しないといけない
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
 
-# source
-eval "$(oh-my-posh init zsh --config ~/.poshthemes/tokyo.omp.json)"
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# NOTE: どうするか考えて対応
+# function
+function g () { git "$*"; }
+# function zr () { zellij run --name "$*" -- zsh -ic "$*";}
+
+
+# NOTE 要対応
+eval "$(nodenv init - zsh)"
+export XDG_CONFIG_HOME="$HOME/.config"
+eval "$(goenv init -)"
 
