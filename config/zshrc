@@ -30,5 +30,4 @@ function g () { git "$*"; }
 # NOTE 要対応
 eval "$(nodenv init - zsh)"
 export XDG_CONFIG_HOME="$HOME/.config"
-eval "$(goenv init -)"
 
