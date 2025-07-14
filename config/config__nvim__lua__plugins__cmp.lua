@@ -1,62 +1,84 @@
 return{ 
   {
-    "hrsh7th/nvim-cmp",
+    "giuxtaposition/blink-cmp-copilot",
+  }, 
+  {
+    "saghen/blink.cmp",
     dependencies = {
-      { "hrsh7th/cmp-nvim-lsp", event = { "InsertEnter" } },
-      { "hrsh7th/cmp-nvim-lsp-signature-help", event = { "InsertEnter" } },
-      { "hrsh7th/cmp-buffer", event = { "InsertEnter" } },
-      { "hrsh7th/cmp-path", event = { "InsertEnter" } },
-      { "hrsh7th/cmp-emoji", event = { "InsertEnter" } },
-      { "hrsh7th/cmp-cmdline", event = { "InsertEnter" } },
-      { "hrsh7th/vim-vsnip", event = { "InsertEnter" } },
+      {
+        "giuxtaposition/blink-cmp-copilot",
+      },
     },
-    config = function()
-      local cmp = require("cmp")
-
-      require("cmp").setup{
-        snippet = {
-            expand = function(args)
-              vim.fn["vsnip#anonymous"](args.body)
+    version = "1.*",
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+      keymap = { preset = "enter" },
+      appearance = {
+        nerd_font_variant = "mono",
+      },
+      completion = { documentation = { auto_show = true } },
+      sources = {
+        default = { "lsp", "path", "snippets", "buffer", "copilot"},
+        providers = {
+          copilot = {
+            name = "copilot",
+            module = "blink-cmp-copilot",
+            score_offset = 100,
+            async = true,
+            transform_items = function(_, items)
+              local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+              local kind_idx = #CompletionItemKind + 1
+              CompletionItemKind[kind_idx] = "Copilot"
+              for _, item in ipairs(items) do
+                item.kind = kind_idx
+              end
+              return items
             end,
           },
-          sources = {
-            -- Copilot Source
-            { name = "copilot", group_index = 2 },
-            -- Other Sources
-            { name = "nvim_lsp", group_index = 2 },
-            { name = "path", group_index = 2 },
-            { name = "luasnip", group_index = 2 },
-            { name = "buffer", group_index = 2 },
-            { name = "emoji", group_index = 2 },
-            { name = "cmdline", group_index = 2
-          }, 
-          },
-          mapping = cmp.mapping.preset.insert({
-            ["<C-p>"] = cmp.mapping.select_prev_item(),
-            ["<C-n>"] = cmp.mapping.select_next_item(),
-            ['<C-l>'] = cmp.mapping.complete(),
-            ['<C-e>'] = cmp.mapping.abort(),
-            ["<CR>"] = cmp.mapping.confirm { select = true },
-          }),
-          experimental = {
-            ghost_text = true,
-          },
-      }
-    end,
-  }, 
-  { "hrsh7th/cmp-nvim-lsp"}, 
-  { "hrsh7th/cmp-nvim-lsp-signature-help"}, 
-  { "hrsh7th/cmp-buffer"}, 
-  { "hrsh7th/cmp-path"}, 
-  { "hrsh7th/cmp-emoji"}, 
-  { "hrsh7th/cmp-cmdline"}, 
-  { "hrsh7th/vim-vsnip"}, 
-  { 'folke/lsp-colors.nvim'}, 
-  { 'j-hui/fidget.nvim'}, 
-  {
-    "zbirenbaum/copilot-cmp",
-    config = function ()
-      require("copilot_cmp").setup()
-    end
+        },
+      },
+      appearance = {
+        -- Blink does not expose its default kind icons so you must copy them all (or set your custom ones) and add Copilot
+        kind_icons = {
+          Copilot = "",
+          Text = '󰉿',
+          Method = '󰊕',
+          Function = '󰊕',
+          Constructor = '󰒓',
+
+          Field = '󰜢',
+          Variable = '󰆦',
+          Property = '󰖷',
+
+          Class = '󱡠',
+          Interface = '󱡠',
+          Struct = '󱡠',
+          Module = '󰅩',
+
+          Unit = '󰪚',
+          Value = '󰦨',
+          Enum = '󰦨',
+          EnumMember = '󰦨',
+
+          Keyword = '󰻾',
+          Constant = '󰏿',
+
+          Snippet = '󱄽',
+          Color = '󰏘',
+          File = '󰈔',
+          Reference = '󰬲',
+          Folder = '󰉋',
+          Event = '󱐋',
+          Operator = '󰪚',
+          TypeParameter = '󰬛',
+        },
+    },
+      fuzzy = {
+        -- versionを指定してないとバイナリが特定できずLuaにfallbackするwarningが表示される
+        implementation = "prefer_rust_with_warning",
+      },
+    },
+    opts_extend = { "sources.default" },
   }
 }
