@@ -31,3 +31,4 @@ function g () { git "$*"; }
 eval "$(nodenv init - zsh)"
 export XDG_CONFIG_HOME="$HOME/.config"
 
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
