@@ -9,6 +9,7 @@ return {
     main = 'nvim-treesitter.configs', 
     opts = {
       highlight = { enable = true },
+      ensure_installed={ "vue", "typescript", "javascript", "json"}, 
       textobjects = {
         select = {
           enable = true,
