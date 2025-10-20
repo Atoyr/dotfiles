@@ -1,11 +1,11 @@
 return {
-  { 'neovim/nvim-lspconfig', lazy = true}, 
-  { "mason-org/mason.nvim", version = "^2.0.0", opts = {} },
+  { 'neovim/nvim-lspconfig', lazy = true },
+  { "mason-org/mason.nvim",  version = "^2.0.0", opts = {} },
   {
     'mason-org/mason-lspconfig.nvim',
-    version = "^2.0.0", 
+    version = "^2.0.0",
     dependencies = {
-      { "mason-org/mason.nvim" } ,
+      { "mason-org/mason.nvim" },
       { "neovim/nvim-lspconfig" },
     },
     opts = {
