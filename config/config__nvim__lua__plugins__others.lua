@@ -16,9 +16,9 @@ return {
     config = function()
       require("scrollbar").setup {}
     end,
-  }, 
+  },
 
-  -- indent 
+  -- indent
   {
     "shellRaining/hlchunk.nvim",
     event = { "UIEnter" },
@@ -33,58 +33,58 @@ return {
   --   config = function()
   --     require('treesj').setup({})
   --   end,
-  -- }, 
+  -- },
 
   -- editor config
-  { "gpanders/editorconfig.nvim"}, 
+  { "gpanders/editorconfig.nvim" },
 
   -- Color schema
-  { 'EdenEast/nightfox.nvim' }, 
-  { 'folke/tokyonight.nvim'}, 
+  { 'EdenEast/nightfox.nvim' },
+  { 'folke/tokyonight.nvim' },
 
   -- noice
-  { "MunifTanjim/nui.nvim" }, 
+  { "MunifTanjim/nui.nvim" },
   {
     "rcarriga/nvim-notify",
     config = function()
       local notify = require("notify")
 
-      notify.setup{
+      notify.setup {
         render = "minimal"
       }
       vim.notify = notify
     end,
-  }, 
+  },
 
   -- PowerLine
-  { 'nvim-lualine/lualine.nvim'}, 
+  { 'nvim-lualine/lualine.nvim' },
 
   -- css colorizer
   {
-    "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("colorizer").setup { }
-    end
-  }, 
+    "catgoose/nvim-colorizer.lua",
+    event = "BufReadPre",
+    opts = {   -- set to setup table
+    },
+  },
   -- Indent
   {
     "lukas-reineke/indent-blankline.nvim",
-    main = "ibl", 
+    main = "ibl",
     config = function()
-      require("ibl").setup { }
+      require("ibl").setup {}
     end
-  }, 
+  },
   {
     "kevinhwang91/nvim-hlslens",
 
     init = function()
-      local kopts = {noremap = true, silent = true}
+      local kopts = { noremap = true, silent = true }
       vim.api.nvim_set_keymap('n', 'n',
-          [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
-          kopts)
+        [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+        kopts)
       vim.api.nvim_set_keymap('n', 'N',
-          [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
-          kopts)
+        [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+        kopts)
       vim.api.nvim_set_keymap('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
       vim.api.nvim_set_keymap('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
       vim.api.nvim_set_keymap('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
@@ -93,18 +93,18 @@ return {
       vim.api.nvim_set_keymap('n', '<Leader>l', '<Cmd>noh<CR>', kopts)
     end,
     config = function()
-      require("hlslens").setup{}
+      require("hlslens").setup {}
     end
-  }, 
+  },
 
   -- TODO TOOL
   {
     "folke/todo-comments.nvim",
     dependencies = "nvim-lua/plenary.nvim",
     config = function()
-      require("todo-comments").setup { }
+      require("todo-comments").setup {}
     end
-  }, 
+  },
 
   -- auto pairs
   {
@@ -112,13 +112,13 @@ return {
     config = function()
       require("nvim-autopairs").setup {}
     end
-  }, 
-  -- <C-a> <C-x> 
+  },
+  -- <C-a> <C-x>
   {
-    "monaqa/dial.nvim", 
+    "monaqa/dial.nvim",
     config = function()
     end
-  }, 
+  },
 
   -- register
   {
@@ -126,7 +126,7 @@ return {
     config = function()
       require("registers").setup()
     end,
-  }, 
+  },
 
   -- key support
   {
@@ -138,7 +138,7 @@ return {
     end,
     opts = {
     }
-  }, 
+  },
 
   -- outline navigation
   {
@@ -146,15 +146,38 @@ return {
     opts = {},
     -- Optional dependencies
     dependencies = {
-       "nvim-treesitter/nvim-treesitter",
-       "nvim-tree/nvim-web-devicons"
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
     },
-  }, 
+  },
 
   {
     "j-hui/fidget.nvim",
-  }, 
+  },
 
-  -- debug 
+  -- debug
   --
+  {
+    'mfussenegger/nvim-dap',
+    config = function()
+      -- nvim-dapのNode.js設定例
+      local dap = require('dap')
+      dap.adapters.node2 = {
+        type = 'executable',
+        command = 'node',
+        args = { os.getenv('HOME') .. '/.vscode/extensions/ms-vscode.node-debug2/out/src/nodeDebug.js' },
+      }
+      dap.configurations.javascript = {
+        {
+          type = 'node2',
+          request = 'launch',
+          program = '${workspaceFolder}/node_modules/.bin/remix', -- Remixアプリを実行
+          cwd = vim.fn.getcwd(),
+          sourceMaps = true,
+          protocol = 'inspector',
+          console = 'integratedTerminal',
+        },
+      }
+    end,
+  }
 }
