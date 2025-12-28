@@ -29,6 +29,9 @@ TERM = "alacritty"
 [window]
 option_as_alt = "Both"
 
+[ime]
+enabled: true
+
 [font]
 size = 14
 

@@ -63,7 +63,7 @@ function Get-ConfigFiles {
 
 
 # creating symbolic link
-function Setup-SymbolicLinks {
+function New-SymbolicLinks {
     Title "Creating symlinks"
 
     if(!$isAdmin)
@@ -143,7 +143,7 @@ function Install-Applications {
     }
 
     Write-Info "Installing PSReadLine"
-    Install-Module PSReadLine -Confirm:$false -Force 
+    Install-Module PSReadLine -Confirm:$false -Force
     .\installer\Windows\Install-WindowsTerminal.ps1 install
     .\installer\Windows\Install-Chrome.ps1 install
     .\installer\Windows\Install-7Zip.ps1 install
@@ -172,6 +172,7 @@ function Install-DevApplications {
     .\installer\Windows\Install-AzureCli.ps1 install
     .\installer\Windows\Install-AzureStorageExplorer.ps1 install
     .\installer\Windows\Install-SSMS.ps1 install
+    .\installer\Windows\Install-WezTerm.ps1 install
 
     # reload Path
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
@@ -205,10 +206,10 @@ switch ($Flag) {
         Set-UserEnvironmentVariable
     }
     "link" {
-        Setup-SymbolicLinks
-        Set-MyExecutionPolicy
-        break
-    }
+            New-SymbolicLinks
+            Set-MyExecutionPolicy
+            break
+        }
     "unlink" {
         Remove-SymbolicLinks
         break
