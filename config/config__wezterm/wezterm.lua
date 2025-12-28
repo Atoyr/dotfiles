@@ -2,6 +2,17 @@ local wezterm = require 'wezterm'
 
 local config = {}
 
+-- OS判定
+local is_windows = wezterm.target_triple:find("windows") ~= nil
+local is_macos = wezterm.target_triple:find("darwin") ~= nil
+
+-- デフォルトシェルの設定（OS別）
+if is_windows then
+  config.default_prog = { 'powershell.exe' }
+elseif is_macos then
+  config.default_prog = { '/bin/zsh' }  -- または '/bin/bash'
+end
+
 -- Font settings migrated from Alacritty
 config.font = wezterm.font('CaskaydiaCove Nerd Font')
 config.font_size = 14.0
@@ -31,6 +42,7 @@ config.check_for_updates_interval_seconds = 86400
 
 -- IME (for Windows)
 config.use_ime = true
+config.ime_preedit_rendering = "System"
 
 -- scroll backline
 config.scrollback_lines = 35000
