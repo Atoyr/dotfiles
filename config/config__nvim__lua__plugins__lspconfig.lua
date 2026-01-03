@@ -1,5 +1,11 @@
 return {
   { 'neovim/nvim-lspconfig', lazy = true },
+  -- Typescript LSP
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+  },
   { "mason-org/mason.nvim",  version = "^2.0.0", opts = {} },
   {
     'mason-org/mason-lspconfig.nvim',
@@ -9,7 +15,7 @@ return {
       { "neovim/nvim-lspconfig" },
     },
     opts = {
-      ensure_installed = { "lua_ls", "ts_ls" },
+      ensure_installed = { "lua_ls" },
     },
     config = function(_, opts)
       require("mason-lspconfig").setup(opts)
@@ -21,11 +27,11 @@ return {
       })
 
       -- TypeScript
-      vim.lsp.config("ts_ls", {
-        cmd = { "typescript-language-server", "--stdio" },
-        root_markers = { "tsconfig.json", "package.json", ".git" },
-        filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-      })
+      -- vim.lsp.config("ts_ls", {
+      --   cmd = { "typescript-language-server", "--stdio" },
+      --   root_markers = { "tsconfig.json", "package.json", ".git" },
+      --   filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+      -- })
 
       -- ESLint（整形はPrettierに任せる想定）
       vim.lsp.config("eslint", {
