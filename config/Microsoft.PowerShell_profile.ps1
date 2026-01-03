@@ -1,4 +1,4 @@
-if ($env:WT_PROFILE_ID -or $env:ALACRITTY_LOG) {
+if ($env:WT_PROFILE_ID -or $env:ALACRITTY_LOG -or $env:WEZTERM_CONFIG_FILE) {
     oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\tokyo.omp.json" | Invoke-Expression
 }
 Set-PSReadLineOption -PredictionSource History
