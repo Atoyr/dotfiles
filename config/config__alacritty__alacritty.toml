@@ -30,7 +30,7 @@ TERM = "alacritty"
 option_as_alt = "Both"
 
 [ime]
-enabled: true
+enabled= true
 
 [font]
 size = 14
