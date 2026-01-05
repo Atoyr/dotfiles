@@ -3,6 +3,7 @@ require("core.keymaps")
 require("core.lazy")
 require("core.autocmd")
 require("core.powerline")
+require("lsp")
 
 
 -- setting color schema
