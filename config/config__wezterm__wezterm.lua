@@ -49,6 +49,9 @@ config.scrollback_lines = 35000
 config.initial_cols = 120
 config.initial_rows = 30
 
+-- tab config
+config.hide_tab_bar_if_only_one_tab = true
+
 -- Color scheme migrated (Tokyo Night-like)
 -- config.color_scheme = 'Tokyo Night'
 config.colors = {
