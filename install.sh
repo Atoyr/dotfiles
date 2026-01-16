@@ -2,8 +2,11 @@
 
 DOTFILES="$(pwd)"
 
-source ./utility.sh
+source ./scripts/lib/bash/log.sh
+source ./scripts/lib/bash/distro.sh
+source ./scripts/link/bash/config.sh
 
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 title() {
     echo -e "\n${COLOR_PURPLE}$1${COLOR_NONE}"
@@ -14,47 +17,14 @@ help_message() {
     echo -e "${COLOR_GRAY}==============================${COLOR_NONE}\n"
 }
 
-
 get_linkables() {
     find -H "$DOTFILES/config" -maxdepth 3 -name '*'
 }
 
-get_configfiles() {
-    for file in $(get_linkables) ; do
-        # ファイル名を取得
-        basename=$(basename "$file")
-
-        # 除外するファイル名をチェック
-        [[ $basename = "config" ]] && continue # 自分自身も除外
-        [[ $basename = "gvimrc" ]] && continue
-        [[ $basename = "Microsoft.PowerShell_profile.ps1" ]] && continue
-        [[ $basename = "WindowsTerminal.settings.json" ]] && continue
-        [[ $basename = "Appdata__Roaming__alacritty__alacritty.toml" ]] && continue
-        [[ $basename = "luarc.json" ]] && continue
-
-        # 除外されていないファイルを出力
-        echo "$file"
-    done
-}
 
 setup_symlinks() {
     title "Creating symlinks"
-
-    for file in $(get_configfiles) ; do
-        name="$(basename "$file")"
-        target="$HOME/.$(echo "$name" | sed 's/__/\//g')"
-
-        if [ -L "$target" ]; then
-            info "~${target#$HOME} already exists... Skipping."
-        else
-		if [ ! -d "$(dirname ${target})" ]; then
-			info "Creating directory for $(dirname ${target})"
-			mkdir -p $(dirname ${target})
-		fi
-		info "Creating symlink for $file"
-		ln -s "$file" "$target"
-        fi
-    done
+    link_config
 }
 
 remove_symlinks() {
