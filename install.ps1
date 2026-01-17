@@ -1,5 +1,7 @@
 Param ( [string]$Flag = "")
-Import-Module .\Utility.psm1
+Import-Module .\scripts\lib\pwsh\Log.psm1
+Import-Module .\scripts\lib\pwsh\Env.psm1
+Import-Module .\scripts\lib\pwsh\Help.psm1
 
 $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
 $isAdmin = $currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
