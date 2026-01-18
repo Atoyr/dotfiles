@@ -1,9 +1,10 @@
 # alias
 alias git-log='git log --pretty=format:"%h - %ad : %s"'
+alias k='kubectl'
 alias lg='lazygit'
 alias ll='ls -alhF'
-alias s='source ~/.zshrc'
+alias path='echo $PATH | tr ':' '\n''
+alias s='source $ZDOTDIR/.zshrc'
 alias vim='nvim'
 alias vivi='nvim ~/.config/nvim'
 alias z='zellij attach --index 0 --create'
-

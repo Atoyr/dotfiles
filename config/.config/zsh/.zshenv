@@ -9,8 +9,9 @@ export EDITOR='nvim'
 
 export PATH="${HOME}/bin:$PATH"
 
-for f in "$ZDOTDIR/zsh.d/*.zsh"; do
+for f in "$ZDOTDIR"/zsh.d/*.zsh; do
   [ -r "$f" ] && source "$f"
+  echo "$f loaded successfully"
 done
 
 echo "zsh/zshenv loaded successfully"
