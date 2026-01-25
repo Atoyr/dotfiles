@@ -42,7 +42,7 @@ return {
   { 'EdenEast/nightfox.nvim' },
   { 'folke/tokyonight.nvim' },
 
-  -- noice
+  -- notify
   { "MunifTanjim/nui.nvim" },
   {
     "rcarriga/nvim-notify",
@@ -63,7 +63,7 @@ return {
   {
     "catgoose/nvim-colorizer.lua",
     event = "BufReadPre",
-    opts = {   -- set to setup table
+    opts = { -- set to setup table
     },
   },
   -- Indent
@@ -134,7 +134,7 @@ return {
     event = "VeryLazy",
     init = function()
       vim.o.timeout = true
-      vim.o.timeoutlen = 300
+      vim.o.timeoutlen = 1000
     end,
     opts = {
     }

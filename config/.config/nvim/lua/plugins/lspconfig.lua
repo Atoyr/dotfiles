@@ -15,7 +15,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = true,
     opts = {
-      ensure_installed = { "lua_ls", "ts_ls", "vue_ls", "eslint" },
+      ensure_installed = { "lua_ls", "ts_ls", "vue_ls", "eslint", "typos_lsp" },
     },
   },
 }
