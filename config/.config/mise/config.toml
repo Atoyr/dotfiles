@@ -2,6 +2,7 @@
 [tools]
 node = "24"
 go = "1.25"
+rust = "latest"
 
 # package manager
 "github:aquaproj/aqua" = "latest"
@@ -10,7 +11,7 @@ go = "1.25"
 "npm:@anthropic-ai/claude-code" = "latest"
 "aqua:junegunn/fzf" = "latest"
 "aqua:JanDeDobbeleer/oh-my-posh" = "latest"
-"aqua:eza-community/eza" = "latest"
+"cargo:eza" = "latest"
 
 [shell_alias]
 # git
