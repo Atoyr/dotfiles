@@ -8,6 +8,7 @@ export SAVEHIST=10000
 export EDITOR='nvim'
 
 export PATH="${HOME}/bin:$PATH"
+export PATH="${HOME}/.local/bin:$PATH"
 
 for f in "$ZDOTDIR"/zsh.d/*.zsh; do
   [ -r "$f" ] && source "$f"
