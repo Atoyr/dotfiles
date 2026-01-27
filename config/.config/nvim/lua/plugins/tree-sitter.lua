@@ -1,15 +1,44 @@
 return {
   -- Treesitter
-  { 
-    "nvim-treesitter/nvim-treesitter", 
-    build = ":TSUpdate", 
+  {
+    "nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    branch = "main",
+    build = ":TSUpdate",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
     },
-    main = 'nvim-treesitter.configs', 
+    config = function(_, opts)
+      local ok, treesitter = pcall(require, "nvim-treesitter")
+      if not ok then
+        vim.notify("Failed to load nvim-treesitter", vim.log.levels.ERROR)
+        return
+      end
+
+      treesitter.setup(opts)
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("vim-treesitter-start", {}),
+        callback = function(ctx)
+          -- pcallでエラーを無視することでパーサーやクエリがあるか気にしなくてすむ
+          pcall(vim.treesitter.start)
+        end,
+      })
+    end,
     opts = {
       highlight = { enable = true },
-      ensure_installed={ "vue", "typescript", "javascript", "json"}, 
+      ensure_installed = {
+        "vue",
+        "typescript",
+        "javascript",
+        "json",
+        -- あると便利
+        "lua",
+        "vim",
+        "vimdoc",
+        "query",
+        "yaml",
+      },
       textobjects = {
         select = {
           enable = true,
@@ -31,11 +60,9 @@ return {
           },
         },
       },
-    }, 
-  }, 
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    event = "CursorMoved",
+    },
   },
-  { "nvim-telescope/telescope-file-browser.nvim" }, 
+
+  -- Telescope file browser（telescope本体が別で入ってないなら依存も追加）
+  { "nvim-telescope/telescope-file-browser.nvim" },
 }
