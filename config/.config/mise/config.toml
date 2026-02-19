@@ -15,6 +15,7 @@ rust = "latest"
 ghq = "latest"
 mysql = "latest"
 "aqua:golangci/golangci-lint" = "latest"
+"cargo:zellij" = "latest"
 
 [shell_alias]
 # git
