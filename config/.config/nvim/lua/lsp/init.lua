@@ -2,14 +2,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("my.lsp", {}),
   callback = function(args)
     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-    -- 補完の設定
-    if client:supports_method('textDocument/completion') then
-      -- 文字を入力する度に補完を表示（遅くなる可能性あり）
-      local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-      client.server_capabilities.completionProvider.triggerCharacters = chars
-      -- 補完を有効化
-      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-    end
     -- フォーマット
     if not client:supports_method('textDocument/willSaveWaitUntil')
         and client:supports_method('textDocument/formatting') then
