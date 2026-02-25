@@ -9,21 +9,26 @@ return {
     opts = {
       suggestion = { enabled = false }, -- blink.cmpに任せるので無効化
       panel = { enabled = false },
+      server_opts_overrides = {
+        trace = 'verbose',
+        cmd = {
+          vim.fn.expand("~/.local/share/nvim/mason/bin/copilot-language-server"),
+          "--stdio"
+        },
+      },
+      filetypes = {
+        yaml = true,
+        markdown = true,
+        help = false,
+        gitcommit = true,
+        gitrebase = true,
+        hgcommit = false,
+        svn = false,
+        cvs = false,
+        ["."] = false,
+        ["*"] = true,
+      },
     },
-  },
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "main",
-    dependencies = {
-      { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
-      { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
-    },
-    build = "make tiktoken",        -- Only on MacOS or Linux
-    opts = {
-      debug = true,                 -- Enable debugging
-      -- See Configuration section for rest
-    },
-    -- See Commands section for default commands if you want to lazy load on them
   },
 
   -----------------------------------------------------------
@@ -31,12 +36,13 @@ return {
   -----------------------------------------------------------
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "main",
     dependencies = {
       { "nvim-lua/plenary.nvim", branch = "master" },
     },
     build = "make tiktoken",
     opts = {
-      model = "claude-3.5-sonnet",
+      model = "auto",
       window = {
         layout = "vertical",
         width = 0.4,

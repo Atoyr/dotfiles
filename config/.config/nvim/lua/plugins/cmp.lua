@@ -28,7 +28,7 @@ return {
               end
               for _, item in ipairs(items) do
                 item.kind = CompletionItemKind["Copilot"]
-                item.kind_icon = ""
+                item.kind_icon = ""
               end
               return items
             end,
