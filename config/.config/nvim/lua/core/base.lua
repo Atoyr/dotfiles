@@ -10,28 +10,28 @@ local options = {
   backup = false,
   showcmd = true,
   cmdheight = 1,
-  laststatus = 2,
+  laststatus = 3,
   expandtab = true,
 
   tabstop = 2,
   shiftwidth = 2,
   cursorline = true,
+
   number = true,
+  relativenumber = true, -- 行番号を相対表示
 
-  relativenumber = true,
-  swapfile = false,
+  swapfile = false,      -- swapファイルを作成しない
 
-  undofile = true,
+  undofile = true,       -- 永続的なundofileを有効にする
   autoread = true,
 
   hidden = true,
-  clipboard = "unnamedplus",
+  clipboard = "unnamedplus", -- システムクリップボードと連携
   virtualedit = "onemore",
 
   showmatch = true,
   termguicolors = true,
 
-  laststatus = 3,
 }
 
 for k, v in pairs(options) do

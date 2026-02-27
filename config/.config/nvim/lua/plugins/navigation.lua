@@ -75,4 +75,24 @@ return {
       max_height = 20,
     },
   },
+
+  -- nvim-hlslens: Highlight search results with lens
+  {
+    "kevinhwang91/nvim-hlslens",
+    keys = {
+      -- n / N キー (countに対応させるため expr を使用)
+      { 'n',         [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]], desc = "Next search result with hlslens" },
+      { 'N',         [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]], desc = "Prev search result with hlslens" },
+
+      -- * / # / g* / g# キー
+      { '*',         [[*<Cmd>lua require('hlslens').start()<CR>]],                                             desc = "Search word under cursor" },
+      { '#',         [[#<Cmd>lua require('hlslens').start()<CR>]],                                             desc = "Search word under cursor (backwards)" },
+      { 'g*',        [[g*<Cmd>lua require('hlslens').start()<CR>]],                                            desc = "Search word under cursor (partial)" },
+      { 'g#',        [[g#<Cmd>lua require('hlslens').start()<CR>]],                                            desc = "Search word under cursor (partial backwards)" },
+
+      -- ハイライト消去
+      { '<Leader>l', '<Cmd>noh<CR>',                                                                           desc = "Clear search highlight" },
+    }
+  },
+
 }

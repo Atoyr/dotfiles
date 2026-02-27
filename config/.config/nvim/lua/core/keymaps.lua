@@ -59,7 +59,7 @@ vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', 'ge', vim.diagnostic.open_float, opts)
 
 vim.api.nvim_create_autocmd("LspAttach", {
-  -- TODO 
+  -- TODO
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
   callback = function(ev)
     local function lsp(desc)
@@ -68,7 +68,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end
       return { desc = desc, buffer = ev.buf }
     end
-    vim.keymap.set('n', 'K',  vim.lsp.buf.hover, lsp("Show hover information"))
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, lsp("Show hover information"))
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, lsp("Goto [R]eferences"))
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, lsp("Goto [d]efinition"))
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, lsp("Goto [D]eclaration"))
@@ -76,5 +76,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, lsp("Goto [T]ype definition"))
     vim.keymap.set('n', 'gn', vim.lsp.buf.rename, lsp("[n]ame rename"))
     vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, lsp("[a]ction"))
-  end, 
+  end,
 })
