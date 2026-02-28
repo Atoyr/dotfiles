@@ -44,7 +44,7 @@ vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev se
 vim.keymap.set("n", "<Leader>s", ":split<CR>", opts)
 vim.keymap.set("n", "<Leader>v", ":vsplit<CR>", opts)
 -- select all
-vim.keymap.set("n", "<Leader>a", "gg<S-v>G", opts)
+vim.keymap.set("n", "<C-a>", "gg<S-v>G", opts)
 -- terminal
 vim.keymap.set("n", "<Leader>z", ":belowright term<CR>", opts)
 -- auto space

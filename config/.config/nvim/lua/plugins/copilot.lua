@@ -50,23 +50,14 @@ return {
       auto_insert_mode = true,
     },
     keys = {
-      { "<leader>cc", "<cmd>CopilotChatToggle<CR>",  desc = "CopilotChat Toggle" },
-      { "<leader>ce", "<cmd>CopilotChatExplain<CR>", mode = "v",                 desc = "Explain" },
-      { "<leader>cr", "<cmd>CopilotChatReview<CR>",  mode = "v",                 desc = "Review" },
-      { "<leader>cf", "<cmd>CopilotChatFix<CR>",     mode = "v",                 desc = "Fix" },
-      { "<leader>ct", "<cmd>CopilotChatTests<CR>",   mode = "v",                 desc = "Tests" },
-      {
-        "<leader>cq",
-        function()
-          local input = vim.fn.input("Quick Chat: ")
-          if input ~= "" then
-            require("CopilotChat").ask(input, {
-              selection = require("CopilotChat.select").buffer,
-            })
-          end
-        end,
-        desc = "Quick Chat",
-      },
+      { "<leader>ao", "<cmd>CopilotChatOpen<cr>",    desc = "Open Chat" },
+      { "<leader>aq", "<cmd>CopilotChatClose<cr>",   desc = "Close Chat" },
+      { "<leader>ar", "<cmd>CopilotChatReset<cr>",   desc = "Reset Chat" },
+      { "<leader>ae", "<cmd>CopilotChatExplain<cr>", desc = "Explain Code",   mode = { "n", "v" } },
+      { "<leader>af", "<cmd>CopilotChatFix<cr>",     desc = "Fix Code",       mode = { "n", "v" } },
+      { "<leader>at", "<cmd>CopilotChatTests<cr>",   desc = "Generate Tests", mode = { "n", "v" } },
+      { "<leader>ad", "<cmd>CopilotChatDocs<cr>",    desc = "Generate Docs",  mode = { "n", "v" } },
+      { "<leader>aR", "<cmd>CopilotChatReview<cr>",  desc = "Review Code",    mode = { "n", "v" } },
     },
   },
 }
