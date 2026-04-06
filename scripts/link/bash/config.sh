@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ../../lib/bash/log.sh
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../../lib/bash/log.sh"
 
 link_config() {
 
@@ -13,6 +13,7 @@ link_config() {
   create_symlink "$src/.config/mise" "$dest/.config/mise"
   create_symlink "$src/.config/zellij" "$dest/.config/zellij"
   create_symlink "$src/.config/wezterm" "$dest/.config/wezterm"
+  create_symlink "$src/.config/ghostty" "$dest/.config/ghostty"
 }
 
 create_symlink() {

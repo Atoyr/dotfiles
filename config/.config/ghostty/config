@@ -1,0 +1,20 @@
+# Font
+font-family = CaskaydiaCove Nerd Font
+font-size = 14
+
+# Theme
+theme = tokyonight
+
+# Window
+window-padding-x = 2
+window-padding-y = 0
+
+# Scrollback
+scrollback-limit = 35000
+
+# macOS: Option key
+macos-option-as-alt = left
+
+# Alt+矢印キーをZellijが認識できるシーケンスで送信
+keybind = alt+left=text:\x1b[1;3D
+keybind = alt+right=text:\x1b[1;3C
