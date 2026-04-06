@@ -6,12 +6,6 @@ local config = {}
 local is_windows = wezterm.target_triple:find("windows") ~= nil
 local is_macos = wezterm.target_triple:find("darwin") ~= nil
 
--- defalut shell
-if is_windows then
-  config.default_prog = { 'powershell.exe' }
-elseif is_macos then
-  config.default_prog = { '/bin/zsh' }
-end
 
 -- Font settings migrated from Alacritty
 config.font = wezterm.font('CaskaydiaCove Nerd Font')
